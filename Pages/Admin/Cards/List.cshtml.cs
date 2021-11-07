@@ -154,6 +154,36 @@ namespace CardOrg.Pages.Admin
             return Page();
         }
 
+        /// <summary>
+        /// Called when [post save asynchronously].
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostSaveAsync(CancellationToken cancellationToken)
+        {
+            if (!ModelState.IsValid)
+            {
+                await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+                ViewData["Success"] = "Something went wrong.";
+                return Page();
+            }
+
+            var result = await _cardService.SaveCardAsync(CardViewModel, cancellationToken).ConfigureAwait(false);
+            ModelState.Clear();
+            CardViewModel = new CardViewModel();
+            if (result)
+            {
+                ViewData["Success"] = "Success! Add another card.";
+            }
+            else
+            {
+                ViewData["Success"] = "Error!";
+            }
+
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            return Page();
+        }
+
         private async Task FillModelsAsync(CancellationToken cancellationToken)
         {
             CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);

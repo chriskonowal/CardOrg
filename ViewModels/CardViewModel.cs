@@ -37,7 +37,12 @@ namespace CardOrg.ViewModels
         [Required]
         public string PlayerIds { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Gets or sets the teams.
+        /// </summary>
+        /// <value>
+        /// The teams.
+        /// </value>
         public IEnumerable<TeamViewModel> Teams { get; set; }
 
         /// <summary>
@@ -50,32 +55,85 @@ namespace CardOrg.ViewModels
         [Required]
         public string TeamIds { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the grade company.
+        /// </summary>
+        /// <value>
+        /// The grade company.
+        /// </value>
         public GradeCompanyViewModel GradeCompany { get; set; }
 
+        /// <summary>
+        /// Gets or sets the grade company identifier.
+        /// </summary>
+        /// <value>
+        /// The grade company identifier.
+        /// </value>
         [DisplayName("Grade Company")]
         public int GradeCompanyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the location.
+        /// </summary>
+        /// <value>
+        /// The location.
+        /// </value>
         public LocationViewModel Location { get; set; }
 
+        /// <summary>
+        /// Gets or sets the location identifier.
+        /// </summary>
+        /// <value>
+        /// The location identifier.
+        /// </value>
         [DisplayName("Location")]
         [Required]
         public int LocationId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the set.
+        /// </summary>
+        /// <value>
+        /// The set.
+        /// </value>
         public SetViewModel Set { get; set; }
 
         [DisplayName("Set")]
         [Required]
         public int SetId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sport.
+        /// </summary>
+        /// <value>
+        /// The sport.
+        /// </value>
         public SportViewModel Sport { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sport identifier.
+        /// </summary>
+        /// <value>
+        /// The sport identifier.
+        /// </value>
         [DisplayName("Sport")]
         [Required]
         public int SportId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the year.
+        /// </summary>
+        /// <value>
+        /// The year.
+        /// </value>
         public YearViewModel Year { get; set; }
 
+        /// <summary>
+        /// Gets or sets the year identifier.
+        /// </summary>
+        /// <value>
+        /// The year identifier.
+        /// </value>
         [DisplayName("Year")]
         [Required]
         public int YearId { get; set; }
@@ -244,44 +302,32 @@ namespace CardOrg.ViewModels
         /// <summary>
         /// Gets or sets is rookie
         /// </summary>
-        [DisplayName("IsRookie")]
-        [Required]
+        [DisplayName("Is Rookie")]
         public bool IsRookie { get; set; }
 
         /// <summary>
         /// Gets or sets is autograph
         /// </summary>
-        [DisplayName("IsAutograph")]
-        [Required]
+        [DisplayName("Is Autograph")]
         public bool IsAutograph { get; set; }
 
         /// <summary>
         /// Gets or sets is patch.
         /// </summary>
-        [DisplayName("IsPatch")]
-        [Required]
+        [DisplayName("Is Patch")]
         public bool IsPatch { get; set; }
 
         /// <summary>
         /// Gets or sets is on card autograph
         /// </summary>
-        [DisplayName("IsOnCardAutograph")]
-        [Required]
+        [DisplayName("Is On Card Autograph")]
         public bool IsOnCardAutograph { get; set; }
 
         /// <summary>
         /// Gets or sets is game worn jersey
         /// </summary>
-        [DisplayName("IsGameWornJersey")]
+        [DisplayName("Is Game Worn Jersey")]
         [Required]
         public bool IsGameWornJersey { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time stamp.
-        /// </summary>
-        /// <value>
-        /// The time stamp.
-        /// </value>
-        public DateTime TimeStamp { get; set; }
     }
 }

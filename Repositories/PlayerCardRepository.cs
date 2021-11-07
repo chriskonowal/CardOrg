@@ -48,7 +48,7 @@ namespace CardOrg.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<int> InsertPlayerCardsAsync(int cardId, int playerId, CancellationToken cancellationToken)
+        public async Task<int> InsertPlayerCardAsync(int cardId, int playerId, CancellationToken cancellationToken)
         {
             var sql = @"INSERT INTO dbo.PlayerCards 
                         (CardId, PlayerId)
@@ -66,7 +66,7 @@ namespace CardOrg.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<int> DeletePlayerCardsAsync(int cardId, CancellationToken cancellationToken)
+        public async Task<int> DeletePlayerCardAsync(int cardId, CancellationToken cancellationToken)
         {
             var sql = @"DELETE dbo.PlayerCards
                         WHERE CardId = @CardId";

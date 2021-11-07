@@ -19,5 +19,22 @@ namespace CardOrg.Interfaces.Repositories
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
         Task<IEnumerable<PlayerCardEntity>> GetPlayerCardsAsync(IEnumerable<int> cardIds, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Inserts the player card asynchronously.
+        /// </summary>
+        /// <param name="cardId">The card identifier.</param>
+        /// <param name="playerId">The player identifier.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<int> InsertPlayerCardAsync(int cardId, int playerId, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Deletes the player card asynchronously.
+        /// </summary>
+        /// <param name="cardId">The card identifier.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<int> DeletePlayerCardAsync(int cardId, CancellationToken cancellationToken);
     }
 }

@@ -20,9 +20,9 @@
             {
                 <tr>
                     <td>
-                        @Html.Raw("<a href='javascript: void(0);' onclick='showModal(\"divMainImg" + item.CardId + "\")';><img src='/uploads/" + item.FrontCardThumbnailImagePath + "' class='thumb' id='thumbImg" + item.CardId + "' width='100px' /></a>")
+                        <a href="javascript: void(0);" onclick="showModal('divMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbImg" + item.CardId)" /></a>
                         <div class="dialog" title="Front" id="@string.Format("divMainImg" + item.CardId)">
-                            @Html.Raw("<img src='/uploads/" + item.FrontCardMainImagePath + "' class='mainImg' width='80%' />")
+                            <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg"  style="width:80%" />
                         </div>
                     </td>
                     <td>
@@ -39,7 +39,7 @@
                                        
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CardNumber)
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,6 +50,7 @@
                                         High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
                                     </td>
                                     <td>
+                                        @item.CardNumber
                                     </td>
                                     <td>
                                     </td>
@@ -68,7 +69,9 @@
                 modal: true
             });
             function showModal(id) {
-                $('#' + id).dialog('open');
+                if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
+                    $('#' + id).dialog('open');
+                }              
             }
         </script>
     }

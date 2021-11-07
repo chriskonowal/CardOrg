@@ -25,7 +25,7 @@ namespace CardOrg.Interfaces.Repositories
         /// <param name="entity">The entity.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
-        Task<int> InsertCardAsync(CardEntity entity, CancellationToken cancellationToken);
+        Task<CardEntity> InsertCardAsync(CardEntity entity, CancellationToken cancellationToken);
 
         /// <summary>
         /// Updates the card asynchronously.
@@ -33,10 +33,10 @@ namespace CardOrg.Interfaces.Repositories
         /// <param name="entity">The entity.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
-        Task<int> UpdateCardAsync(CardEntity entity, CancellationToken cancellationToken);
+        Task<CardEntity> UpdateCardAsync(CardEntity entity, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Deletes the card asynchronously.
+        /// Deletes the card asynchronous.
         /// </summary>
         /// <param name="cardId">The card identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>

@@ -13,6 +13,11 @@ namespace CardOrg.Interfaces.Services
     /// </summary>
     public interface ICardService
     {
+        /// <summary>
+        /// Gets the cards asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
         Task<IEnumerable<CardViewModel>> GetCardsAsync(CancellationToken cancellationToken);
 
         /// <summary>

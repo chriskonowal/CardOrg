@@ -42,7 +42,7 @@ namespace CardOrg.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<int> InsertCardAsync(CardEntity entity, CancellationToken cancellationToken)
+        public async Task<CardEntity> InsertCardAsync(CardEntity entity, CancellationToken cancellationToken)
         {
             var sql = @"INSERT INTO dbo.Cards 
                             ([CardDescription], 
@@ -98,7 +98,8 @@ namespace CardOrg.Repositories
                             @GradeCompanyId,
                             @LocationId,
                             @TimeStamp
-                        ) ";
+                        ) 
+                        SELECT SCOPE_IDENTITY()";
 
             var parameters = new DynamicParameters();
             parameters.Add("@CardDescription", entity.CardDescription);
@@ -139,12 +140,13 @@ namespace CardOrg.Repositories
             var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
             using (var connection = _connectionFactory.CreateConnection())
             {
-                return await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
+                entity.CardId =  await connection.ExecuteScalarAsync<int>(commandDefinition).ConfigureAwait(false);
+                return entity;
             }
         }
 
         /// <inheritdoc/>
-        public async Task<int> UpdateCardAsync(CardEntity entity, CancellationToken cancellationToken)
+        public async Task<CardEntity> UpdateCardAsync(CardEntity entity, CancellationToken cancellationToken)
         {
             var sql = @"UPDATE dbo.Cards
                             SET CardDescription = @CardDescription, 
@@ -173,35 +175,7 @@ namespace CardOrg.Repositories
                             GradeCompanyId = @GradeCompanyId,
                             LocationId = @LocationId,
                             TimeStamp = @TimeStamp
-                            WHERE CardId = @CardId
-                        )
-                        VALUES (@CardDescription, 
-                            @CardNumber,
-                            @LowestBeckettPrice,
-                            @HighestBeckettPrice,
-                            @FrontCardMainImagePath,
-                            @FrontCardThumbnailImagePath,
-                            @BackCardMainImagePath,
-                            @BackCardThumbnailImagePath,
-                            @LowestCOMCPrice,
-                            @EbayPrice,                           
-                            @PricePaid, 
-                            @IsGraded,
-                            @Copies,
-                            @SerialNumber,
-                            @Grade,
-                            @IsRookie,
-                            @IsAutograph,
-                            @IsPatch,
-                            @IsOnCardAutograph,
-                            @IsGameWornJersey,
-                            @SportId,
-                            @YearId,
-                            @SetId,
-                            @GradeCompanyId,
-                            @LocationId,
-                            @TimeStamp
-                        ) ";
+                        WHERE CardId = @CardId";
 
             var parameters = new DynamicParameters();
             parameters.Add("@CardId", entity.CardId);
@@ -239,7 +213,8 @@ namespace CardOrg.Repositories
             var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
             using (var connection = _connectionFactory.CreateConnection())
             {
-                return await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
+                await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
+                return entity;
             }
         }
 

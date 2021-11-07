@@ -42,7 +42,6 @@ namespace CardOrg.Converters
                 SerialNumber = source.SerialNumber,
                 SetId = source.SetId,
                 SportId = source.SportId,
-                TimeStamp = source.TimeStamp,
                 YearId = source.YearId,
             };
         }
@@ -73,7 +72,6 @@ namespace CardOrg.Converters
                 LowestCOMCPrice = source.LowestCOMCPrice,
                 PricePaid = source.PricePaid,
                 SerialNumber = source.SerialNumber,
-                TimeStamp = source.TimeStamp,
                 BackCardMainImagePath = source.BackCardMainImagePath,
                 BackCardThumbnailImagePath = source.BackCardThumbnailImagePath,
                 FrontCardMainImagePath = source.FrontCardMainImagePath,

@@ -138,7 +138,7 @@ namespace CardOrg.Services
         }
 
         /// <inheritdoc/>
-        public async Task<int> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken)
+        public async Task<bool> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken)
         {
             var entity = CardViewModelConverter.Convert(model);
 
@@ -148,17 +148,41 @@ namespace CardOrg.Services
             entity.BackCardMainImagePath = savePictures.BackMainFileName;
             entity.BackCardThumbnailImagePath = savePictures.BackThumbnailFileName;
 
-            int saveResult;
             if (entity.CardId > 0)
             {
-                saveResult = await _cardRepository.UpdateCardAsync(entity, cancellationToken).ConfigureAwait(false);
+                await _cardRepository.UpdateCardAsync(entity, cancellationToken).ConfigureAwait(false);
             }
             else
             {
-                saveResult = await _cardRepository.InsertCardAsync(entity, cancellationToken).ConfigureAwait(false);
+                await _cardRepository.InsertCardAsync(entity, cancellationToken).ConfigureAwait(false);
+            }
+
+            await _playerCardRepository.DeletePlayerCardAsync(entity.CardId, cancellationToken).ConfigureAwait(false);
+            if (model.PlayerIds.Length > 0)
+            {
+                foreach (var playerId in model.PlayerIds.Split(','))
+                {
+                    if (Int32.TryParse(playerId, out int id))
+                    {
+                        await _playerCardRepository.InsertPlayerCardAsync(entity.CardId, id, cancellationToken).ConfigureAwait(false);
+                    }
+                }
+            }
+
+            await _teamCardRepository.DeleteTeamCardAsync(entity.CardId, cancellationToken).ConfigureAwait(false);
+            if (model.TeamIds.Length > 0)
+            {
+                foreach (var teamId in model.TeamIds.Split(','))
+                {
+                    if (Int32.TryParse(teamId, out int id))
+                    {
+                        await _teamCardRepository.InsertTeamCardAsync(entity.CardId, id, cancellationToken).ConfigureAwait(false);
+                    }
+                }
             }
 
 
+            return true;
         }
 
         /// <inheritdoc/>
@@ -170,14 +194,23 @@ namespace CardOrg.Services
         private async Task<FileContext> SavePictureAsync(CardViewModel model, CancellationToken cancellationToken)
         {
             var fileContext = new FileContext();
-            if (model.FrontUpload == null)
+            if (model.FrontUpload == null &&
+                String.IsNullOrWhiteSpace(model.FrontCardMainImagePath) &&
+                String.IsNullOrWhiteSpace(model.FrontCardThumbnailImagePath))
             {
                 fileContext.FrontMainFileName = AVATAR_IMAGE_NAME;
                 fileContext.FrontThumbnailFileName = AVATAR_IMAGE_NAME;
             }
+            else if (model.FrontUpload == null &&
+                !String.IsNullOrWhiteSpace(model.FrontCardMainImagePath) &&
+                !String.IsNullOrWhiteSpace(model.FrontCardThumbnailImagePath))
+            {
+                fileContext.FrontMainFileName = model.FrontCardMainImagePath;
+                fileContext.FrontThumbnailFileName = model.FrontCardThumbnailImagePath;
+            }
             else
             {
-                var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_front").ReturnAlphaNumericCharacters();
+                var fileName = Path.GetFileNameWithoutExtension($"{model.CardDescription}{model.CardNumber}_front").ReturnAlphaNumericCharacters();
                 fileName = fileName.StripInvalidFileNameCharacters();
                 var extension = Path.GetExtension(model.FrontUpload.FileName);
                 if (!String.IsNullOrWhiteSpace(fileName))
@@ -203,15 +236,24 @@ namespace CardOrg.Services
                 }
             }
 
-            if (model.BackUpload == null)
+            if (model.BackUpload == null &&
+                String.IsNullOrWhiteSpace(model.BackCardMainImagePath) &&
+                String.IsNullOrWhiteSpace(model.BackCardThumbnailImagePath))
             {
                 fileContext.BackMainFileName = AVATAR_IMAGE_NAME;
                 fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
                 return fileContext;
             }
+            else if (model.FrontUpload == null &&
+               !String.IsNullOrWhiteSpace(model.BackCardMainImagePath) &&
+               !String.IsNullOrWhiteSpace(model.BackCardThumbnailImagePath))
+            {
+                fileContext.BackMainFileName = model.BackCardMainImagePath;
+                fileContext.BackThumbnailFileName = model.BackCardThumbnailImagePath;
+            }
             else
             {
-                var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_back").ReturnAlphaNumericCharacters();
+                var fileName = Path.GetFileNameWithoutExtension($"{model.CardDescription}{model.CardNumber}_back").ReturnAlphaNumericCharacters();
                 fileName = fileName.StripInvalidFileNameCharacters();
                 var extension = Path.GetExtension(model.BackUpload.FileName);
                 if (!String.IsNullOrWhiteSpace(fileName))

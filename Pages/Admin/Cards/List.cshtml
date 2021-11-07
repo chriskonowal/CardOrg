@@ -26,26 +26,29 @@
     <tbody>
         @foreach (var item in Model.CardViewModels)
         {
-            <tr>
-                <td>
-                    @item.FrontCardThumbnailImagePath
-                </td>
-                <td>
-                    @string.Join(", ", item.Players.Select(x => x.FullName))
-                </td>
-                <td>
-                    <a class="btnEdit" asp-route-cardId="@item.CardId">Edit</a>
-                </td>
-                <td>
-                    <form method="post">
-                        <button class="btnDelete" asp-page-handler="Delete" type="submit" name="delete" asp-route-cardId="@item.CardId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-941" />
+            </td>
+            <td>
+                @string.Join(", ", item.Players.Select(x => x.FullName))
+            </td>
+            <td>
+                @item.CardDescription
+            </td>
+            <td>
+                <a class="btnEdit" asp-route-cardId="@item.CardId">Edit</a>
+            </td>
+            <td>
+                <form method="post">
+                    <button class="btnDelete" asp-page-handler="Delete" type="submit" name="delete" asp-route-cardId="@item.CardId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
-<form class="form-horizontal m-1 p-1" asp-action="Save" method="post" enctype="multipart/form-data">
+<form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
     <h3>@ViewData["Success"]</h3>
     <div class="form-group">
         <label class="lblForm" asp-for="CardViewModel.PlayerIds"></label>
@@ -203,6 +206,8 @@
         <div>
             @Html.EditorFor(model => model.CardViewModel.FrontUpload)
             <span asp-validation-for="CardViewModel.FrontUpload" class="text-danger"></span>
+            <input type="hidden" asp-for="CardViewModel.FrontCardMainImagePath" id="hdnFrontCardMainImagePath" />
+            <input type="hidden" asp-for="CardViewModel.FrontCardThumbnailImagePath" id="hdnFrontCardThumbnailImagePath" />
         </div>
     </div>
     <div class="form-group">
@@ -210,6 +215,8 @@
         <div>
             @Html.EditorFor(model => model.CardViewModel.BackUpload)
             <span asp-validation-for="CardViewModel.BackUpload" class="text-danger"></span>
+            <input type="hidden" asp-for="CardViewModel.BackCardMainImagePath" id="hdnBackCardMainImagePath" />
+            <input type="hidden" asp-for="CardViewModel.BackCardThumbnailImagePath" id="hdnBackCardThumbnailImagePath" />
         </div>
     </div>
     <div class="form-group">
@@ -298,12 +305,25 @@
     </div>
     <div class="form-group">
         <div style="padding-top:5px;">
-            <button type="submit" class="btnSave">Save</button>
+            <input type="hidden" asp-for="CardViewModel.CardId" />
+            <button type="submit" class="btnSave" asp-page-handler="Save">Save</button>
         </div>
     </div>
     @section scripts {
         <script>
             $('#playerTable').DataTable();
+
+            var hdnPlayerIds = $('#hdnPlayerIds').val().split(',');
+            if (hdnPlayerIds.length > 0) {
+                for (var i = 0; i < hdnPlayerIds.length; i++) {
+                    var id = hdnPlayerIds[i];
+                    $('.chkPlayerId').each(function (index, val) {
+                        if ($(val).val() == id) {
+                            $(val).prop('checked', true);
+                        }
+                    });
+                }
+            }
 
             $('.chkPlayerId').on('change', function () {
                 $('#hdnPlayerIds').val('');
@@ -317,10 +337,21 @@
                     }
                 });
                 $('#hdnPlayerIds').val(playerIds);
-            }).change();
+            });
 
             $('#teamTable').DataTable();
 
+            var hdnTeamIds = $('#hdnTeamIds').val().split(',');
+            if (hdnTeamIds.length > 0) {
+                for (var i = 0; i < hdnTeamIds.length; i++) {
+                    var id = hdnTeamIds[i];
+                    $('.chkTeamId').each(function (index, val) {
+                        if ($(val).val() == id) {
+                            $(val).prop('checked', true);
+                        }
+                    });
+                }
+            }
             $('.chkTeamId').on('change', function () {
                 $('#hdnTeamIds').val('');
                 var playerIds = ''
@@ -333,7 +364,7 @@
                     }
                 });
                 $('#hdnTeamIds').val(playerIds);
-            }).change();
+            });
 
             $('.btnAdd').button({
                 icon: "ui-icon-plus"
