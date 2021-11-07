@@ -1,0 +1,75 @@
+﻿@page
+@model CardOrg.Pages.Landing.IndexModel
+@{
+}
+<form method="post">
+    Cards:
+    <table id="myTable" class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Details
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CardEntities)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw("<a href='javascript: void(0);' onclick='showModal(\"divMainImg" + item.CardId + "\")';><img src='/uploads/" + item.FrontCardThumbnailImagePath + "' class='thumb' id='thumbImg" + item.CardId + "' width='100px' /></a>")
+                        <div class="dialog" title="Front" id="@string.Format("divMainImg" + item.CardId)">
+                            @Html.Raw("<img src='/uploads/" + item.FrontCardMainImagePath + "' class='mainImg' width='80%' />")
+                        </div>
+                    </td>
+                    <td>
+                        <table id="tblCardDetails" class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                      
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CardNumber)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                                    </td>
+                                    <td>
+                                        High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @section scripts {
+        <script>
+            $('.dialog').dialog({
+                autoOpen: false,
+                modal: true
+            });
+            function showModal(id) {
+                $('#' + id).dialog('open');
+            }
+        </script>
+    }
+</form>

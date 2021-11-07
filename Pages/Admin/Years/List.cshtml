@@ -1,0 +1,69 @@
+﻿@page
+@model CardOrg.Pages.Admin.Years.ListModel
+@{
+}
+
+<h3>Years</h3>
+<table id="myTable" class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                Beginning Year
+            </th>
+            <th>
+                Ending Year
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.YearViewModels)
+        {
+        <tr>
+            <td>
+                @item.BeginningYear
+            </td>
+            <td>
+                @item.EndingYear
+            </td>
+            <td>
+                <a class="btnEdit" asp-route-yearId="@item.YearId">Edit</a>
+            </td>
+            <td>
+                <form method="post">
+                    <button class="btnDelete" asp-page-handler="Delete" asp-route-yearId="@item.YearId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
+    <h3>@ViewData["Success"]</h3>
+    <div class="form-group">
+        <label class="lblForm" asp-for="YearViewModel.BeginningYear"></label>
+        <div>
+            @Html.EditorFor(model => model.YearViewModel.BeginningYear)
+            <span asp-validation-for="YearViewModel.BeginningYear" class="text-danger"></span>
+            <input type="hidden" asp-for="YearViewModel.YearId" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="lblForm" asp-for="YearViewModel.EndingYear"></label>
+        <div>
+            @Html.EditorFor(model => model.YearViewModel.EndingYear)
+            <span asp-validation-for="YearViewModel.EndingYear" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div style="padding-top:5px;">
+            <button type="submit" class="btnSave" asp-page-handler="Save">Save</button>
+        </div>
+    </div>
+</form>

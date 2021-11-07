@@ -1,0 +1,55 @@
+﻿@page
+@model CardOrg.Pages.Admin.GradeCompanies.ListModel
+@{
+}
+<h3>Grade Companies</h3>
+<table id="myTable" class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GradeCompanyViewModels)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    <a class="btnEdit" asp-route-gradeCompanyId="@item.GradeCompanyId">Edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button class="btnDelete" asp-page-handler="Delete" type="submit" name="delete" asp-route-gradeCompanyId="@item.GradeCompanyId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
+    <h3>@ViewData["Success"]</h3>
+    <div class="form-group">
+        <label class="lblForm" asp-for="GradeCompanyViewModel.Name"></label>
+        <div>
+            @Html.EditorFor(model => model.GradeCompanyViewModel.Name)
+            <span asp-validation-for="GradeCompanyViewModel.Name" class="text-danger"></span>
+            <input type="hidden" asp-for="GradeCompanyViewModel.GradeCompanyId" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div style="padding-top:5px;">
+            <button type="submit" class="btnSave" asp-page-handler="Save">Save</button>
+        </div>
+    </div>
+</form>

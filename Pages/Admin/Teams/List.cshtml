@@ -1,0 +1,68 @@
+﻿@page
+@model CardOrg.Pages.Admin.Teams.ListModel
+@{
+}
+<h3>Teams</h3>
+<table id="myTable" class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                City
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TeamViewModels)
+        {
+            <tr>
+                <td>
+                    @item.City
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    <a class="btnEdit" asp-route-teamId="@item.TeamId">Edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button class="btnDelete" asp-page-handler="Delete" asp-route-teamId="@item.TeamId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
+    <h3>@ViewData["Success"]</h3>
+    <div class="form-group">
+        <label class="lblForm" asp-for="TeamViewModel.City"></label>
+        <div>
+            @Html.EditorFor(model => model.TeamViewModel.City)
+            <span asp-validation-for="TeamViewModel.City" class="text-danger"></span>
+            <input type="hidden" asp-for="TeamViewModel.TeamId" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="lblForm" asp-for="TeamViewModel.Name"></label>
+        <div>
+            @Html.EditorFor(model => model.TeamViewModel.Name)
+            <span asp-validation-for="TeamViewModel.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div style="padding-top:5px;">
+            <button type="submit" class="btnSave" asp-page-handler="Save">Save</button>
+        </div>
+    </div>
+</form>

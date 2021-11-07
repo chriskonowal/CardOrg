@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CardOrg</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css?timestamp=11-06-2021-824" />
+    <link rel="stylesheet" href="~/lib/jquery-ui-1.13.0.custom/jquery-ui.css?timestamp=10-31-2021-942" />
+    <link rel="stylesheet" type="text/css" href="~/lib/plugins/datatables/DataTables-1.11.3/css/dataTables.jqueryui.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <ul id="menu">
+                    <li>
+                        <a asp-page="/Index">Home</a>
+                    </li>
+                    <li>
+                        <a asp-page="/Landing/Index">Landing Page</a>
+                    </li>
+                    <li>
+                        <div>Admin</div>
+                        <ul>
+                            <li>
+                                <a asp-page="/Admin/Cards/List">Cards List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Sports/List">Sports List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Years/List">Years List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/GradeCompanies/List">Grade Companies List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Locations/List">Locations List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Players/List">Players List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Sets/List">Sets List</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Admin/Teams/List">Teams List</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - CardOrg - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery-3.6.0.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-ui-1.13.0.custom/jquery-ui.js"></script>
+    <script src="~/lib/plugins/datatables/datatables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        $("#menu").menu();
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
