@@ -46,5 +46,39 @@ namespace CardOrg.Repositories
 
             return Enumerable.Empty<PlayerCardEntity>();
         }
+
+        /// <inheritdoc/>
+        public async Task<int> InsertPlayerCardsAsync(int cardId, int playerId, CancellationToken cancellationToken)
+        {
+            var sql = @"INSERT INTO dbo.PlayerCards 
+                        (CardId, PlayerId)
+                        VALUES(@CardId, @PlayerId) ";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@CardId", cardId);
+            parameters.Add("@PlayerId", playerId);
+
+            var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                 return await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
+            }
+        }
+
+        /// <inheritdoc/>
+        public async Task<int> DeletePlayerCardsAsync(int cardId, CancellationToken cancellationToken)
+        {
+            var sql = @"DELETE dbo.PlayerCards
+                        WHERE CardId = @CardId";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@CardId", cardId);
+
+            var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                return await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
+            }
+        }
     }
 }

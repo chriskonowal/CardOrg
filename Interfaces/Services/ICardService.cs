@@ -21,14 +21,6 @@ namespace CardOrg.Interfaces.Services
         /// <param name="model">The model.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
-        //Task<bool> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Saves the picture asynchronously.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns></returns>
-        //Task<FileContext> SavePictureAsync(CardViewModel model, CancellationToken cancellationToken);
+        Task<bool> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken);
     }
 }

@@ -138,97 +138,106 @@ namespace CardOrg.Services
         }
 
         /// <inheritdoc/>
-        //public async Task<bool> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken)
-        //{
-        //    var entity = CardViewModelConverter.Convert(model);
+        public async Task<int> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken)
+        {
+            var entity = CardViewModelConverter.Convert(model);
 
-        //    var savePictures = await SavePictureAsync(model, cancellationToken);
-        //    entity.FrontCardMainImagePath = savePictures.FrontMainFileName;
-        //    entity.FrontCardThumbnailImagePath = savePictures.FrontThumbnailFileName;
-        //    entity.BackCardMainImagePath = savePictures.BackMainFileName;
-        //    entity.BackCardThumbnailImagePath = savePictures.BackThumbnailFileName;
+            var savePictures = await SavePictureAsync(model, cancellationToken);
+            entity.FrontCardMainImagePath = savePictures.FrontMainFileName;
+            entity.FrontCardThumbnailImagePath = savePictures.FrontThumbnailFileName;
+            entity.BackCardMainImagePath = savePictures.BackMainFileName;
+            entity.BackCardThumbnailImagePath = savePictures.BackThumbnailFileName;
 
-        //    var saveResult = await _cardRepository.InsertRecordAsync(entity, cancellationToken).ConfigureAwait(false);
-        //    if (saveResult != 1)
-        //    {
-        //        return false;
-        //    }
+            int saveResult;
+            if (entity.CardId > 0)
+            {
+                saveResult = await _cardRepository.UpdateCardAsync(entity, cancellationToken).ConfigureAwait(false);
+            }
+            else
+            {
+                saveResult = await _cardRepository.InsertCardAsync(entity, cancellationToken).ConfigureAwait(false);
+            }
 
-        //    return true;
-        //}
 
-        ///// <inheritdoc/>
-        //public async Task<FileContext> SavePictureAsync(CardViewModel model, CancellationToken cancellationToken)
-        //{
-        //    var fileContext = new FileContext();
-        //    if (model.FrontUpload == null)
-        //    {
-        //        fileContext.FrontMainFileName = AVATAR_IMAGE_NAME;
-        //        fileContext.FrontThumbnailFileName = AVATAR_IMAGE_NAME;
-        //    }
-        //    else
-        //    {
-        //        var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_front").ReturnAlphaNumericCharacters();
-        //        fileName = fileName.StripInvalidFileNameCharacters();
-        //        var extension = Path.GetExtension(model.FrontUpload.FileName);
-        //        if (!String.IsNullOrWhiteSpace(fileName))
-        //        {
-        //            var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
+        }
 
-        //            using (var fileStream = new FileStream(file, FileMode.Create))
-        //            {
-        //                await model.FrontUpload.CopyToAsync(fileStream, cancellationToken);
-        //            }
+        /// <inheritdoc/>
+        public async Task<int> DeleteCardAsync(int cardId, CancellationToken cancellationToken)
+        {
+            return await _cardRepository.DeleteCardAsync(cardId, cancellationToken).ConfigureAwait(false);
+        }
 
-        //            Image image = Image.FromFile(file);
-        //            Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
-        //            thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
+        private async Task<FileContext> SavePictureAsync(CardViewModel model, CancellationToken cancellationToken)
+        {
+            var fileContext = new FileContext();
+            if (model.FrontUpload == null)
+            {
+                fileContext.FrontMainFileName = AVATAR_IMAGE_NAME;
+                fileContext.FrontThumbnailFileName = AVATAR_IMAGE_NAME;
+            }
+            else
+            {
+                var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_front").ReturnAlphaNumericCharacters();
+                fileName = fileName.StripInvalidFileNameCharacters();
+                var extension = Path.GetExtension(model.FrontUpload.FileName);
+                if (!String.IsNullOrWhiteSpace(fileName))
+                {
+                    var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
 
-        //            fileContext.FrontMainFileName = $"{fileName}{extension}";
-        //            fileContext.FrontThumbnailFileName = $"{fileName}_thumb{extension}";
-        //        }
-        //        else
-        //        {
-        //            fileContext.FrontMainFileName = AVATAR_IMAGE_NAME;
-        //            fileContext.FrontThumbnailFileName = AVATAR_IMAGE_NAME;
-        //        }
-        //    }
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await model.FrontUpload.CopyToAsync(fileStream, cancellationToken);
+                    }
 
-        //    if (model.BackUpload == null)
-        //    {
-        //        fileContext.BackMainFileName = AVATAR_IMAGE_NAME;
-        //        fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
-        //        return fileContext;
-        //    }
-        //    else
-        //    {
-        //        var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_back").ReturnAlphaNumericCharacters();
-        //        fileName = fileName.StripInvalidFileNameCharacters();
-        //        var extension = Path.GetExtension(model.BackUpload.FileName);
-        //        if (!String.IsNullOrWhiteSpace(fileName))
-        //        {
-        //            var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
+                    Image image = Image.FromFile(file);
+                    Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
+                    thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
 
-        //            using (var fileStream = new FileStream(file, FileMode.Create))
-        //            {
-        //                model.FrontUpload.CopyTo(fileStream);
-        //            }
+                    fileContext.FrontMainFileName = $"{fileName}{extension}";
+                    fileContext.FrontThumbnailFileName = $"{fileName}_thumb{extension}";
+                }
+                else
+                {
+                    fileContext.FrontMainFileName = AVATAR_IMAGE_NAME;
+                    fileContext.FrontThumbnailFileName = AVATAR_IMAGE_NAME;
+                }
+            }
 
-        //            Image image = Image.FromFile(file);
-        //            Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
-        //            thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
+            if (model.BackUpload == null)
+            {
+                fileContext.BackMainFileName = AVATAR_IMAGE_NAME;
+                fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
+                return fileContext;
+            }
+            else
+            {
+                var fileName = Path.GetFileNameWithoutExtension($"{model.FirstName}{model.LastName}{model.CardBrand}{model.CardNumber}_back").ReturnAlphaNumericCharacters();
+                fileName = fileName.StripInvalidFileNameCharacters();
+                var extension = Path.GetExtension(model.BackUpload.FileName);
+                if (!String.IsNullOrWhiteSpace(fileName))
+                {
+                    var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
 
-        //            fileContext.BackMainFileName = $"{fileName}{extension}";
-        //            fileContext.BackThumbnailFileName = $"{fileName}_thumb{extension}";
-        //        }
-        //        else
-        //        {
-        //            fileContext.BackMainFileName = AVATAR_IMAGE_NAME;
-        //            fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
-        //        }
-        //    }
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        model.FrontUpload.CopyTo(fileStream);
+                    }
 
-        //    return fileContext;
-        //}
+                    Image image = Image.FromFile(file);
+                    Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
+                    thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
+
+                    fileContext.BackMainFileName = $"{fileName}{extension}";
+                    fileContext.BackThumbnailFileName = $"{fileName}_thumb{extension}";
+                }
+                else
+                {
+                    fileContext.BackMainFileName = AVATAR_IMAGE_NAME;
+                    fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
+                }
+            }
+
+            return fileContext;
+        }
     }
 }
