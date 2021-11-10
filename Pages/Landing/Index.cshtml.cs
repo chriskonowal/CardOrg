@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using CardOrg.Interfaces.Repositories;
+using CardOrg.Interfaces.Services;
+using CardOrg.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,25 +16,25 @@ namespace CardOrg.Pages.Landing
     /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
     public class IndexModel : PageModel
     {
-        private readonly ICardRepository _cardRepository;
+        private readonly ICardService _cardService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexModel"/> class.
         /// </summary>
         /// <param name="cardRepository">The card repository.</param>
-        public IndexModel(ICardRepository cardRepository)
+        public IndexModel(ICardService cardService)
         {
-            _cardRepository = cardRepository;
+            _cardService = cardService;
         }
 
         /// <summary>
-        /// Gets or sets the card entities.
+        /// Gets or sets the card view models.
         /// </summary>
         /// <value>
-        /// The card entities.
+        /// The card view models.
         /// </value>
         [BindProperty]
-        public IEnumerable<Entities.CardEntity> CardEntities { get; set; }
+        public IEnumerable<CardViewModel> CardViewModels { get; set; }
 
         /// <summary>
         /// Called when [get asynchronously].
@@ -42,7 +43,7 @@ namespace CardOrg.Pages.Landing
         /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
-            CardEntities = await _cardRepository.GetCardsAsync(cancellationToken).ConfigureAwait(false);
+            CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);
             return Page();
         }
     }

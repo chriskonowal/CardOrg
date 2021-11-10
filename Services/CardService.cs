@@ -116,7 +116,7 @@ namespace CardOrg.Services
             foreach (var cardEntity in cardEntities)
             {
                 var model = CardViewModelConverter.Convert(cardEntity);
-                model.GradeCompany = gradeCompanyModels.FirstOrDefault(x => x.GradeCompanyId == cardEntity.Grade);
+                model.GradeCompany = gradeCompanyModels.FirstOrDefault(x => x.GradeCompanyId == cardEntity.GradeCompanyId);
                 model.Location = locationModels.FirstOrDefault(x => x.LocationId == cardEntity.LocationId);
                 
                 var playerCards = playerCardEntities.Where(c => c.CardId == cardEntity.CardId).Select(p => p.PlayerId);

@@ -7,8 +7,11 @@
     <table id="myTable" class="table" cellspacing="0">
         <thead>
             <tr>
-                <th>
-                    Image
+                <th style="width:125px;">
+                    Front Image
+                </th>
+                <th style="width:125px;">
+                    Back Image
                 </th>
                 <th>
                     Details
@@ -16,49 +19,77 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.CardEntities)
+            @foreach (var item in Model.CardViewModels)
             {
-                <tr>
-                    <td>
-                        <a href="javascript: void(0);" onclick="showModal('divMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbImg" + item.CardId)" /></a>
-                        <div class="dialog" title="Front" id="@string.Format("divMainImg" + item.CardId)">
-                            <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg"  style="width:80%" />
+            <tr>
+                <td>
+                    <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                    <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
+                    </div>
+                </td>
+                <td>
+                    <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                    <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
+                    </div>
+                </td>
+                <td>
+                    <div id="divCardDetails">
+                        <div style="width:33%;float: left;">
+                            @foreach (var player in item.Players)
+                            {
+                                @player.FullName <br />
+                            }
                         </div>
-                    </td>
-                    <td>
-                        <table id="tblCardDetails" class="table" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                      
-                                    </td>
-                                    <td>
-                                       
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
-                                    </td>
-                                    <td>
-                                        High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
-                                    </td>
-                                    <td>
-                                        @item.CardNumber
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </td>
-                </tr>
+                        <div style="width: 33%; float: left;">
+                            @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
+                            {
+                                <span>#/@item.SerialNumber</span>
+                            }
+                            <br />
+                            @item.Location.Name Copies: @item.Copies
+                            <br />
+                            @if (item.IsGraded && @item.GradeCompany != null)
+                            {
+                                <span>@item.GradeCompany.Name - @item.Grade</span>
+                            }
+                            <br />
+                            @if (item.IsRookie)
+                            {
+                                <b>Rookie</b><br />
+                            }
+                            @if (item.IsAutograph && !item.IsOnCardAutograph)
+                            {
+                                <b>Autograph - not on card</b><br />
+                            }
+                            else if (item.IsAutograph && item.IsOnCardAutograph)
+                            {
+                                <b>On card autograph.</b><br />
+                            }
+                            @if (item.IsPatch && !item.IsGameWornJersey)
+                            {
+                                <b>Patch - not game worn.</b><br />
+                            }
+                            else if (item.IsPatch && item.IsGameWornJersey)
+                            {
+                                <b>Game worn patch.</b><br />
+                            }
+                        </div>
+                        <div style="width: 33%; float: left;">
+                            Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                            <br />
+                            High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                            <br />
+                            Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
+                            <br />
+                            Ebay: @string.Format("{0:C}", item.EbayPrice)
+                            <br />
+                            Price Paid: @string.Format("{0:C}", item.PricePaid)
+                        </div>
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
