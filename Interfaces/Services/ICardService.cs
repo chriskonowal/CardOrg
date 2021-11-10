@@ -27,5 +27,13 @@ namespace CardOrg.Interfaces.Services
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
         Task<bool> SaveCardAsync(CardViewModel model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Deletes the card asynchronously.
+        /// </summary>
+        /// <param name="cardId">The card identifier.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<int> DeleteCardAsync(int cardId, CancellationToken cancellationToken);
     }
 }

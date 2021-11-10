@@ -184,6 +184,20 @@ namespace CardOrg.Pages.Admin
             return Page();
         }
 
+        /// <summary>
+        /// Called when [post delete asynchronously].
+        /// </summary>
+        /// <param name="gradeCompanyId">The grade company identifier.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostDeleteAsync(int cardId, CancellationToken cancellationToken)
+        {
+            await _cardService.DeleteCardAsync(cardId, cancellationToken).ConfigureAwait(false);
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            ViewData["Success"] = "Add another card.";
+            return Page();
+        }
+
         private async Task FillModelsAsync(CancellationToken cancellationToken)
         {
             CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);
