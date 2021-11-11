@@ -60,18 +60,30 @@
                 <thead>
                     <tr>
                         <th>
-                            Name
+                            Selected
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.PlayerViewModels)
                     {
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" /> @item.FullName
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.LastName
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -89,6 +101,12 @@
                 <thead>
                     <tr>
                         <th>
+                            Selected
+                        </th>
+                        <th>
+                           City
+                        </th>
+                        <th>
                             Name
                         </th>
                     </tr>
@@ -96,11 +114,17 @@
                 <tbody>
                     @foreach (var item in Model.TeamViewModels)
                     {
-                        <tr>
-                            <td>
-                                <input type="checkbox" value="@item.TeamId" class="chkTeamId" /> @item.Team
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
+                        </td>
+                        <td>
+                            @item.City
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -311,60 +335,91 @@
     </div>
     @section scripts {
         <script>
-            $('#playerTable').DataTable();
+            var playerTable = $('#playerTable').DataTable({
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        "orderDataType": "player-checkbox"
+                    }
+                ]
+            });
+
+            $('#playerTable tbody').on('change', '.chkPlayerId', function () {
+                $('#hdnPlayerIds').val('');
+                var playerIds = ''
+                var rowcollection = playerTable.$(".chkPlayerId:checked", { "page": "all" });
+                rowcollection.each(function (index, elem) {
+                    var checkbox_value = $(elem).val();
+                    if (playerIds.length > 0) {
+                        playerIds += ','
+                    }
+                    playerIds += checkbox_value;
+                })
+                $('#hdnPlayerIds').val(playerIds);
+            });
 
             var hdnPlayerIds = $('#hdnPlayerIds').val().split(',');
             if (hdnPlayerIds.length > 0) {
                 for (var i = 0; i < hdnPlayerIds.length; i++) {
                     var id = hdnPlayerIds[i];
-                    $('.chkPlayerId').each(function (index, val) {
-                        if ($(val).val() == id) {
-                            $(val).prop('checked', true);
+                    var rowcollection = playerTable.$(".chkPlayerId", { "page": "all" });
+                    rowcollection.each(function (index, elem) {
+                        var checkbox_value = $(elem).val();
+                        if (checkbox_value == id) {
+                            $(elem).prop('checked', true);
                         }
-                    });
+                    })
                 }
             }
 
-            $('.chkPlayerId').on('change', function () {
-                $('#hdnPlayerIds').val('');
-                var playerIds = ''
-                $('.chkPlayerId').each(function (index, val) {
-                    if ($(val).is(':checked')) {
-                        if (playerIds.length > 0) {
-                            playerIds += ','
-                        }
-                        playerIds += $(val).val();
-                    }
+            $.fn.dataTable.ext.order['player-checkbox'] = function (settings, col) {
+                return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+                    return $('input', td).prop('checked') ? '1' : '0';
                 });
-                $('#hdnPlayerIds').val(playerIds);
+            }
+
+            var teamTable = $('#teamTable').DataTable({
+                'columnDefs': [
+                    {
+                        'targets': 0,
+                        "orderDataType": "team-checkbox"
+                    }
+                ]
             });
 
-            $('#teamTable').DataTable();
+            $('#teamTable tbody').on('change', '.chkTeamId', function () {
+                $('#hdnTeamIds').val('');
+                var teamIds = ''
+                var rowcollection = teamTable.$(".chkTeamId:checked", { "page": "all" });
+                rowcollection.each(function (index, elem) {
+                    var checkbox_value = $(elem).val();
+                    if (teamIds.length > 0) {
+                        teamIds += ','
+                    }
+                    teamIds += checkbox_value;
+                })
+                $('#hdnTeamIds').val(teamIds);
+            });
 
             var hdnTeamIds = $('#hdnTeamIds').val().split(',');
             if (hdnTeamIds.length > 0) {
                 for (var i = 0; i < hdnTeamIds.length; i++) {
                     var id = hdnTeamIds[i];
-                    $('.chkTeamId').each(function (index, val) {
-                        if ($(val).val() == id) {
-                            $(val).prop('checked', true);
+                    var rowcollection = teamTable.$(".chkTeamId", { "page": "all" });
+                    rowcollection.each(function (index, elem) {
+                        var checkbox_value = $(elem).val();
+                        if (checkbox_value == id) {
+                            $(elem).prop('checked', true);
                         }
-                    });
+                    })
                 }
             }
-            $('.chkTeamId').on('change', function () {
-                $('#hdnTeamIds').val('');
-                var playerIds = ''
-                $('.chkTeamId').each(function (index, val) {
-                    if ($(val).is(':checked')) {
-                        if (playerIds.length > 0) {
-                            playerIds += ','
-                        }
-                        playerIds += $(val).val();
-                    }
+
+            $.fn.dataTable.ext.order['team-checkbox'] = function (settings, col) {
+                return this.api().column(col, { order: 'index' }).nodes().map(function (td, i) {
+                    return $('input', td).prop('checked') ? '1' : '0';
                 });
-                $('#hdnTeamIds').val(playerIds);
-            });
+            }
 
             $('.btnAdd').button({
                 icon: "ui-icon-plus"

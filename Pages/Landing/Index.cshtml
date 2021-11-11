@@ -41,13 +41,12 @@
                             {
                                 @player.FullName <br />
                             }
-                        </div>
-                        <div style="width: 33%; float: left;">
                             @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
                             {
-                                <span>#/@item.SerialNumber</span>
+                                <b>#/@item.SerialNumber</b>
                             }
-                            <br />
+                        </div>
+                        <div style="width: 33%; float: left;">
                             @item.Location.Name Copies: @item.Copies
                             <br />
                             @if (item.IsGraded && @item.GradeCompany != null)
