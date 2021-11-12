@@ -4,6 +4,289 @@
 }
 <form method="post">
     Cards:
+    <div id="accordion">
+        <h3>Search</h3>
+        <div>
+            <label class="lblForm" asp-for="SearchViewModel.PlayerIds"></label>
+            <div>
+                <table id="playerTable" class="table" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Selected
+                            </th>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PlayerViewModels)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
+                                </td>
+                                <td>
+                                    @item.FirstName
+                                </td>
+                                <td>
+                                    @item.LastName
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <input type="hidden" asp-for="SearchViewModel.PlayerIds" id="hdnPlayerIds" />
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.TeamIds"></label>
+                <div>
+                    <table id="teamTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    City
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.TeamViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
+                                    </td>
+                                    <td>
+                                        @item.City
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.TeamIds" id="hdnTeamIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.SportIds"></label>
+                <div>
+                    <table id="sportTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SportViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.SportId" class="chkSportId" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.SportIds" id="hdnSportIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.YearIds"></label>
+                <div>
+                    <table id="yearTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.YearViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.YearId" class="chkYearId" />
+                                    </td>
+                                    <td>
+                                        @item.Year
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.YearIds" id="hdnYearIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.SetIds"></label>
+                <div>
+                    <table id="setTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SetViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.SetId" class="chkSetId" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.SetIds" id="hdnSetIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.GradeCompanyIds"></label>
+                <div>
+                    <table id="gradeCompanyTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.GradeCompanyViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.GradeCompanyId" class="chkGradeCompanyId" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.GradeCompanyIds" id="hdnGradeCompanyIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.LocationIds"></label>
+                <div>
+                    <table id="locationTable" class="table" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Selected
+                                </th>
+                                <th>
+                                    Year
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.LocationViewModels)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="@item.LocationId" class="chkLocationId" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <input type="hidden" asp-for="SearchViewModel.LocationIds" id="hdnLocationIds" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsRookie"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.IsRookie" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsGraded"></label>
+                <div>
+                    <input type="checkbox" id="Graded" asp-for="SearchViewModel.IsGraded" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsAutograph"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.IsAutograph" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsOnCardAutograph"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.IsOnCardAutograph" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsPatch"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.IsPatch" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.IsGameWornJersey"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.IsGameWornJersey" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="padding-top:5px;">
+                    <button type="submit" class="btnSave" asp-page-handler="Search">Search</button>
+                </div>
+            </div>
+        </div>
+        <h3>Sort</h3>
+        <div>
+            <p>
+                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                suscipit faucibus urna.
+            </p>
+        </div>
+    </div>
+    <hr />
     <table id="myTable" class="table" cellspacing="0">
         <thead>
             <tr>
@@ -21,74 +304,77 @@
         <tbody>
             @foreach (var item in Model.CardViewModels)
             {
-            <tr>
-                <td>
-                    <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
-                    <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
-                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
-                    </div>
-                </td>
-                <td>
-                    <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
-                    <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
-                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
-                    </div>
-                </td>
-                <td>
-                    <div id="divCardDetails">
-                        <div style="width:33%;float: left;">
-                            @foreach (var player in item.Players)
-                            {
-                                @player.FullName <br />
-                            }
-                            @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
-                            {
-                                <b>#/@item.SerialNumber</b>
-                            }
+                <tr>
+                    <td>
+                        <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                        <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+                            <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
                         </div>
-                        <div style="width: 33%; float: left;">
-                            @item.Location.Name Copies: @item.Copies
-                            <br />
-                            @if (item.IsGraded && @item.GradeCompany != null)
-                            {
-                                <span>@item.GradeCompany.Name - @item.Grade</span>
-                            }
-                            <br />
-                            @if (item.IsRookie)
-                            {
-                                <b>Rookie</b><br />
-                            }
-                            @if (item.IsAutograph && !item.IsOnCardAutograph)
-                            {
-                                <b>Autograph - not on card</b><br />
-                            }
-                            else if (item.IsAutograph && item.IsOnCardAutograph)
-                            {
-                                <b>On card autograph.</b><br />
-                            }
-                            @if (item.IsPatch && !item.IsGameWornJersey)
-                            {
-                                <b>Patch - not game worn.</b><br />
-                            }
-                            else if (item.IsPatch && item.IsGameWornJersey)
-                            {
-                                <b>Game worn patch.</b><br />
-                            }
+                    </td>
+                    <td>
+                        <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                        <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                            <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
                         </div>
-                        <div style="width: 33%; float: left;">
-                            Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
-                            <br />
-                            High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
-                            <br />
-                            Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
-                            <br />
-                            Ebay: @string.Format("{0:C}", item.EbayPrice)
-                            <br />
-                            Price Paid: @string.Format("{0:C}", item.PricePaid)
+                    </td>
+                    <td>
+                        <div id="divCardDetails">
+                            <div style="width:33%;float: left;">
+                                @foreach (var player in item.Players)
+                                {
+                                    @player.FullName <br />
+                                }
+                                @foreach (var team in item.Teams)
+                                {
+                                    @team.Team <br />
+                                }
+                                @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
+                                {
+                                    <b>#/@item.SerialNumber</b>
+                                }
+                            </div>
+                            <div style="width: 33%; float: left;">
+                                @item.Location.Name Copies: @item.Copies
+                                <br />
+                                @if (item.IsGraded && @item.GradeCompany != null)
+                                {
+                                    <span>@item.GradeCompany.Name - @item.Grade</span> <br />
+                                }
+                                @if (item.IsRookie)
+                                {
+                                    <b>Rookie</b><br />
+                                }
+                                @if (item.IsAutograph && !item.IsOnCardAutograph)
+                                {
+                                    <b>Autograph - not on card</b><br />
+                                }
+                                else if (item.IsAutograph && item.IsOnCardAutograph)
+                                {
+                                    <b>On card autograph.</b><br />
+                                }
+                                @if (item.IsPatch && !item.IsGameWornJersey)
+                                {
+                                    <b>Patch - not game worn.</b><br />
+                                }
+                                else if (item.IsPatch && item.IsGameWornJersey)
+                                {
+                                    <b>Game worn patch.</b><br />
+                                }
+                            </div>
+                            <div style="width: 33%; float: left;">
+                                Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                                <br />
+                                High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                                <br />
+                                Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
+                                <br />
+                                Ebay: @string.Format("{0:C}", item.EbayPrice)
+                                <br />
+                                Price Paid: @string.Format("{0:C}", item.PricePaid)
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -98,11 +384,28 @@
                 autoOpen: false,
                 modal: true
             });
+
             function showModal(id) {
                 if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
                     $('#' + id).dialog('open');
-                }              
+                }
             }
+
+            FillDataTable('playerTable', 'player-checkbox', 'chkPlayerId', 'hdnPlayerIds');
+            FillDataTable('teamTable', 'team-checkbox', 'chkTeamId', 'hdnTeamIds');
+            FillDataTable('sportTable', 'sport-checkbox', 'chkSportId', 'hdnSportIds');
+            FillDataTable('yearTable', 'year-checkbox', 'chkYearId', 'hdnYearIds');
+            FillDataTable('setTable', 'set-checkbox', 'chkSetId', 'hdnSetIds');
+            FillDataTable('gradeCompanyTable', 'gradeCompany-checkbox', 'chkGradeCompanyId', 'hdnGradeCompanyIds');
+            FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
+
+            $("#accordion").accordion({
+                collapsible: true,
+                active: false,
+                heightStyle: "content"
+            });
+
+            
         </script>
     }
 </form>

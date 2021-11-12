@@ -132,7 +132,7 @@ namespace CardOrg.Repositories
             }
             else
             {
-                parameters.Add("@GradeCompanyId", null);
+                parameters.Add("@GradeCompanyId", null, System.Data.DbType.Int32);
             }
 
             parameters.Add("@LocationId", entity.LocationId);
