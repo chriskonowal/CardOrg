@@ -158,6 +158,17 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnPostSearchAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            if (!ModelState.IsValid)
+            {
+                ViewData["SearchSortError"] = true;
+                SearchSortViewModel = new SearchSortViewModel();
+                return Page();
+            }
+            else
+            {
+                ViewData["SearchSortError"] = false;
+            }
+            
             FilterResults();
             return Page();
         }
@@ -170,6 +181,17 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnPostSortAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            if (!ModelState.IsValid)
+            {
+                ViewData["SearchSortError"] = true;
+                SearchSortViewModel = new SearchSortViewModel();
+                return Page();
+            }
+            else
+            {
+                ViewData["SearchSortError"] = false;
+            }
             FilterResults();
             return Page();
         }
@@ -280,6 +302,10 @@ namespace CardOrg.Pages.Landing
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.CardDescription))
             {
                 CardViewModels = CardViewModels.Where(x => x.CardDescription.ToLower().Contains(SearchSortViewModel.CardDescription.ToLower()));
+            }
+            if (SearchSortViewModel.TimeStampStart != DateTime.MinValue && SearchSortViewModel.TimeStampEnd != DateTime.MinValue)
+            {
+                CardViewModels = CardViewModels.Where(x => x.TimeStamp >= SearchSortViewModel.TimeStampStart && x.TimeStamp <= SearchSortViewModel.TimeStampEnd);
             }
             if (SearchSortViewModel.PlayerNameSort != 0)
             {

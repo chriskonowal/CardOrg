@@ -355,6 +355,14 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="lblForm">Time Stamp</label>
+                <div>
+                    <input type="date" asp-for="SearchSortViewModel.TimeStampStart" class="txtRange" /> - <input type="date" asp-for="SearchSortViewModel.TimeStampEnd" class="txtRange" />
+                    <span asp-validation-for="SearchSortViewModel.TimeStampStart" class="text-danger"></span>
+                    <span asp-validation-for="SearchSortViewModel.TimeStampEnd" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
                 <div style="padding-top:5px;">
                     <button type="submit" class="btnSave" asp-page-handler="Search">Search</button>
                 </div>
@@ -645,6 +653,17 @@
             </div>
         </div>
     <div class="form-group">
+       @if (Model.ViewData["SearchSortError"] != null && (bool)Model.ViewData["SearchSortError"]) {
+        <div class="ui-widget">
+            <div class="ui-state-error ui-corner-all" style="padding-top: 5px;padding-left:5px;">
+                <p>
+                    <span class="ui-icon ui-icon-alert"
+                          style="float: left; margin-right: .3em;"></span>
+                    <strong>Alert:</strong>Something went wrong. Please try again.
+                </p>
+            </div>
+        </div>
+       }
         <div style="padding-top:5px;text-align:right;">
             <button type="submit" class="btnClear" asp-page-handler="Clear">Clear Search/Sort</button>
         </div>
