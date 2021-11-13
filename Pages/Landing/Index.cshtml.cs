@@ -130,22 +130,13 @@ namespace CardOrg.Pages.Landing
         public IEnumerable<LocationViewModel> LocationViewModels { get; set; }
 
         /// <summary>
-        /// Gets or sets the search view model.
+        /// Gets or sets the search sort view model.
         /// </summary>
         /// <value>
         /// The search view model.
         /// </value>
         [BindProperty]
-        public SearchViewModel SearchViewModel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the sort view model.
-        /// </summary>
-        /// <value>
-        /// The sort view model.
-        /// </value>
-        [BindProperty]
-        public SortViewModel SortViewModel { get; set; }
+        public SearchSortViewModel SearchSortViewModel { get; set; }
 
         /// <summary>
         /// Called when [get asynchronously].
@@ -155,8 +146,7 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
-            SearchViewModel = new SearchViewModel();
-            SortViewModel = new SortViewModel();
+            SearchSortViewModel = new SearchSortViewModel();
             return Page();
         }
 
@@ -192,110 +182,356 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnPostClearAsync(CancellationToken cancellationToken)
         {
             ModelState.Clear();
-            SearchViewModel = new SearchViewModel();
+            SearchSortViewModel = new SearchSortViewModel();
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
             return Page();
         }
 
         public void FilterResults()
         {
-            if (SearchViewModel.IsAutograph)
+            if (SearchSortViewModel.IsAutograph)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsAutograph);
             }
-            if (SearchViewModel.IsGameWornJersey)
+            if (SearchSortViewModel.IsGameWornJersey)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsGameWornJersey);
             }
-            if (SearchViewModel.IsGraded)
+            if (SearchSortViewModel.IsGraded)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsGraded);
             }
-            if (SearchViewModel.IsOnCardAutograph)
+            if (SearchSortViewModel.IsOnCardAutograph)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsOnCardAutograph);
             }
-            if (SearchViewModel.IsPatch)
+            if (SearchSortViewModel.IsPatch)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsPatch);
             }
-            if (SearchViewModel.IsRookie)
+            if (SearchSortViewModel.IsRookie)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsRookie);
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.PlayerIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.PlayerIds))
             {
-                CardViewModels = CardViewModels.Where(x => x.Players.Any(y => SearchViewModel.PlayerIds.Contains(y.PlayerId.ToString())));
+                CardViewModels = CardViewModels.Where(x => x.Players.Any(y => SearchSortViewModel.PlayerIds.Contains(y.PlayerId.ToString())));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.TeamIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.TeamIds))
             {
-                CardViewModels = CardViewModels.Where(x => x.Teams.Any(y => SearchViewModel.TeamIds.Contains(y.TeamId.ToString())));
+                CardViewModels = CardViewModels.Where(x => x.Teams.Any(y => SearchSortViewModel.TeamIds.Contains(y.TeamId.ToString())));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.SportIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.SportIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchViewModel.SportIds.Contains(x.SportId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SportIds.Contains(x.SportId.ToString()));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.YearIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.YearIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchViewModel.YearIds.Contains(x.YearId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.YearIds.Contains(x.YearId.ToString()));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.SetIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.SetIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchViewModel.SetIds.Contains(x.SetId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SetIds.Contains(x.SetId.ToString()));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.GradeCompanyIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.GradeCompanyIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchViewModel.GradeCompanyIds.Contains(x.GradeCompanyId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.GradeCompanyIds.Contains(x.GradeCompanyId.ToString()));
             }
-            if (!String.IsNullOrWhiteSpace(SearchViewModel.LocationIds))
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.LocationIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchViewModel.LocationIds.Contains(x.LocationId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.LocationIds.Contains(x.LocationId.ToString()));
             }
-            if (SearchViewModel.LowestBecketPriceLow >= 0 && SearchViewModel.LowestBecketPriceHigh > 0)
+            if (SearchSortViewModel.LowestBecketPriceLow >= 0 && SearchSortViewModel.LowestBecketPriceHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.LowestBeckettPrice >= SearchViewModel.LowestBecketPriceLow && x.LowestBeckettPrice <= SearchViewModel.LowestBecketPriceHigh);
+                CardViewModels = CardViewModels.Where(x => x.LowestBeckettPrice >= SearchSortViewModel.LowestBecketPriceLow && x.LowestBeckettPrice <= SearchSortViewModel.LowestBecketPriceHigh);
             }
-            if (SearchViewModel.HighestBecketPriceLow >= 0 && SearchViewModel.HighestBecketPriceHigh > 0)
+            if (SearchSortViewModel.HighestBecketPriceLow >= 0 && SearchSortViewModel.HighestBecketPriceHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.HighestBeckettPrice >= SearchViewModel.HighestBecketPriceLow && x.HighestBeckettPrice <= SearchViewModel.HighestBecketPriceHigh);
+                CardViewModels = CardViewModels.Where(x => x.HighestBeckettPrice >= SearchSortViewModel.HighestBecketPriceLow && x.HighestBeckettPrice <= SearchSortViewModel.HighestBecketPriceHigh);
             }
-            if (SearchViewModel.LowestCOMCPriceLow >= 0 && SearchViewModel.LowestCOMCPriceHigh > 0)
+            if (SearchSortViewModel.LowestCOMCPriceLow >= 0 && SearchSortViewModel.LowestCOMCPriceHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.LowestCOMCPrice >= SearchViewModel.LowestCOMCPriceLow && x.LowestCOMCPrice <= SearchViewModel.LowestCOMCPriceHigh);
+                CardViewModels = CardViewModels.Where(x => x.LowestCOMCPrice >= SearchSortViewModel.LowestCOMCPriceLow && x.LowestCOMCPrice <= SearchSortViewModel.LowestCOMCPriceHigh);
             }
-            if (SearchViewModel.EbayPriceLow >= 0 && SearchViewModel.EbayPriceHigh > 0)
+            if (SearchSortViewModel.EbayPriceLow >= 0 && SearchSortViewModel.EbayPriceHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.EbayPrice >= SearchViewModel.EbayPriceLow && x.EbayPrice <= SearchViewModel.EbayPriceHigh);
+                CardViewModels = CardViewModels.Where(x => x.EbayPrice >= SearchSortViewModel.EbayPriceLow && x.EbayPrice <= SearchSortViewModel.EbayPriceHigh);
             }
-            if (SearchViewModel.PricePaidLow >= 0 && SearchViewModel.PricePaidHigh > 0)
+            if (SearchSortViewModel.PricePaidLow >= 0 && SearchSortViewModel.PricePaidHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.PricePaid >= SearchViewModel.PricePaidLow && x.PricePaid <= SearchViewModel.PricePaidHigh);
+                CardViewModels = CardViewModels.Where(x => x.PricePaid >= SearchSortViewModel.PricePaidLow && x.PricePaid <= SearchSortViewModel.PricePaidHigh);
             }
-            if (SearchViewModel.GradeLow >= 0 && SearchViewModel.GradeHigh > 0)
+            if (SearchSortViewModel.GradeLow >= 0 && SearchSortViewModel.GradeHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.Grade >= SearchViewModel.GradeLow && x.Grade <= SearchViewModel.GradeHigh);
+                CardViewModels = CardViewModels.Where(x => x.Grade >= SearchSortViewModel.GradeLow && x.Grade <= SearchSortViewModel.GradeHigh);
             }
-            if (SearchViewModel.CopiesLow >= 0 && SearchViewModel.CopiesHigh > 0)
+            if (SearchSortViewModel.CopiesLow >= 0 && SearchSortViewModel.CopiesHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.Copies >= SearchViewModel.CopiesLow && x.Copies <= SearchViewModel.CopiesHigh);
+                CardViewModels = CardViewModels.Where(x => x.Copies >= SearchSortViewModel.CopiesLow && x.Copies <= SearchSortViewModel.CopiesHigh);
             }
-            if (SearchViewModel.SerialNumberLow >= 0 && SearchViewModel.SerialNumberHigh > 0)
+            if (SearchSortViewModel.SerialNumberLow >= 0 && SearchSortViewModel.SerialNumberHigh > 0)
             {
-                CardViewModels = CardViewModels.Where(x => x.SerialNumber >= SearchViewModel.SerialNumberLow && x.SerialNumber <= SearchViewModel.SerialNumberHigh);
+                CardViewModels = CardViewModels.Where(x => x.SerialNumber >= SearchSortViewModel.SerialNumberLow && x.SerialNumber <= SearchSortViewModel.SerialNumberHigh);
             }
-            if (SearchViewModel.HasImage)
+            if (SearchSortViewModel.HasImage)
             {
                 CardViewModels = CardViewModels.Where(x => x.FrontCardMainImagePath != AVATAR_IMAGE_NAME && x.BackCardMainImagePath != AVATAR_IMAGE_NAME);
             }
-            if (SortViewModel.PlayerLastName != 0)
+            if (!String.IsNullOrWhiteSpace(SearchSortViewModel.CardDescription))
             {
-                if (SortViewModel.PlayerLastName == 1)
+                CardViewModels = CardViewModels.Where(x => x.CardDescription.ToLower().Contains(SearchSortViewModel.CardDescription.ToLower()));
+            }
+            if (SearchSortViewModel.PlayerNameSort != 0)
+            {
+                if (SearchSortViewModel.PlayerNameSort == 1)
                 {
-                    CardViewModels = CardViewModels.OrderBy(x => x.Players.OrderBy(y => y.LastName).FirstOrDefault().LastName);
+                    CardViewModels = CardViewModels.OrderBy(x => x.Players.OrderBy(y => y.LastName).ThenBy(y => y.FirstName).FirstOrDefault().LastName).ThenBy(x => x.Players.OrderBy(y => y.LastName).ThenBy(y => y.FirstName).FirstOrDefault().FirstName);
                 }
                 else
                 {
-                    CardViewModels = CardViewModels.OrderByDescending(x => x.Players.OrderByDescending(y => y.LastName).FirstOrDefault().LastName);
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Players.OrderByDescending(y => y.LastName).ThenByDescending(y => y.FirstName).FirstOrDefault().LastName).ThenByDescending(x => x.Players.OrderBy(y => y.LastName).ThenByDescending(y => y.FirstName).FirstOrDefault().FirstName);
+                }
+            }
+            if (SearchSortViewModel.TeamSort != 0)
+            {
+                if (SearchSortViewModel.TeamSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Teams.OrderBy(y => y.City).ThenBy(y => y.Name).FirstOrDefault().City).ThenBy(x => x.Teams.OrderBy(y => y.City).ThenBy(y => y.Name).FirstOrDefault().Name);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Teams.OrderByDescending(y => y.City).ThenByDescending(y => y.Name).FirstOrDefault().City).ThenByDescending(x => x.Teams.OrderBy(y => y.City).ThenByDescending(y => y.Name).FirstOrDefault().Name);
+                }
+            }
+            if (SearchSortViewModel.CardDescriptionSort != 0)
+            {
+                if (SearchSortViewModel.CardDescriptionSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.CardDescription);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.CardDescription);
+                }
+            }
+            if (SearchSortViewModel.LowestBeckettPriceSort != 0)
+            {
+                if (SearchSortViewModel.LowestBeckettPriceSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.LowestBeckettPrice);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.LowestBeckettPrice);
+                }
+            }
+            if (SearchSortViewModel.HighestBeckettPriceSort != 0)
+            {
+                if (SearchSortViewModel.HighestBeckettPriceSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.HighestBeckettPrice);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.HighestBeckettPrice);
+                }
+            }
+            if (SearchSortViewModel.LowestCOMCPriceSort != 0)
+            {
+                if (SearchSortViewModel.LowestCOMCPriceSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.LowestCOMCPrice);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.LowestCOMCPrice);
+                }
+            }
+            if (SearchSortViewModel.EbayPriceSort != 0)
+            {
+                if (SearchSortViewModel.EbayPriceSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.EbayPrice);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.EbayPrice);
+                }
+            }
+            if (SearchSortViewModel.HasImageSort != 0)
+            {
+                if (SearchSortViewModel.HasImageSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.FrontCardMainImagePath != AVATAR_IMAGE_NAME);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.FrontCardMainImagePath != AVATAR_IMAGE_NAME);
+                }
+            }
+            if (SearchSortViewModel.IsGradedSort != 0)
+            {
+                if (SearchSortViewModel.IsGradedSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsGraded);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsGraded);
+                }
+            }
+            if (SearchSortViewModel.IsRookieSort != 0)
+            {
+                if (SearchSortViewModel.IsRookieSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsRookie);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsRookie);
+                }
+            }
+            if (SearchSortViewModel.IsAutographSort != 0)
+            {
+                if (SearchSortViewModel.IsAutographSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsAutograph);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsAutograph);
+                }
+            }
+            if (SearchSortViewModel.IsOnCardAutographSort != 0)
+            {
+                if (SearchSortViewModel.IsOnCardAutographSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsOnCardAutograph);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsOnCardAutograph);
+                }
+            }
+            if (SearchSortViewModel.IsPatchSort != 0)
+            {
+                if (SearchSortViewModel.IsPatchSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsPatch);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsPatch);
+                }
+            }
+            if (SearchSortViewModel.IsGameWornJerseySort != 0)
+            {
+                if (SearchSortViewModel.IsGameWornJerseySort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.IsGameWornJersey);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.IsGameWornJersey);
+                }
+            }
+            if (SearchSortViewModel.CopiesSort != 0)
+            {
+                if (SearchSortViewModel.CopiesSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Copies);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Copies);
+                }
+            }
+            if (SearchSortViewModel.SerialNumberSort != 0)
+            {
+                if (SearchSortViewModel.SerialNumberSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.SerialNumber);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.SerialNumber);
+                }
+            }
+            if (SearchSortViewModel.GradeSort != 0)
+            {
+                if (SearchSortViewModel.GradeSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Grade);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Grade);
+                }
+            }
+            if (SearchSortViewModel.SportSort != 0)
+            {
+                if (SearchSortViewModel.SportSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Sport.Name);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Sport.Name);
+                }
+            }
+            if (SearchSortViewModel.YearSort != 0)
+            {
+                if (SearchSortViewModel.YearSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Year.BeginningYear).ThenBy(x =>x.Year.EndingYear);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Sport.Name).ThenByDescending(x => x.Year.EndingYear);
+                }
+            }
+            if (SearchSortViewModel.SetSort != 0)
+            {
+                if (SearchSortViewModel.SetSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Set.Name);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Set.Name);
+                }
+            }
+            if (SearchSortViewModel.GradeCompanySort != 0)
+            {
+                if (SearchSortViewModel.GradeCompanySort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.GradeCompany.Name);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.GradeCompany.Name);
+                }
+            }
+            if (SearchSortViewModel.LocationSort != 0)
+            {
+                if (SearchSortViewModel.LocationSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Location.Name);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Location.Name);
+                }
+            }
+            if (SearchSortViewModel.TimeStampSort != 0)
+            {
+                if (SearchSortViewModel.TimeStampSort == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.TimeStamp);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.TimeStamp);
                 }
             }
         }

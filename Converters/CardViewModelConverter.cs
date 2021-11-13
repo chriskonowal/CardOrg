@@ -80,7 +80,8 @@ namespace CardOrg.Converters
                 SetId = source.SetId,
                 LocationId = source.LocationId,
                 SportId = source.SportId,
-                YearId = source.YearId
+                YearId = source.YearId,
+                TimeStamp = source.TimeStamp
             };
         }
     }

@@ -329,5 +329,13 @@ namespace CardOrg.ViewModels
         [DisplayName("Is Game Worn Jersey")]
         [Required]
         public bool IsGameWornJersey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time stamp.
+        /// </summary>
+        /// <value>
+        /// The time stamp.
+        /// </value>
+        public DateTime TimeStamp { get; set; }
     }
 }

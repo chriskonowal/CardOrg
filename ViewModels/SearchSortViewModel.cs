@@ -10,7 +10,7 @@ namespace CardOrg.ViewModels
     /// <summary>
     /// The search view model
     /// </summary>
-    public class SearchViewModel
+    public class SearchSortViewModel
     {
         /// <summary>
         /// Gets or sets a value indicating whether this instance is graded.
@@ -221,5 +221,71 @@ namespace CardOrg.ViewModels
 
         [DisplayName("Has Image")]
         public bool HasImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the player.
+        /// </summary>
+        /// <value>
+        /// The last name of the player.
+        /// </value>
+        public int PlayerNameSort { get; set; }
+
+        /// <summary>
+        /// Gets or sets the team.
+        /// </summary>
+        /// <value>
+        /// The team.
+        /// </value>
+        public int TeamSort { get; set; }
+
+        /// <summary>
+        /// Gets or sets the card description.
+        /// </summary>
+        /// <value>
+        /// The card description.
+        /// </value>
+        public int CardDescriptionSort { get; set; }
+
+        public int LowestBeckettPriceSort { get; set; }
+
+        public int HighestBeckettPriceSort { get; set; }
+
+        public int LowestCOMCPriceSort { get; set; }
+
+        public int EbayPriceSort { get; set; }
+
+        public int PricePaidSort { get; set; }
+
+        public int HasImageSort { get; set; }
+
+        public int IsGradedSort { get; set; }
+
+        public int CopiesSort { get; set; }
+
+        public int SerialNumberSort { get; set; }
+
+        public int GradeSort { get; set; }
+
+        public int IsRookieSort { get; set; }
+
+        public int IsAutographSort { get; set; }
+
+        public int IsPatchSort { get; set; }
+
+        public int IsOnCardAutographSort { get; set; }
+
+        public int IsGameWornJerseySort { get; set; }
+
+        public int SportSort { get; set; }
+
+        public int YearSort { get; set; }
+
+        public int SetSort { get; set; }
+
+        public int GradeCompanySort { get; set; }
+
+        public int LocationSort { get; set; }
+
+        public int TimeStampSort { get; set; }
     }
 }
