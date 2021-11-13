@@ -12,7 +12,9 @@ $('.btnAdd').button({
 $('.btnEdit').button({
     icon: "ui-icon-wrench"
 });
-$('#myTable').DataTable();
+$('#myTable').DataTable({
+    responsive: true
+});
 $('.btnSave').button({
     icon: "ui-icon-disk"
 });
@@ -24,8 +26,9 @@ function FillDataTable(tableId, orderCheckBox, checkboxClass, hiddenFieldId) {
             {
                 'targets': 0,
                 "orderDataType": orderCheckBox
-            }
-        ]
+            },     
+        ],
+        responsive: true
     });
 
     $('#' + tableId + ' tbody').on('change', '.' + checkboxClass, function () {
