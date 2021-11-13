@@ -42,5 +42,12 @@ namespace CardOrg.Interfaces.Repositories
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns></returns>
         Task<int> DeleteCardAsync(int cardId, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Gets the top 10 newest cards asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        Task<IEnumerable<CardEntity>> GetTop10NewestCardsAsync(CancellationToken cancellationToken);
     }
 }

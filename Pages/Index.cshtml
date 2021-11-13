@@ -7,5 +7,35 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="center text-center">
+        <div class="responsive-slider">
+            <ul id="lightSlider">
+                @foreach (var item in Model.CardViewModels)
+                {
+                    <li>
+                        <img src="/uploads/@item.FrontCardMainImagePath" alt="" style="width:250px;">
+                        <p class="caption">
+                            @foreach (var player in item.Players)
+                            {
+                                @player.FullName <br />
+                            }
+                            @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
+                            {
+                                <b>#/@item.SerialNumber</b>
+                            }
+                        </p>
+                    </li>
+                }
+            </ul>
+        </div>
 
+    </div>
 </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#lightSlider").lightSlider();
+        });
+    </script>
+}

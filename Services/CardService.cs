@@ -1,5 +1,6 @@
 ﻿using CardOrg.Contexts;
 using CardOrg.Converters;
+using CardOrg.Entities;
 using CardOrg.Extensions;
 using CardOrg.Interfaces.Repositories;
 using CardOrg.Interfaces.Services;
@@ -67,74 +68,18 @@ namespace CardOrg.Services
             _hostingEnvironment = hostingEnvironment;
         }
 
+        /// <inheritdoc/>
         public async Task<IEnumerable<CardViewModel>> GetCardsAsync(CancellationToken cancellationToken)
         {
             var cardEntities = await _cardRepository.GetCardsAsync(cancellationToken).ConfigureAwait(false);
-            var cardIds = cardEntities.Select(x => x.CardId);
-            
-            var gradeCompanyIds = new List<int>();
-            var locationIds = new List<int>();
-            var setIds = new List<int>();
-            var sportIds = new List<int>();
-            var yearIds = new List<int>();
-          
-            foreach (var cardEntity in cardEntities)
-            {
-                if (!gradeCompanyIds.Contains(cardEntity.GradeCompanyId))
-                {
-                    gradeCompanyIds.Add(cardEntity.GradeCompanyId);
-                }
-                if (!locationIds.Contains(cardEntity.LocationId))
-                {
-                    locationIds.Add(cardEntity.LocationId);
-                }
-                if (!setIds.Contains(cardEntity.SetId))
-                {
-                    setIds.Add(cardEntity.SetId);
-                }
-                if (!sportIds.Contains(cardEntity.SportId))
-                {
-                    sportIds.Add(cardEntity.SportId);
-                }
-                if (!yearIds.Contains(cardEntity.YearId))
-                {
-                    yearIds.Add(cardEntity.YearId);
-                }
-            }
+            return await GetCardViewModelsAsync(cardEntities, cancellationToken).ConfigureAwait(false);
+        }
 
-            var gradeCompanyModels = await _gradeCompanyService.GetByIdsAsync(gradeCompanyIds, cancellationToken).ConfigureAwait(false);
-            var locationModels = await _locationService.GetByIdsAsync(locationIds, cancellationToken).ConfigureAwait(false);
-            var playerCardEntities = await _playerCardRepository.GetPlayerCardsAsync(cardIds, cancellationToken).ConfigureAwait(false);
-            var playerModels = await _playerService.GetByIdsAsync(playerCardEntities.Select(x => x.PlayerId), cancellationToken).ConfigureAwait(false);
-            var setModels = await _setService.GetByIdsAsync(setIds, cancellationToken).ConfigureAwait(false);
-            var sportEntities = await _sportService.GetByIdsAsync(sportIds, cancellationToken).ConfigureAwait(false);
-            var teamCardEntities = await _teamCardRepository.GetTeamCardsAsync(cardIds, cancellationToken).ConfigureAwait(false);
-            var teamModels = await _teamService.GetByIdsAsync(teamCardEntities.Select(x => x.TeamId), cancellationToken).ConfigureAwait(false);
-            var yearModels = await _yearService.GetByIdsAsync(yearIds, cancellationToken).ConfigureAwait(false);
-
-            var models = new List<CardViewModel>();
-            foreach (var cardEntity in cardEntities)
-            {
-                var model = CardViewModelConverter.Convert(cardEntity);
-                model.GradeCompany = gradeCompanyModels.FirstOrDefault(x => x.GradeCompanyId == cardEntity.GradeCompanyId);
-                model.Location = locationModels.FirstOrDefault(x => x.LocationId == cardEntity.LocationId);
-                
-                var playerCards = playerCardEntities.Where(c => c.CardId == cardEntity.CardId).Select(p => p.PlayerId);
-                model.Players = playerModels.Where(x => playerCards.Contains(x.PlayerId));
-                model.PlayerIds = String.Join(",", model.Players.Select(x => x.PlayerId));
-                
-                model.Set = setModels.FirstOrDefault(x => x.SetId == cardEntity.SetId);
-                model.Sport = sportEntities.FirstOrDefault(x => x.SportId == cardEntity.SportId);
-
-                var teamCards = teamCardEntities.Where(c => c.CardId == cardEntity.CardId).Select(t => t.TeamId);
-                model.Teams = teamModels.Where(x => teamCards.Contains(x.TeamId));
-                model.TeamIds = String.Join(",", model.Teams.Select(x => x.TeamId));
-
-                model.Year = yearModels.FirstOrDefault(x => x.YearId == cardEntity.YearId);
-                models.Add(model);
-            }
-
-            return models;
+        /// <inheritdoc/>
+        public async Task<IEnumerable<CardViewModel>> GetTop10NewestCardsAsync(CancellationToken cancellationToken)
+        {
+            var cardEntities = await _cardRepository.GetTop10NewestCardsAsync(cancellationToken).ConfigureAwait(false);
+            return await GetCardViewModelsAsync(cardEntities, cancellationToken).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
@@ -280,6 +225,75 @@ namespace CardOrg.Services
             }
 
             return fileContext;
+        }
+
+        private async Task<IEnumerable<CardViewModel>> GetCardViewModelsAsync(IEnumerable<CardEntity> entities, CancellationToken cancellationToken)
+        {
+            var cardIds = entities.Select(x => x.CardId);
+
+            var gradeCompanyIds = new List<int>();
+            var locationIds = new List<int>();
+            var setIds = new List<int>();
+            var sportIds = new List<int>();
+            var yearIds = new List<int>();
+
+            foreach (var cardEntity in entities)
+            {
+                if (!gradeCompanyIds.Contains(cardEntity.GradeCompanyId))
+                {
+                    gradeCompanyIds.Add(cardEntity.GradeCompanyId);
+                }
+                if (!locationIds.Contains(cardEntity.LocationId))
+                {
+                    locationIds.Add(cardEntity.LocationId);
+                }
+                if (!setIds.Contains(cardEntity.SetId))
+                {
+                    setIds.Add(cardEntity.SetId);
+                }
+                if (!sportIds.Contains(cardEntity.SportId))
+                {
+                    sportIds.Add(cardEntity.SportId);
+                }
+                if (!yearIds.Contains(cardEntity.YearId))
+                {
+                    yearIds.Add(cardEntity.YearId);
+                }
+            }
+
+            var gradeCompanyModels = await _gradeCompanyService.GetByIdsAsync(gradeCompanyIds, cancellationToken).ConfigureAwait(false);
+            var locationModels = await _locationService.GetByIdsAsync(locationIds, cancellationToken).ConfigureAwait(false);
+            var playerCardEntities = await _playerCardRepository.GetPlayerCardsAsync(cardIds, cancellationToken).ConfigureAwait(false);
+            var playerModels = await _playerService.GetByIdsAsync(playerCardEntities.Select(x => x.PlayerId), cancellationToken).ConfigureAwait(false);
+            var setModels = await _setService.GetByIdsAsync(setIds, cancellationToken).ConfigureAwait(false);
+            var sportEntities = await _sportService.GetByIdsAsync(sportIds, cancellationToken).ConfigureAwait(false);
+            var teamCardEntities = await _teamCardRepository.GetTeamCardsAsync(cardIds, cancellationToken).ConfigureAwait(false);
+            var teamModels = await _teamService.GetByIdsAsync(teamCardEntities.Select(x => x.TeamId), cancellationToken).ConfigureAwait(false);
+            var yearModels = await _yearService.GetByIdsAsync(yearIds, cancellationToken).ConfigureAwait(false);
+
+            var models = new List<CardViewModel>();
+            foreach (var cardEntity in entities)
+            {
+                var model = CardViewModelConverter.Convert(cardEntity);
+                model.GradeCompany = gradeCompanyModels.FirstOrDefault(x => x.GradeCompanyId == cardEntity.GradeCompanyId);
+                model.Location = locationModels.FirstOrDefault(x => x.LocationId == cardEntity.LocationId);
+
+                var playerCards = playerCardEntities.Where(c => c.CardId == cardEntity.CardId).Select(p => p.PlayerId);
+                model.Players = playerModels.Where(x => playerCards.Contains(x.PlayerId));
+                model.PlayerIds = String.Join(",", model.Players.Select(x => x.PlayerId));
+
+                model.Set = setModels.FirstOrDefault(x => x.SetId == cardEntity.SetId);
+                model.Sport = sportEntities.FirstOrDefault(x => x.SportId == cardEntity.SportId);
+
+                var teamCards = teamCardEntities.Where(c => c.CardId == cardEntity.CardId).Select(t => t.TeamId);
+                model.Teams = teamModels.Where(x => teamCards.Contains(x.TeamId));
+                model.TeamIds = String.Join(",", model.Teams.Select(x => x.TeamId));
+
+                model.Year = yearModels.FirstOrDefault(x => x.YearId == cardEntity.YearId);
+                models.Add(model);
+            }
+
+            return models;
         }
     }
 }

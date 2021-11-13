@@ -41,6 +41,19 @@ namespace CardOrg.Repositories
             }
         }
 
+        public async Task<IEnumerable<CardEntity>> GetTop10NewestCardsAsync(CancellationToken cancellationToken)
+        {
+            var sql = @"SELECT TOP 10 * FROM dbo.Cards ORDER BY TimeStamp DESC";
+
+            var parameters = new DynamicParameters();
+
+            var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                return await connection.QueryAsync<CardEntity>(commandDefinition).ConfigureAwait(false);
+            }
+        }
+
         /// <inheritdoc/>
         public async Task<CardEntity> InsertCardAsync(CardEntity entity, CancellationToken cancellationToken)
         {
