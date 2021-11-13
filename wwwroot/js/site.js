@@ -16,7 +16,8 @@ $('.btnClear').button({
     icon: "ui-icon-arrowreturnthick-1-w"
 });
 $('#myTable').DataTable({
-    responsive: true
+    responsive: true,
+    "aaSorting": []
 });
 $('.btnSave').button({
     icon: "ui-icon-disk"

@@ -354,12 +354,22 @@
         </div>
         <h3>Sort</h3>
         <div>
-            <p>
-                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-                suscipit faucibus urna.
-            </p>
+            <div class="form-group">
+                <label class="lblForm">Player Last Name</label>
+                <div>
+                    <input type="radio" id="player_last_name_none" name="PlayerLastName" value="0" asp-for="SortViewModel.PlayerLastName">
+                    <label for="player_last_name_none">None</label>
+                    <input type="radio" id="css" name="PlayerLastName" value="1" asp-for="SortViewModel.PlayerLastName">
+                    <label for="player_last_name_asc">Ascending</label>
+                    <input type="radio" id="javascript" name="PlayerLastName" value="2" asp-for="SortViewModel.PlayerLastName">
+                    <label for="player_last_name_desc">Descending</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="padding-top:5px;">
+                    <button type="submit" class="btnSave" asp-page-handler="Sort">Sort</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -437,15 +447,15 @@
                                 }
                                 else if (item.IsAutograph && item.IsOnCardAutograph)
                                 {
-                        <b>On card autograph.</b><br />
+                        <b>On card autograph</b><br />
                                 }
                         @if (item.IsPatch && !item.IsGameWornJersey)
                                 {
-                        <b>Patch - not game worn.</b><br />
+                        <b>Patch - not game worn</b><br />
                                 }
                                 else if (item.IsPatch && item.IsGameWornJersey)
                                 {
-                        <b>Game worn patch.</b><br />
+                        <b>Game worn patch</b><br />
                                 }
                         <div class="detailsAccordion">
                             <h3>More Details...</h3>

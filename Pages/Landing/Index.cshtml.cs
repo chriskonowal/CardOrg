@@ -25,6 +25,8 @@ namespace CardOrg.Pages.Landing
         private readonly ITeamService _teamService;
         private readonly IYearService _yearService;
 
+        private const string AVATAR_IMAGE_NAME = "card-avatar.jpg";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexModel"/> class.
         /// </summary>
@@ -137,6 +139,15 @@ namespace CardOrg.Pages.Landing
         public SearchViewModel SearchViewModel { get; set; }
 
         /// <summary>
+        /// Gets or sets the sort view model.
+        /// </summary>
+        /// <value>
+        /// The sort view model.
+        /// </value>
+        [BindProperty]
+        public SortViewModel SortViewModel { get; set; }
+
+        /// <summary>
         /// Called when [get asynchronously].
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
@@ -145,6 +156,7 @@ namespace CardOrg.Pages.Landing
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
             SearchViewModel = new SearchViewModel();
+            SortViewModel = new SortViewModel();
             return Page();
         }
 
@@ -156,6 +168,37 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnPostSearchAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            FilterResults();
+            return Page();
+        }
+
+        /// <summary>
+        /// Called when [post sort asynchronously].
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostSortAsync(CancellationToken cancellationToken)
+        {
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            FilterResults();
+            return Page();
+        }
+
+        /// <summary>
+        /// Called when [post clear asynchronously].
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostClearAsync(CancellationToken cancellationToken)
+        {
+            ModelState.Clear();
+            SearchViewModel = new SearchViewModel();
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            return Page();
+        }
+
+        public void FilterResults()
+        {
             if (SearchViewModel.IsAutograph)
             {
                 CardViewModels = CardViewModels.Where(x => x.IsAutograph);
@@ -182,7 +225,7 @@ namespace CardOrg.Pages.Landing
             }
             if (!String.IsNullOrWhiteSpace(SearchViewModel.PlayerIds))
             {
-                CardViewModels = CardViewModels.Where(x => x.Players.Any(y =>SearchViewModel.PlayerIds.Contains(y.PlayerId.ToString())));
+                CardViewModels = CardViewModels.Where(x => x.Players.Any(y => SearchViewModel.PlayerIds.Contains(y.PlayerId.ToString())));
             }
             if (!String.IsNullOrWhiteSpace(SearchViewModel.TeamIds))
             {
@@ -242,25 +285,22 @@ namespace CardOrg.Pages.Landing
             }
             if (SearchViewModel.HasImage)
             {
-                CardViewModels = CardViewModels.Where(x => x.FrontCardMainImagePath >= SearchViewModel.SerialNumberLow && x.SerialNumber <= SearchViewModel.SerialNumberHigh);
+                CardViewModels = CardViewModels.Where(x => x.FrontCardMainImagePath != AVATAR_IMAGE_NAME && x.BackCardMainImagePath != AVATAR_IMAGE_NAME);
             }
-            return Page();
+            if (SortViewModel.PlayerLastName != 0)
+            {
+                if (SortViewModel.PlayerLastName == 1)
+                {
+                    CardViewModels = CardViewModels.OrderBy(x => x.Players.OrderBy(y => y.LastName).FirstOrDefault().LastName);
+                }
+                else
+                {
+                    CardViewModels = CardViewModels.OrderByDescending(x => x.Players.OrderByDescending(y => y.LastName).FirstOrDefault().LastName);
+                }
+            }
         }
 
-        /// <summary>
-        /// Called when [post clear asynchronous].
-        /// </summary>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns></returns>
-        public async Task<IActionResult> OnPostClearAsync(CancellationToken cancellationToken)
-        {
-            ModelState.Clear();
-            SearchViewModel = new SearchViewModel();
-            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
-            return Page();
-        }
-
-            public async Task FillModelsAsync(CancellationToken cancellationToken)
+        public async Task FillModelsAsync(CancellationToken cancellationToken)
         {
             CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);
             PlayerViewModels = await _playerService.GetPlayersAsync(cancellationToken).ConfigureAwait(false);
