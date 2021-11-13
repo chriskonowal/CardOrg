@@ -85,3 +85,17 @@ body {
 .thumb {
     width: 40px;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lblForm {
+    font-weight:bold;
+}
+
+.txtRange {
+    width: 15% !important;
+}

@@ -12,6 +12,9 @@ $('.btnAdd').button({
 $('.btnEdit').button({
     icon: "ui-icon-wrench"
 });
+$('.btnClear').button({
+    icon: "ui-icon-arrowreturnthick-1-w"
+});
 $('#myTable').DataTable({
     responsive: true
 });

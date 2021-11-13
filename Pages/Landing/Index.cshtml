@@ -3,7 +3,7 @@
 @{
 }
 <form method="post">
-    Cards:
+    <h2>Cards:</h2>
     <div id="accordion">
         <h3>Search</h3>
         <div>
@@ -42,6 +42,7 @@
                 </table>
                 <input type="hidden" asp-for="SearchViewModel.PlayerIds" id="hdnPlayerIds" />
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.TeamIds"></label>
                 <div>
@@ -79,6 +80,7 @@
                     <input type="hidden" asp-for="SearchViewModel.TeamIds" id="hdnTeamIds" />
                 </div>
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.SportIds"></label>
                 <div>
@@ -110,6 +112,7 @@
                     <input type="hidden" asp-for="SearchViewModel.SportIds" id="hdnSportIds" />
                 </div>
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.YearIds"></label>
                 <div>
@@ -141,6 +144,7 @@
                     <input type="hidden" asp-for="SearchViewModel.YearIds" id="hdnYearIds" />
                 </div>
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.SetIds"></label>
                 <div>
@@ -172,6 +176,7 @@
                     <input type="hidden" asp-for="SearchViewModel.SetIds" id="hdnSetIds" />
                 </div>
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.GradeCompanyIds"></label>
                 <div>
@@ -203,6 +208,7 @@
                     <input type="hidden" asp-for="SearchViewModel.GradeCompanyIds" id="hdnGradeCompanyIds" />
                 </div>
             </div>
+            <hr />
             <div class="form-group">
                 <label class="lblForm" asp-for="SearchViewModel.LocationIds"></label>
                 <div>
@@ -271,6 +277,76 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="lblForm" asp-for="SearchViewModel.HasImage"></label>
+                <div>
+                    <input type="checkbox" id="Autograph" asp-for="SearchViewModel.HasImage" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Becket Lowest Price</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.LowestBecketPriceLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.LowestBecketPriceHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.LowestBecketPriceLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.LowestBecketPriceHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Becket Highest Price</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.HighestBecketPriceLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.HighestBecketPriceHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.HighestBecketPriceLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.HighestBecketPriceHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Lowest COMC Price</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.LowestCOMCPriceLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.LowestCOMCPriceHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.LowestCOMCPriceLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.LowestCOMCPriceHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Ebay Price</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.EbayPriceLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.EbayPriceHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.EbayPriceLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.EbayPriceHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Price Paid</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.PricePaidLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.PricePaidHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.PricePaidLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.PricePaidHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Grade</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.GradeLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.GradeHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.GradeLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.GradeHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Serial Number</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.SerialNumberLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.SerialNumberHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.SerialNumberLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.SerialNumberHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="lblForm">Copies</label>
+                <div>
+                    <input type="number" asp-for="SearchViewModel.CopiesLow" class="txtRange" /> - <input type="number" asp-for="SearchViewModel.CopiesHigh" class="txtRange" />
+                    <span asp-validation-for="SearchViewModel.CopiesLow" class="text-danger"></span>
+                    <span asp-validation-for="SearchViewModel.CopiesHigh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
                 <div style="padding-top:5px;">
                     <button type="submit" class="btnSave" asp-page-handler="Search">Search</button>
                 </div>
@@ -284,6 +360,11 @@
                 velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
                 suscipit faucibus urna.
             </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div style="padding-top:5px;text-align:right;">
+            <button type="submit" class="btnClear" asp-page-handler="Clear">Clear Search/Sort</button>
         </div>
     </div>
     <hr />
@@ -301,87 +382,91 @@
         <tbody>
             @foreach (var item in Model.CardViewModels)
             {
-                <tr>
-                    <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
-                                    <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                                <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+                                    <div class="text-center center">
                                         <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
                                     </div>
-                                </td>
-                                <td>
-                                    <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
-                                    <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                                <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                                    <div class="text-center center">
                                         <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <div>
-                            @foreach (var player in item.Players)
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        @foreach (var player in item.Players)
                             {
-                                    @player.FullName  <br />
+                        @player.FullName  <br />
                             }
-                            @foreach (var team in item.Teams)
+                        @foreach (var team in item.Teams)
                             {
-                                    @team.Team  <br />
+                        @team.Team  <br />
                             }
 
-                        </div>   
-                    </td>
-                    <td>
-                        <div id="divCardDetails">
-                            @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
+                    </div>
+                </td>
+                <td>
+                    <div id="divCardDetails">
+                        @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
                             {
-                            <b>#/@item.SerialNumber</b>
+                        <b>#/@item.SerialNumber</b>
                             }<br />
 
-                            @if (item.IsGraded && @item.GradeCompany != null)
+                        @if (item.IsGraded && @item.GradeCompany != null)
                                 {
-                            <span>@item.GradeCompany.Name - @item.Grade</span>  <br />
+                        <span>@item.GradeCompany.Name - @item.Grade</span>  <br />
                                 }
-                            @if (item.IsRookie)
+                        @if (item.IsRookie)
                                 {
-                            <b>Rookie</b><br />
+                        <b>Rookie</b><br />
                                 }
-                            @if (item.IsAutograph && !item.IsOnCardAutograph)
+                        @if (item.IsAutograph && !item.IsOnCardAutograph)
                                 {
-                            <b>Autograph - not on card</b><br />
+                        <b>Autograph - not on card</b><br />
                                 }
                                 else if (item.IsAutograph && item.IsOnCardAutograph)
                                 {
-                            <b>On card autograph.</b><br />
+                        <b>On card autograph.</b><br />
                                 }
-                            @if (item.IsPatch && !item.IsGameWornJersey)
+                        @if (item.IsPatch && !item.IsGameWornJersey)
                                 {
-                            <b>Patch - not game worn.</b><br />
+                        <b>Patch - not game worn.</b><br />
                                 }
                                 else if (item.IsPatch && item.IsGameWornJersey)
                                 {
-                            <b>Game worn patch.</b><br />
+                        <b>Game worn patch.</b><br />
                                 }
-                            <div class="detailsAccordion">
-                                <h3>More Details...</h3>
-                                <div>
-                                    @item.Location.Name Copies: @item.Copies
-                                    <br />
-                                    Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
-                                    <br />
-                                    High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
-                                    <br />
-                                    Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
-                                    <br />
-                                    Ebay: @string.Format("{0:C}", item.EbayPrice)
-                                    <br />
-                                    Price Paid: @string.Format("{0:C}", item.PricePaid)
-                                </div>
+                        <div class="detailsAccordion">
+                            <h3>More Details...</h3>
+                            <div>
+                                @item.Location.Name Copies: @item.Copies
+                                <br />
+                                Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                                <br />
+                                High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                                <br />
+                                Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
+                                <br />
+                                Ebay: @string.Format("{0:C}", item.EbayPrice)
+                                <br />
+                                Price Paid: @string.Format("{0:C}", item.PricePaid)
                             </div>
-                            
                         </div>
-                    </td>
-                </tr>
+
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -420,7 +505,6 @@
 
             $('.mainImg')
                 .wrap('<span style="display:inline-block"></span>')
-                .css('display', 'block')
                 .parent()
                 .zoom({
                     on: 'grab'

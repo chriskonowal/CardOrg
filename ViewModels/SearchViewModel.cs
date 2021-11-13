@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -136,5 +137,89 @@ namespace CardOrg.ViewModels
         /// </value>
         [DisplayName("Card Description")]
         public string CardDescription { get; set; }
+        
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal LowestBecketPriceLow { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal LowestBecketPriceHigh { get; set; }
+
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal HighestBecketPriceLow { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal HighestBecketPriceHigh { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal LowestCOMCPriceLow { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal LowestCOMCPriceHigh { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal EbayPriceLow { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal EbayPriceHigh { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal PricePaidLow { get; set; }
+
+        [Required]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public decimal PricePaidHigh { get; set; }
+
+        [Required]
+        [Range(0, 10)]
+        [DefaultValue(0)]
+        public decimal GradeLow { get; set; }
+
+        [Required]
+        [Range(0, 10)]
+        [DefaultValue(0)]
+        public decimal GradeHigh { get; set; }
+
+        [Required]
+        [Range(0, 100000)]
+        [DefaultValue(0)]
+        public int CopiesLow { get; set; }
+
+        [Required]
+        [Range(0, 100000)]
+        [DefaultValue(0)]
+        public int CopiesHigh { get; set; }
+
+        [Required]
+        [Range(0, 10000000000)]
+        [DefaultValue(0)]
+        public int SerialNumberLow { get; set; }
+
+        [Required]
+        [Range(0, 10000000000)]
+        [DefaultValue(0)]
+        public int SerialNumberHigh { get; set; }
+
+        [DisplayName("Has Image")]
+        public bool HasImage { get; set; }
     }
 }

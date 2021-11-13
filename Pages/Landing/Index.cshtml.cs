@@ -144,6 +144,7 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            SearchViewModel = new SearchViewModel();
             return Page();
         }
 
@@ -207,10 +208,59 @@ namespace CardOrg.Pages.Landing
             {
                 CardViewModels = CardViewModels.Where(x => SearchViewModel.LocationIds.Contains(x.LocationId.ToString()));
             }
+            if (SearchViewModel.LowestBecketPriceLow >= 0 && SearchViewModel.LowestBecketPriceHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.LowestBeckettPrice >= SearchViewModel.LowestBecketPriceLow && x.LowestBeckettPrice <= SearchViewModel.LowestBecketPriceHigh);
+            }
+            if (SearchViewModel.HighestBecketPriceLow >= 0 && SearchViewModel.HighestBecketPriceHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.HighestBeckettPrice >= SearchViewModel.HighestBecketPriceLow && x.HighestBeckettPrice <= SearchViewModel.HighestBecketPriceHigh);
+            }
+            if (SearchViewModel.LowestCOMCPriceLow >= 0 && SearchViewModel.LowestCOMCPriceHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.LowestCOMCPrice >= SearchViewModel.LowestCOMCPriceLow && x.LowestCOMCPrice <= SearchViewModel.LowestCOMCPriceHigh);
+            }
+            if (SearchViewModel.EbayPriceLow >= 0 && SearchViewModel.EbayPriceHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.EbayPrice >= SearchViewModel.EbayPriceLow && x.EbayPrice <= SearchViewModel.EbayPriceHigh);
+            }
+            if (SearchViewModel.PricePaidLow >= 0 && SearchViewModel.PricePaidHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.PricePaid >= SearchViewModel.PricePaidLow && x.PricePaid <= SearchViewModel.PricePaidHigh);
+            }
+            if (SearchViewModel.GradeLow >= 0 && SearchViewModel.GradeHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.Grade >= SearchViewModel.GradeLow && x.Grade <= SearchViewModel.GradeHigh);
+            }
+            if (SearchViewModel.CopiesLow >= 0 && SearchViewModel.CopiesHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.Copies >= SearchViewModel.CopiesLow && x.Copies <= SearchViewModel.CopiesHigh);
+            }
+            if (SearchViewModel.SerialNumberLow >= 0 && SearchViewModel.SerialNumberHigh > 0)
+            {
+                CardViewModels = CardViewModels.Where(x => x.SerialNumber >= SearchViewModel.SerialNumberLow && x.SerialNumber <= SearchViewModel.SerialNumberHigh);
+            }
+            if (SearchViewModel.HasImage)
+            {
+                CardViewModels = CardViewModels.Where(x => x.FrontCardMainImagePath >= SearchViewModel.SerialNumberLow && x.SerialNumber <= SearchViewModel.SerialNumberHigh);
+            }
             return Page();
         }
 
-        public async Task FillModelsAsync(CancellationToken cancellationToken)
+        /// <summary>
+        /// Called when [post clear asynchronous].
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostClearAsync(CancellationToken cancellationToken)
+        {
+            ModelState.Clear();
+            SearchViewModel = new SearchViewModel();
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            return Page();
+        }
+
+            public async Task FillModelsAsync(CancellationToken cancellationToken)
         {
             CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);
             PlayerViewModels = await _playerService.GetPlayersAsync(cancellationToken).ConfigureAwait(false);
