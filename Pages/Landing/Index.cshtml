@@ -589,48 +589,76 @@
             <div class="form-group">
                 <label class="lblForm">Year</label>
                 <div>
-                    <input type="radio" id="Year_none" name="SearchSortViewModel.YearSort" value="0" asp-for="SearchSortViewModel.YearSort">
-                    <label for="Year_none">None</label>
-                    <input type="radio" id="Year_asc" name="SearchSortViewModel.YearSort" value="1" asp-for="SearchSortViewModel.YearSort">
-                    <label for="Year_asc">Ascending</label>
-                    <input type="radio" id="Year_desc" name="SearchSortViewModel.YearSort" value="2" asp-for="SearchSortViewModel.YearSort">
-                    <label for="Year_desc">Descending</label>
+                    @foreach (var sort in Model.SortViewModels)
+                    {
+                        if (sort.SortId == Model.SearchSortViewModel.YearSort)
+                        {
+                            <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" checked="checked" />
+                            <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" />
+                            <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
+                        }
+                    }
                 </div>
             </div>
             <hr />
             <div class="form-group">
                 <label class="lblForm">Set</label>
                 <div>
-                    <input type="radio" id="Set_none" name="SearchSortViewModel.SetSort" value="0" asp-for="SearchSortViewModel.SetSort">
-                    <label for="Set_none">None</label>
-                    <input type="radio" id="Set_asc" name="SearchSortViewModel.SetSort" value="1" asp-for="SearchSortViewModel.SetSort">
-                    <label for="Set_asc">Ascending</label>
-                    <input type="radio" id="Set_desc" name="SearchSortViewModel.SetSort" value="2" asp-for="SearchSortViewModel.SetSort">
-                    <label for="Set_desc">Descending</label>
+                    @foreach (var sort in Model.SortViewModels)
+                    {
+                        if (sort.SortId == Model.SearchSortViewModel.SetSort)
+                        {
+                            <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" checked="checked" />
+                            <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" />
+                            <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
+                        }
+                    }
                 </div>
             </div>
             <hr />
             <div class="form-group">
                 <label class="lblForm">Grade Company</label>
                 <div>
-                    <input type="radio" id="GradeCompany_none" name="SearchSortViewModel.GradeCompanySort" value="0" asp-for="SearchSortViewModel.GradeCompanySort">
-                    <label for="GradeCompany_none">None</label>
-                    <input type="radio" id="GradeCompany_asc" name="SearchSortViewModel.GradeCompanySort" value="1" asp-for="SearchSortViewModel.GradeCompanySort">
-                    <label for="GradeCompany_asc">Ascending</label>
-                    <input type="radio" id="GradeCompany_desc" name="SearchSortViewModel.GradeCompanySort" value="2" asp-for="SearchSortViewModel.GradeCompanySort">
-                    <label for="GradeCompany_desc">Descending</label>
+                    @foreach (var sort in Model.SortViewModels)
+                    {
+                        if (sort.SortId == Model.SearchSortViewModel.GradeCompanySort)
+                        {
+                            <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" checked="checked" />
+                            <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" />
+                            <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
+                        }
+                    }
                 </div>
             </div>
             <hr />
             <div class="form-group">
                 <label class="lblForm">Location</label>
                 <div>
-                    <input type="radio" id="Location_none" name="SearchSortViewModel.LocationSort" value="0" asp-for="SearchSortViewModel.LocationSort">
-                    <label for="Location_none">None</label>
-                    <input type="radio" id="Location_asc" name="SearchSortViewModel.LocationSort" value="1" asp-for="SearchSortViewModel.LocationSort">
-                    <label for="Location_asc">Ascending</label>
-                    <input type="radio" id="Location_desc" name="SearchSortViewModel.LocationSort" value="2" asp-for="SearchSortViewModel.LocationSort">
-                    <label for="Location_desc">Descending</label>
+                    @foreach (var sort in Model.SortViewModels)
+                    {
+                        if (sort.SortId == Model.SearchSortViewModel.LocationSort)
+                        {
+                            <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" checked="checked" />
+                            <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" />
+                            <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
+                        }
+                    }
                 </div>
             </div>
             <hr />
