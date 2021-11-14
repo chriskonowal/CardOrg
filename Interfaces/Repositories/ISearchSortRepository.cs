@@ -11,6 +11,10 @@ namespace CardOrg.Interfaces.Repositories
     {
         Task<IEnumerable<SearchSortEntity>> GetSearchSortAsync(CancellationToken cancellationToken);
 
+        Task<SearchSortEntity> GetSearchSortByIdAsync(int searchSortId, CancellationToken cancellationToken);
+
         Task<SearchSortEntity> InsertSearchSortAsync(SearchSortEntity entity, CancellationToken cancellationToken);
+
+        Task<int> DeleteSearchSortAsync(int searchSortId, CancellationToken cancellationToken);
     }
 }

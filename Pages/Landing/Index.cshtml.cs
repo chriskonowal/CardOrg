@@ -20,6 +20,7 @@ namespace CardOrg.Pages.Landing
         private readonly IGradeCompanyService _gradeCompanyService;
         private readonly ILocationService _locationService;
         private readonly IPlayerService _playerService;
+        private readonly ISearchSortService _searchSortService;
         private readonly ISetService _setService;
         private readonly ISportService _sportService;
         private readonly ITeamService _teamService;
@@ -42,6 +43,7 @@ namespace CardOrg.Pages.Landing
             IGradeCompanyService gradeCompanyService,
             ILocationService locationService,
             IPlayerService playerService,
+            ISearchSortService searchSortService,
             ISetService setService,
             ISportService sportService,
             ITeamService teamService,
@@ -51,6 +53,7 @@ namespace CardOrg.Pages.Landing
             _gradeCompanyService = gradeCompanyService;
             _locationService = locationService;
             _playerService = playerService;
+            _searchSortService = searchSortService;
             _setService = setService;
             _sportService = sportService;
             _teamService = teamService;
@@ -138,6 +141,15 @@ namespace CardOrg.Pages.Landing
         [BindProperty]
         public SearchSortViewModel SearchSortViewModel { get; set; }
 
+        [BindProperty]
+        public IEnumerable<SearchSortViewModel> SearchSortViewModels { get; set; }
+
+        public IEnumerable<SortViewModel> SortViewModels { get; set; } = new List<SortViewModel>
+        {   new SortViewModel(0, "None"),
+            new SortViewModel(1, "Ascending"),
+            new SortViewModel(2, "Descending")
+        };
+
         /// <summary>
         /// Called when [get asynchronously].
         /// </summary>
@@ -181,7 +193,6 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnPostSortAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
-            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
             if (!ModelState.IsValid)
             {
                 ViewData["SearchSortError"] = true;
@@ -206,6 +217,45 @@ namespace CardOrg.Pages.Landing
             ModelState.Clear();
             SearchSortViewModel = new SearchSortViewModel();
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostSaveSearchSortAsync(CancellationToken cancellationToken)
+        {
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            if (!ModelState.IsValid)
+            {
+                ViewData["SearchSortError"] = true;
+                SearchSortViewModel = new SearchSortViewModel();
+                return Page();
+            }
+            else
+            {
+                ViewData["SearchSortError"] = false;
+            }
+
+            await _searchSortService.SaveSearchSortAsync(SearchSortViewModel, cancellationToken).ConfigureAwait(false);
+            SearchSortViewModel = new SearchSortViewModel();
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostDeleteSearchSortAsync(CancellationToken cancellationToken)
+        {
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+  
+            await _searchSortService.DeleteSearchSortAsync(SearchSortViewModel.SearchSortId, cancellationToken).ConfigureAwait(false);
+            SearchSortViewModel = new SearchSortViewModel();
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostLoadSearchSortAsync(CancellationToken cancellationToken)
+        {
+            await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            SearchSortViewModel = await _searchSortService.GetSearchSortByIdAsync(SearchSortViewModel.SearchSortId, cancellationToken).ConfigureAwait(false);
+            FilterResults();
+
             return Page();
         }
 
@@ -303,7 +353,7 @@ namespace CardOrg.Pages.Landing
             {
                 CardViewModels = CardViewModels.Where(x => x.CardDescription.ToLower().Contains(SearchSortViewModel.CardDescription.ToLower()));
             }
-            if (SearchSortViewModel.TimeStampStart != DateTime.MinValue && SearchSortViewModel.TimeStampEnd != DateTime.MinValue)
+            if (SearchSortViewModel.TimeStampStart.GetValueOrDefault() != DateTime.MinValue && SearchSortViewModel.TimeStampEnd.GetValueOrDefault() != DateTime.MinValue)
             {
                 CardViewModels = CardViewModels.Where(x => x.TimeStamp >= SearchSortViewModel.TimeStampStart && x.TimeStamp <= SearchSortViewModel.TimeStampEnd);
             }
@@ -572,6 +622,7 @@ namespace CardOrg.Pages.Landing
             SetViewModels = await _setService.GetSetsAsync(cancellationToken).ConfigureAwait(false);
             GradeCompanyViewModels = await _gradeCompanyService.GetGradeCompaniesAsync(cancellationToken).ConfigureAwait(false);
             LocationViewModels = await _locationService.GetLocationsAsync(cancellationToken).ConfigureAwait(false);
+            SearchSortViewModels = await _searchSortService.GetSearchSortAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

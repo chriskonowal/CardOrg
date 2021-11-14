@@ -50,6 +50,8 @@ namespace CardOrg
             services.AddTransient<ITeamService, TeamService>();
             services.AddTransient<IPlayerCardRepository, PlayerCardRepository>();
             services.AddTransient<ITeamCardRepository, TeamCardRepository>();
+            services.AddTransient<ISearchSortRepository, SearchSortRepository>();
+            services.AddTransient<ISearchSortService, SearchSortService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

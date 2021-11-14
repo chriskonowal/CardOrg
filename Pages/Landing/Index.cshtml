@@ -364,453 +364,501 @@
             </div>
             <div class="form-group">
                 <div style="padding-top:5px;">
-                    <button type="submit" class="btnSave" asp-page-handler="Search">Search</button>
+                    <button type="submit" class="btnSearch" asp-page-handler="Search">Search</button>
                 </div>
             </div>
         </div>
-            <h3>Sort</h3>
-            <div>
-                <div class="form-group">
-                    <label class="lblForm">Player Name</label>
-                    <div>
-                        <input type="radio" id="player_first_name_none" name="PlayerNameSort" value="0" asp-for="SearchSortViewModel.PlayerNameSort">
-                        <label for="player_first_name_none">None</label>
-                        <input type="radio" id="player_first_name_asc" name="PlayerNameSort" value="1" asp-for="SearchSortViewModel.PlayerNameSort">
-                        <label for="player_first_name_asc">Ascending</label>
-                        <input type="radio" id="player_first_name_desc" name="PlayerNameSort" value="2" asp-for="SearchSortViewModel.PlayerNameSort">
-                        <label for="player_first_name_desc">Descending</label>
-                    </div>
+        <h3>Sort</h3>
+        <div>
+            <div class="form-group">
+                <label class="lblForm">Player Name</label>
+                <div>
+                    <input type="radio" id="player_first_name_none" name="SearchSortViewModel.PlayerNameSort" value="0" asp-for="SearchSortViewModel.PlayerNameSort">
+                    <label for="player_first_name_none">None</label>
+                    <input type="radio" id="player_first_name_asc" name="SearchSortViewModel.PlayerNameSort" value="1" asp-for="SearchSortViewModel.PlayerNameSort">
+                    <label for="player_first_name_asc">Ascending</label>
+                    <input type="radio" id="player_first_name_desc" name="SearchSortViewModel.PlayerNameSort" value="2" asp-for="SearchSortViewModel.PlayerNameSort">
+                    <label for="player_first_name_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Team</label>
-                    <div>
-                        <input type="radio" id="team_none" name="TeamSort" value="0" asp-for="SearchSortViewModel.TeamSort">
-                        <label for="team_none">None</label>
-                        <input type="radio" id="team_asc" name="TeamSort" value="1" asp-for="SearchSortViewModel.TeamSort">
-                        <label for="team_asc">Ascending</label>
-                        <input type="radio" id="team_desc" name="TeamSort" value="2" asp-for="SearchSortViewModel.TeamSort">
-                        <label for="team_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Team</label>
+                <div>
+                    <input type="radio" id="team_none" name="SearchSortViewModel.TeamSort" value="0" asp-for="SearchSortViewModel.TeamSort">
+                    <label for="team_none">None</label>
+                    <input type="radio" id="team_asc" name="SearchSortViewModel.TeamSort" value="1" asp-for="SearchSortViewModel.TeamSort">
+                    <label for="team_asc">Ascending</label>
+                    <input type="radio" id="team_desc" name="SearchSortViewModel.TeamSort" value="2" asp-for="SearchSortViewModel.TeamSort">
+                    <label for="team_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Card Description</label>
-                    <div>
-                        <input type="radio" id="card_desc_none" name="CardDescriptionSort" value="0" asp-for="SearchSortViewModel.CardDescriptionSort">
-                        <label for="card_desc_none">None</label>
-                        <input type="radio" id="card_desc_asc" name="CardDescriptionSort" value="1" asp-for="SearchSortViewModel.CardDescriptionSort">
-                        <label for="card_desc_asc">Ascending</label>
-                        <input type="radio" id="card_desc_desc" name="CardDescriptionSort" value="2" asp-for="SearchSortViewModel.CardDescriptionSort">
-                        <label for="card_desc_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Card Description</label>
+                <div>
+                    <input type="radio" id="card_desc_none" name="SearchSortViewModel.CardDescriptionSort" value="0" asp-for="SearchSortViewModel.CardDescriptionSort">
+                    <label for="card_desc_none">None</label>
+                    <input type="radio" id="card_desc_asc" name="SearchSortViewModel.CardDescriptionSort" value="1" asp-for="SearchSortViewModel.CardDescriptionSort">
+                    <label for="card_desc_asc">Ascending</label>
+                    <input type="radio" id="card_desc_desc" name="SearchSortViewModel.CardDescriptionSort" value="2" asp-for="SearchSortViewModel.CardDescriptionSort">
+                    <label for="card_desc_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Lowest Beckett Price</label>
-                    <div>
-                        <input type="radio" id="LowestBeckettPrice_none" name="LowestBeckettPriceSort" value="0" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
-                        <label for="LowestBeckettPrice_none">None</label>
-                        <input type="radio" id="LowestBeckettPrice_asc" name="LowestBeckettPriceSort" value="1" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
-                        <label for="LowestBeckettPrice_asc">Ascending</label>
-                        <input type="radio" id="LowestBeckettPrice_desc" name="LowestBeckettPriceSort" value="2" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
-                        <label for="LowestBeckettPrice_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Lowest Beckett Price</label>
+                <div>
+                    <input type="radio" id="LowestBeckettPrice_none" name="SearchSortViewModel.LowestBeckettPriceSort" value="0" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
+                    <label for="LowestBeckettPrice_none">None</label>
+                    <input type="radio" id="LowestBeckettPrice_asc" name="SearchSortViewModel.LowestBeckettPriceSort" value="1" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
+                    <label for="LowestBeckettPrice_asc">Ascending</label>
+                    <input type="radio" id="LowestBeckettPrice_desc" name="SearchSortViewModel.LowestBeckettPriceSort" value="2" asp-for="SearchSortViewModel.LowestBeckettPriceSort">
+                    <label for="LowestBeckettPrice_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Highest Beckett Price</label>
-                    <div>
-                        <input type="radio" id="HighestBeckettPrice_none" name="HighestBeckettPriceSort" value="0" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
-                        <label for="HighestBeckettPrice_none">None</label>
-                        <input type="radio" id="HighestBeckettPrice_asc" name="HighestBeckettPriceSort" value="1" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
-                        <label for="HighestBeckettPrice_asc">Ascending</label>
-                        <input type="radio" id="HighestBeckettPrice_desc" name="HighestBeckettPriceSort" value="2" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
-                        <label for="HighestBeckettPrice_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Highest Beckett Price</label>
+                <div>
+                    <input type="radio" id="HighestBeckettPrice_none" name="SearchSortViewModel.HighestBeckettPriceSort" value="0" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
+                    <label for="HighestBeckettPrice_none">None</label>
+                    <input type="radio" id="HighestBeckettPrice_asc" name="SearchSortViewModel.HighestBeckettPriceSort" value="1" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
+                    <label for="HighestBeckettPrice_asc">Ascending</label>
+                    <input type="radio" id="HighestBeckettPrice_desc" name="SearchSortViewModel.HighestBeckettPriceSort" value="2" asp-for="SearchSortViewModel.HighestBeckettPriceSort">
+                    <label for="HighestBeckettPrice_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Lowest COMC Price</label>
-                    <div>
-                        <input type="radio" id="LowestCOMCPrice_none" name="LowestCOMCPriceSort" value="0" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
-                        <label for="LowestCOMCPrice_none">None</label>
-                        <input type="radio" id="LowestCOMCPrice_asc" name="LowestCOMCPriceSort" value="1" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
-                        <label for="LowestCOMCPrice_asc">Ascending</label>
-                        <input type="radio" id="LowestCOMCPrice_desc" name="LowestCOMCPriceSort" value="2" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
-                        <label for="LowestCOMCPrice_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Lowest COMC Price</label>
+                <div>
+                    <input type="radio" id="LowestCOMCPrice_none" name="SearchSortViewModel.LowestCOMCPriceSort" value="0" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
+                    <label for="LowestCOMCPrice_none">None</label>
+                    <input type="radio" id="LowestCOMCPrice_asc" name="SearchSortViewModel.LowestCOMCPriceSort" value="1" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
+                    <label for="LowestCOMCPrice_asc">Ascending</label>
+                    <input type="radio" id="LowestCOMCPrice_desc" name="SearchSortViewModel.LowestCOMCPriceSort" value="2" asp-for="SearchSortViewModel.LowestCOMCPriceSort">
+                    <label for="LowestCOMCPrice_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Ebay Price</label>
-                    <div>
-                        <input type="radio" id="EbayPrice_none" name="EbayPriceSort" value="0" asp-for="SearchSortViewModel.EbayPriceSort">
-                        <label for="EbayPrice_none">None</label>
-                        <input type="radio" id="EbayPrice_asc" name="EbayPriceSort" value="1" asp-for="SearchSortViewModel.EbayPriceSort">
-                        <label for="EbayPrice_asc">Ascending</label>
-                        <input type="radio" id="EbayPrice_desc" name="EbayPriceSort" value="2" asp-for="SearchSortViewModel.EbayPriceSort">
-                        <label for="EbayPrice_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Ebay Price</label>
+                <div>
+                    <input type="radio" id="EbayPrice_none" name="SearchSortViewModel.EbayPriceSort" value="0" asp-for="SearchSortViewModel.EbayPriceSort">
+                    <label for="EbayPrice_none">None</label>
+                    <input type="radio" id="EbayPrice_asc" name="SearchSortViewModel.EbayPriceSort" value="1" asp-for="SearchSortViewModel.EbayPriceSort">
+                    <label for="EbayPrice_asc">Ascending</label>
+                    <input type="radio" id="EbayPrice_desc" name="SearchSortViewModel.EbayPriceSort" value="2" asp-for="SearchSortViewModel.EbayPriceSort">
+                    <label for="EbayPrice_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Has Image</label>
-                    <div>
-                        <input type="radio" id="HasImage_none" name="HasImageSort" value="0" asp-for="SearchSortViewModel.HasImageSort">
-                        <label for="HasImage_none">None</label>
-                        <input type="radio" id="HasImage_asc" name="HasImageSort" value="1" asp-for="SearchSortViewModel.HasImageSort">
-                        <label for="HasImage_asc">Ascending</label>
-                        <input type="radio" id="HasImage_desc" name="HasImageSort" value="2" asp-for="SearchSortViewModel.HasImageSort">
-                        <label for="HasImage_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Has Image</label>
+                <div>
+                    <input type="radio" id="HasImage_none" name="SearchSortViewModel.HasImageSort" value="0" asp-for="SearchSortViewModel.HasImageSort">
+                    <label for="HasImage_none">None</label>
+                    <input type="radio" id="HasImage_asc" name="SearchSortViewModel.HasImageSort" value="1" asp-for="SearchSortViewModel.HasImageSort">
+                    <label for="HasImage_asc">Ascending</label>
+                    <input type="radio" id="HasImage_desc" name="SearchSortViewModel.HasImageSort" value="2" asp-for="SearchSortViewModel.HasImageSort">
+                    <label for="HasImage_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is Graded</label>
-                    <div>
-                        <input type="radio" id="IsGraded_none" name="IsGradedSort" value="0" asp-for="SearchSortViewModel.IsGradedSort">
-                        <label for="IsGraded_none">None</label>
-                        <input type="radio" id="IsGraded_asc" name="IsGradedSort" value="1" asp-for="SearchSortViewModel.IsGradedSort">
-                        <label for="IsGraded_asc">Ascending</label>
-                        <input type="radio" id="IsGraded_desc" name="IsGradedSort" value="2" asp-for="SearchSortViewModel.IsGradedSort">
-                        <label for="IsGraded_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is Graded</label>
+                <div>
+                    <input type="radio" id="IsGraded_none" name="SearchSortViewModel.IsGradedSort" value="0" asp-for="SearchSortViewModel.IsGradedSort" />
+                    <label for="IsGraded_none">None</label>
+                    <input type="radio" id="IsGraded_asc" name="SearchSortViewModel.IsGradedSort" value="1" asp-for="SearchSortViewModel.IsGradedSort" />
+                    <label for="IsGraded_asc">Ascending</label>
+                    <input type="radio" id="IsGraded_desc" name="SearchSortViewModel.IsGradedSort" value="2" asp-for="SearchSortViewModel.IsGradedSort" />
+                    <label for="IsGraded_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is Rookie</label>
-                    <div>
-                        <input type="radio" id="IsRookie_none" name="IsRookieSort" value="0" asp-for="SearchSortViewModel.IsRookieSort">
-                        <label for="IsRookie_none">None</label>
-                        <input type="radio" id="IsRookie_asc" name="IsRookieSort" value="1" asp-for="SearchSortViewModel.IsRookieSort">
-                        <label for="IsRookie_asc">Ascending</label>
-                        <input type="radio" id="IsRookie_desc" name="IsRookieSort" value="2" asp-for="SearchSortViewModel.IsRookieSort">
-                        <label for="IsRookie_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is Rookie</label>
+                <div>
+                    <input type="radio" id="IsRookie_none" name="SearchSortViewModel.IsRookieSort" value="0" asp-for="SearchSortViewModel.IsRookieSort">
+                    <label for="IsRookie_none">None</label>
+                    <input type="radio" id="IsRookie_asc" name="SearchSortViewModel.IsRookieSort" value="1" asp-for="SearchSortViewModel.IsRookieSort">
+                    <label for="IsRookie_asc">Ascending</label>
+                    <input type="radio" id="IsRookie_desc" name="SearchSortViewModel.IsRookieSort" value="2" asp-for="SearchSortViewModel.IsRookieSort">
+                    <label for="IsRookie_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is Autograph</label>
-                    <div>
-                        <input type="radio" id="IsAutograph_none" name="IsAutographSort" value="0" asp-for="SearchSortViewModel.IsAutographSort">
-                        <label for="IsAutograph_none">None</label>
-                        <input type="radio" id="IsAutograph_asc" name="IsAutographSort" value="1" asp-for="SearchSortViewModel.IsAutographSort">
-                        <label for="IsAutograph_asc">Ascending</label>
-                        <input type="radio" id="IsAutograph_desc" name="IsAutographSort" value="2" asp-for="SearchSortViewModel.IsAutographSort">
-                        <label for="IsAutograph_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is Autograph</label>
+                <div>
+                    <input type="radio" id="IsAutograph_none" name="SearchSortViewModel.IsAutographSort" value="0" asp-for="SearchSortViewModel.IsAutographSort">
+                    <label for="IsAutograph_none">None</label>
+                    <input type="radio" id="IsAutograph_asc" name="SearchSortViewModel.IsAutographSort" value="1" asp-for="SearchSortViewModel.IsAutographSort">
+                    <label for="IsAutograph_asc">Ascending</label>
+                    <input type="radio" id="IsAutograph_desc" name="SearchSortViewModel.IsAutographSort" value="2" asp-for="SearchSortViewModel.IsAutographSort">
+                    <label for="IsAutograph_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is On CardAutograph</label>
-                    <div>
-                        <input type="radio" id="IsOnCardAutograph_none" name="IsOnCardAutographSort" value="0" asp-for="SearchSortViewModel.IsOnCardAutographSort">
-                        <label for="IsOnCardAutograph_none">None</label>
-                        <input type="radio" id="IsOnCardAutograph_asc" name="IsOnCardAutographSort" value="1" asp-for="SearchSortViewModel.IsOnCardAutographSort">
-                        <label for="IsOnCardAutograph_asc">Ascending</label>
-                        <input type="radio" id="IsOnCardAutograph_desc" name="IsOnCardAutoIsOnCardAutographSortgraph" value="2" asp-for="SearchSortViewModel.IsOnCardAutographSort">
-                        <label for="IsOnCardAutograph_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is On CardAutograph</label>
+                <div>
+                    <input type="radio" id="IsOnCardAutograph_none" name="SearchSortViewModel.IsOnCardAutographSort" value="0" asp-for="SearchSortViewModel.IsOnCardAutographSort">
+                    <label for="IsOnCardAutograph_none">None</label>
+                    <input type="radio" id="IsOnCardAutograph_asc" name="SearchSortViewModel.IsOnCardAutographSort" value="1" asp-for="SearchSortViewModel.IsOnCardAutographSort">
+                    <label for="IsOnCardAutograph_asc">Ascending</label>
+                    <input type="radio" id="IsOnCardAutograph_desc" name="SearchSortViewModel.IsOnCardAutographSort" value="2" asp-for="SearchSortViewModel.IsOnCardAutographSort">
+                    <label for="IsOnCardAutograph_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is Patch</label>
-                    <div>
-                        <input type="radio" id="IsPatch_none" name="IsPatchSort" value="0" asp-for="SearchSortViewModel.IsPatchSort">
-                        <label for="IsPatch_none">None</label>
-                        <input type="radio" id="IsPatch_asc" name="IsPatchSort" value="1" asp-for="SearchSortViewModel.IsPatchSort">
-                        <label for="IsPatch_asc">Ascending</label>
-                        <input type="radio" id="IsPatch_desc" name="IsPatchSort" value="2" asp-for="SearchSortViewModel.IsPatchSort">
-                        <label for="IsPatch_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is Patch</label>
+                <div>
+                    <input type="radio" id="IsPatch_none" name="SearchSortViewModel.IsPatchSort" value="0" asp-for="SearchSortViewModel.IsPatchSort">
+                    <label for="IsPatch_none">None</label>
+                    <input type="radio" id="IsPatch_asc" name="SearchSortViewModel.IsPatchSort" value="1" asp-for="SearchSortViewModel.IsPatchSort">
+                    <label for="IsPatch_asc">Ascending</label>
+                    <input type="radio" id="IsPatch_desc" name="SearchSortViewModel.IsPatchSort" value="2" asp-for="SearchSortViewModel.IsPatchSort">
+                    <label for="IsPatch_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Is Game Worn Jersey</label>
-                    <div>
-                        <input type="radio" id="IsGameWornJersey_none" name="IsGameWornJerseySort" value="0" asp-for="SearchSortViewModel.IsGameWornJerseySort">
-                        <label for="IsGameWornJersey_none">None</label>
-                        <input type="radio" id="IsGameWornJersey_asc" name="IsGameWornJerseySort" value="1" asp-for="SearchSortViewModel.IsGameWornJerseySort">
-                        <label for="IsGameWornJersey_asc">Ascending</label>
-                        <input type="radio" id="IsGameWornJersey_desc" name="IsGameWornJerseySort" value="2" asp-for="SearchSortViewModel.IsGameWornJerseySort">
-                        <label for="IsGameWornJersey_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Is Game Worn Jersey</label>
+                <div>
+                    <input type="radio" id="IsGameWornJersey_none" name="SearchSortViewModel.IsGameWornJerseySort" value="0" asp-for="SearchSortViewModel.IsGameWornJerseySort">
+                    <label for="IsGameWornJersey_none">None</label>
+                    <input type="radio" id="IsGameWornJersey_asc" name="SearchSortViewModel.IsGameWornJerseySort" value="1" asp-for="SearchSortViewModel.IsGameWornJerseySort">
+                    <label for="IsGameWornJersey_asc">Ascending</label>
+                    <input type="radio" id="IsGameWornJersey_desc" name="SearchSortViewModel.IsGameWornJerseySort" value="2" asp-for="SearchSortViewModel.IsGameWornJerseySort">
+                    <label for="IsGameWornJersey_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Copies</label>
-                    <div>
-                        <input type="radio" id="Copies_none" name="CopiesSort" value="0" asp-for="SearchSortViewModel.CopiesSort">
-                        <label for="Copies_none">None</label>
-                        <input type="radio" id="Copies_asc" name="CopiesSort" value="1" asp-for="SearchSortViewModel.CopiesSort">
-                        <label for="Copies_asc">Ascending</label>
-                        <input type="radio" id="Copies_desc" name="CopiesSort" value="2" asp-for="SearchSortViewModel.CopiesSort">
-                        <label for="Copies_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Copies</label>
+                <div>
+                    <input type="radio" id="Copies_none" name="SearchSortViewModel.CopiesSort" value="0" asp-for="SearchSortViewModel.CopiesSort">
+                    <label for="Copies_none">None</label>
+                    <input type="radio" id="Copies_asc" name="SearchSortViewModel.CopiesSort" value="1" asp-for="SearchSortViewModel.CopiesSort">
+                    <label for="Copies_asc">Ascending</label>
+                    <input type="radio" id="Copies_desc" name="SearchSortViewModel.CopiesSort" value="2" asp-for="SearchSortViewModel.CopiesSort">
+                    <label for="Copies_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Serial Number</label>
-                    <div>
-                        <input type="radio" id="SerialNumber_none" name="SerialNumberSort" value="0" asp-for="SearchSortViewModel.SerialNumberSort">
-                        <label for="SerialNumber_none">None</label>
-                        <input type="radio" id="SerialNumber_asc" name="SerialNumberSort" value="1" asp-for="SearchSortViewModel.SerialNumberSort">
-                        <label for="SerialNumber_asc">Ascending</label>
-                        <input type="radio" id="SerialNumber_desc" name="SerialNumberSort" value="2" asp-for="SearchSortViewModel.SerialNumberSort">
-                        <label for="SerialNumber_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Serial Number</label>
+                <div>
+                    <input type="radio" id="SerialNumber_none" name="SearchSortViewModel.SerialNumberSort" value="0" asp-for="SearchSortViewModel.SerialNumberSort">
+                    <label for="SerialNumber_none">None</label>
+                    <input type="radio" id="SerialNumber_asc" name="SearchSortViewModel.SerialNumberSort" value="1" asp-for="SearchSortViewModel.SerialNumberSort">
+                    <label for="SerialNumber_asc">Ascending</label>
+                    <input type="radio" id="SerialNumber_desc" name="SearchSortViewModel.SerialNumberSort" value="2" asp-for="SearchSortViewModel.SerialNumberSort">
+                    <label for="SerialNumber_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Grade</label>
-                    <div>
-                        <input type="radio" id="Grade_none" name="GradeCompanySort" value="0" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="Grade_none">None</label>
-                        <input type="radio" id="Grade_asc" name="GradeCompanySort" value="1" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="Grade_asc">Ascending</label>
-                        <input type="radio" id="Grade_desc" name="GradeCompanySort" value="2" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="Grade_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Grade</label>
+                <div>
+                    <input type="radio" id="Grade_none" name="SearchSortViewModel.GradeSort" value="0" asp-for="SearchSortViewModel.GradeSort">
+                    <label for="Grade_none">None</label>
+                    <input type="radio" id="Grade_asc" name="SearchSortViewModel.GradeSort" value="1" asp-for="SearchSortViewModel.GradeSort">
+                    <label for="Grade_asc">Ascending</label>
+                    <input type="radio" id="Grade_desc" name="SearchSortViewModel.GradeSort" value="2" asp-for="SearchSortViewModel.GradeSort">
+                    <label for="Grade_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Sport</label>
-                    <div>
-                        <input type="radio" id="Sport_none" name="SportSort" value="0" asp-for="SearchSortViewModel.SportSort">
-                        <label for="Sport_none">None</label>
-                        <input type="radio" id="Sport_asc" name="SportSort" value="1" asp-for="SearchSortViewModel.SportSort">
-                        <label for="Sport_asc">Ascending</label>
-                        <input type="radio" id="Sport_desc" name="SportSort" value="2" asp-for="SearchSortViewModel.SportSort">
-                        <label for="Sport_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Sport</label>
+                <div>
+                    <input type="radio" id="Sport_none" name="SearchSortViewModel.SportSort" value="0" asp-for="SearchSortViewModel.SportSort">
+                    <label for="Sport_none">None</label>
+                    <input type="radio" id="Sport_asc" name="SearchSortViewModel.SportSort" value="1" asp-for="SearchSortViewModel.SportSort">
+                    <label for="Sport_asc">Ascending</label>
+                    <input type="radio" id="Sport_desc" name="SearchSortViewModel.SportSort" value="2" asp-for="SearchSortViewModel.SportSort">
+                    <label for="Sport_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Year</label>
-                    <div>
-                        <input type="radio" id="Year_none" name="YearSort" value="0" asp-for="SearchSortViewModel.YearSort">
-                        <label for="Year_none">None</label>
-                        <input type="radio" id="Year_asc" name="YearSort" value="1" asp-for="SearchSortViewModel.YearSort">
-                        <label for="Year_asc">Ascending</label>
-                        <input type="radio" id="Year_desc" name="YearSort" value="2" asp-for="SearchSortViewModel.YearSort">
-                        <label for="Year_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Year</label>
+                <div>
+                    <input type="radio" id="Year_none" name="SearchSortViewModel.YearSort" value="0" asp-for="SearchSortViewModel.YearSort">
+                    <label for="Year_none">None</label>
+                    <input type="radio" id="Year_asc" name="SearchSortViewModel.YearSort" value="1" asp-for="SearchSortViewModel.YearSort">
+                    <label for="Year_asc">Ascending</label>
+                    <input type="radio" id="Year_desc" name="SearchSortViewModel.YearSort" value="2" asp-for="SearchSortViewModel.YearSort">
+                    <label for="Year_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Set</label>
-                    <div>
-                        <input type="radio" id="Set_none" name="SetSort" value="0" asp-for="SearchSortViewModel.SetSort">
-                        <label for="Set_none">None</label>
-                        <input type="radio" id="Set_asc" name="SetSort" value="1" asp-for="SearchSortViewModel.SetSort">
-                        <label for="Set_asc">Ascending</label>
-                        <input type="radio" id="Set_desc" name="SetSort" value="2" asp-for="SearchSortViewModel.SetSort">
-                        <label for="Set_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Set</label>
+                <div>
+                    <input type="radio" id="Set_none" name="SearchSortViewModel.SetSort" value="0" asp-for="SearchSortViewModel.SetSort">
+                    <label for="Set_none">None</label>
+                    <input type="radio" id="Set_asc" name="SearchSortViewModel.SetSort" value="1" asp-for="SearchSortViewModel.SetSort">
+                    <label for="Set_asc">Ascending</label>
+                    <input type="radio" id="Set_desc" name="SearchSortViewModel.SetSort" value="2" asp-for="SearchSortViewModel.SetSort">
+                    <label for="Set_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Grade Company</label>
-                    <div>
-                        <input type="radio" id="GradeCompany_none" name="GradeCompanySort" value="0" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="GradeCompany_none">None</label>
-                        <input type="radio" id="GradeCompany_asc" name="GradeCompanySort" value="1" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="GradeCompany_asc">Ascending</label>
-                        <input type="radio" id="GradeCompany_desc" name="GradeCompanySort" value="2" asp-for="SearchSortViewModel.GradeCompanySort">
-                        <label for="GradeCompany_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Grade Company</label>
+                <div>
+                    <input type="radio" id="GradeCompany_none" name="SearchSortViewModel.GradeCompanySort" value="0" asp-for="SearchSortViewModel.GradeCompanySort">
+                    <label for="GradeCompany_none">None</label>
+                    <input type="radio" id="GradeCompany_asc" name="SearchSortViewModel.GradeCompanySort" value="1" asp-for="SearchSortViewModel.GradeCompanySort">
+                    <label for="GradeCompany_asc">Ascending</label>
+                    <input type="radio" id="GradeCompany_desc" name="SearchSortViewModel.GradeCompanySort" value="2" asp-for="SearchSortViewModel.GradeCompanySort">
+                    <label for="GradeCompany_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Location</label>
-                    <div>
-                        <input type="radio" id="Location_none" name="LocationSort" value="0" asp-for="SearchSortViewModel.LocationSort">
-                        <label for="Location_none">None</label>
-                        <input type="radio" id="Location_asc" name="LocationSort" value="1" asp-for="SearchSortViewModel.LocationSort">
-                        <label for="Location_asc">Ascending</label>
-                        <input type="radio" id="Location_desc" name="LocationSort" value="2" asp-for="SearchSortViewModel.LocationSort">
-                        <label for="Location_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Location</label>
+                <div>
+                    <input type="radio" id="Location_none" name="SearchSortViewModel.LocationSort" value="0" asp-for="SearchSortViewModel.LocationSort">
+                    <label for="Location_none">None</label>
+                    <input type="radio" id="Location_asc" name="SearchSortViewModel.LocationSort" value="1" asp-for="SearchSortViewModel.LocationSort">
+                    <label for="Location_asc">Ascending</label>
+                    <input type="radio" id="Location_desc" name="SearchSortViewModel.LocationSort" value="2" asp-for="SearchSortViewModel.LocationSort">
+                    <label for="Location_desc">Descending</label>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label class="lblForm">Time Stamp</label>
-                    <div>
-                        <input type="radio" id="TimeStamp_none" name="TimeStampSort" value="0" asp-for="SearchSortViewModel.TimeStampSort">
-                        <label for="TimeStamp_none">None</label>
-                        <input type="radio" id="TimeStamp_asc" name="TimeStampSort" value="1" asp-for="SearchSortViewModel.TimeStampSort">
-                        <label for="TimeStamp_asc">Ascending</label>
-                        <input type="radio" id="TimeStamp_desc" name="TimeStampSort" value="2" asp-for="SearchSortViewModel.TimeStampSort">
-                        <label for="TimeStamp_desc">Descending</label>
-                    </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label class="lblForm">Time Stamp</label>
+                <div>
+                    @foreach (var timeStamp in Model.SortViewModels)
+                    {
+                        if (timeStamp.SortId == Model.SearchSortViewModel.TimeStampSort)
+                        {
+                            <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" checked="checked" />
+                            <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" />
+                            <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
+                        }
+                    }
                 </div>
-                <div class="form-group">
-                    <div style="padding-top:5px;">
-                        <button type="submit" class="btnSave" asp-page-handler="Sort">Sort</button>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div style="padding-top:5px;">
+                    <button type="submit" class="btnSearch" asp-page-handler="Sort">Sort</button>
                 </div>
             </div>
         </div>
-    <div class="form-group">
-       @if (Model.ViewData["SearchSortError"] != null && (bool)Model.ViewData["SearchSortError"]) {
-        <div class="ui-widget">
-            <div class="ui-state-error ui-corner-all" style="padding-top: 5px;padding-left:5px;">
-                <p>
-                    <span class="ui-icon ui-icon-alert"
-                          style="float: left; margin-right: .3em;"></span>
-                    <strong>Alert:</strong>Something went wrong. Please try again.
-                </p>
+        <h3>Save Search/Sort</h3>
+        <div>
+            <h3>Load Saved</h3>
+            <div class="form-group">
+                <label class="lblForm">Choose Search/Save</label>
+                <div>
+                    <select class="ddlForm" style="width: 50%" asp-for="SearchSortViewModel.SearchSortId">
+                        <option value="0">Select an option</option>
+                        @foreach (var item in Model.SearchSortViewModels)
+                        {
+                            <option value="@item.SearchSortId">@item.Name</option>
+                        }
+                    </select> <button type="submit" class="btnDelete" asp-page-handler="DeleteSearchSort">Delete Search/Sort</button>
+                </div>
             </div>
-        </div>
-       }
-        <div style="padding-top:5px;text-align:right;">
-            <button type="submit" class="btnClear" asp-page-handler="Clear">Clear Search/Sort</button>
+            <hr />
+            <div class="form-group">
+                <div style="padding-top:5px;">
+                    <button type="submit" class="btnSearch" asp-page-handler="LoadSearchSort">Load Search/Sort</button>
+                </div>
+            </div>
+            <hr />
+            <h4>Save a Search</h4>
+            <div class="form-group">
+                <label class="lblForm">Name</label>
+                <div>
+                    <input type="text" id="Name" class="text-box" asp-for="SearchSortViewModel.Name">
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div style="padding-top:5px;">
+                    <button type="submit" class="btnSave" asp-page-handler="SaveSearchSort">Save</button>
+                </div>
+            </div>
         </div>
     </div>
-    <hr />
-    <table id="myTable" class="table" cellspacing="0">
-        <thead>
-            <tr>
-                <th style="width:125px;">
-                    Images
-                </th>
-                <th>
-                    Details
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.CardViewModels)
+        <div class="form-group">
+            @if (Model.ViewData["SearchSortError"] != null && (bool)Model.ViewData["SearchSortError"])
             {
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
-                                <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
-                                <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
-                                    <div class="text-center center">
-                                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
-                                <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
-                                    <div class="text-center center">
-                                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <div>
-                        @foreach (var player in item.Players)
-                            {
-                        @player.FullName  <br />
-                            }
-                        @foreach (var team in item.Teams)
-                            {
-                        @team.Team  <br />
-                            }
-
+                <div class="ui-widget">
+                    <div class="ui-state-error ui-corner-all" style="padding-top: 5px;padding-left:5px;">
+                        <p>
+                            <span class="ui-icon ui-icon-alert"
+                                  style="float: left; margin-right: .3em;"></span>
+                            <strong>Alert:</strong>Something went wrong. Please try again.
+                        </p>
                     </div>
-                </td>
-                <td>
-                    <div id="divCardDetails">
-                        @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
-                            {
-                        <b>#/@item.SerialNumber</b>
-                            }<br />
+                </div>
+            }
+            <div style="padding-top:5px;text-align:right;">
+                <button type="submit" class="btnClear" asp-page-handler="Clear">Clear Search/Sort</button>
+            </div>
+        </div>
+        <hr />
+        <table id="myTable" class="table" cellspacing="0">
+            <thead>
+                <tr>
+                    <th style="width:125px;">
+                        Images
+                    </th>
+                    <th>
+                        Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CardViewModels)
+                {
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                                        <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+                                            <div class="text-center center">
+                                                <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-7-2021-951" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                                        <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                                            <div class="text-center center">
+                                                <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-7-2021-951" class="mainImg" style="width:80%" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div>
+                                @foreach (var player in item.Players)
+                                {
+                                    @player.FullName <br />
+                                }
+                                @foreach (var team in item.Teams)
+                                {
+                                    @team.Team <br />
+                                }
 
-                        @if (item.IsGraded && @item.GradeCompany != null)
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divCardDetails">
+                                @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
                                 {
-                        <span>@item.GradeCompany.Name - @item.Grade</span>  <br />
+                                    <b>#/@item.SerialNumber</b>
+                                }<br />
+
+                                @if (item.IsGraded && @item.GradeCompany != null)
+                                {
+                                    <span>@item.GradeCompany.Name - @item.Grade</span> <br />
                                 }
-                        @if (item.IsRookie)
+                                @if (item.IsRookie)
                                 {
-                        <b>Rookie</b><br />
+                                    <b>Rookie</b><br />
                                 }
-                        @if (item.IsAutograph && !item.IsOnCardAutograph)
+                                @if (item.IsAutograph && !item.IsOnCardAutograph)
                                 {
-                        <b>Autograph - not on card</b><br />
+                                    <b>Autograph - not on card</b><br />
                                 }
                                 else if (item.IsAutograph && item.IsOnCardAutograph)
                                 {
-                        <b>On card autograph</b><br />
+                                    <b>On card autograph</b><br />
                                 }
-                        @if (item.IsPatch && !item.IsGameWornJersey)
+                                @if (item.IsPatch && !item.IsGameWornJersey)
                                 {
-                        <b>Patch - not game worn</b><br />
+                                    <b>Patch - not game worn</b><br />
                                 }
                                 else if (item.IsPatch && item.IsGameWornJersey)
                                 {
-                        <b>Game worn patch</b><br />
+                                    <b>Game worn patch</b><br />
                                 }
-                        <div class="detailsAccordion">
-                            <h3>More Details...</h3>
-                            <div>
-                                @item.Location.Name Copies: @item.Copies
-                                <br />
-                                Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
-                                <br />
-                                High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
-                                <br />
-                                Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
-                                <br />
-                                Ebay: @string.Format("{0:C}", item.EbayPrice)
-                                <br />
-                                Price Paid: @string.Format("{0:C}", item.PricePaid)
+                                <div class="detailsAccordion">
+                                    <h3>More Details...</h3>
+                                    <div>
+                                        @item.Location.Name Copies: @item.Copies
+                                        <br />
+                                        Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                                        <br />
+                                        High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                                        <br />
+                                        Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
+                                        <br />
+                                        Ebay: @string.Format("{0:C}", item.EbayPrice)
+                                        <br />
+                                        Price Paid: @string.Format("{0:C}", item.PricePaid)
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-    @section scripts {
-        <script>
-            $('.dialog').dialog({
-                autoOpen: false,
-                modal: true
-            });
-
-            function showModal(id) {
-                if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
-                    $('#' + id).dialog('open');
+                        </td>
+                    </tr>
                 }
-            }
-
-            FillDataTable('playerTable', 'player-checkbox', 'chkPlayerId', 'hdnPlayerIds');
-            FillDataTable('teamTable', 'team-checkbox', 'chkTeamId', 'hdnTeamIds');
-            FillDataTable('sportTable', 'sport-checkbox', 'chkSportId', 'hdnSportIds');
-            FillDataTable('yearTable', 'year-checkbox', 'chkYearId', 'hdnYearIds');
-            FillDataTable('setTable', 'set-checkbox', 'chkSetId', 'hdnSetIds');
-            FillDataTable('gradeCompanyTable', 'gradeCompany-checkbox', 'chkGradeCompanyId', 'hdnGradeCompanyIds');
-            FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
-
-            $("#accordion").accordion({
-                collapsible: true,
-                active: false,
-                heightStyle: "content"
-            });
-
-            $(".detailsAccordion").accordion({
-                collapsible: true,
-                active: false,
-                heightStyle: "content"
-            });
-
-            $('.mainImg')
-                .wrap('<span style="display:inline-block"></span>')
-                .parent()
-                .zoom({
-                    on: 'grab'
+            </tbody>
+        </table>
+        @section scripts {
+            <script>
+                $('.dialog').dialog({
+                    autoOpen: false,
+                    modal: true
                 });
 
-            $('input[type="radio"]').checkboxradio();
-        </script>
-    }
+                function showModal(id) {
+                    if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
+                        $('#' + id).dialog('open');
+                    }
+                }
+
+                FillDataTable('playerTable', 'player-checkbox', 'chkPlayerId', 'hdnPlayerIds');
+                FillDataTable('teamTable', 'team-checkbox', 'chkTeamId', 'hdnTeamIds');
+                FillDataTable('sportTable', 'sport-checkbox', 'chkSportId', 'hdnSportIds');
+                FillDataTable('yearTable', 'year-checkbox', 'chkYearId', 'hdnYearIds');
+                FillDataTable('setTable', 'set-checkbox', 'chkSetId', 'hdnSetIds');
+                FillDataTable('gradeCompanyTable', 'gradeCompany-checkbox', 'chkGradeCompanyId', 'hdnGradeCompanyIds');
+                FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
+
+                $("#accordion").accordion({
+                    collapsible: true,
+                    active: false,
+                    heightStyle: "content"
+                });
+
+                $(".detailsAccordion").accordion({
+                    collapsible: true,
+                    active: false,
+                    heightStyle: "content"
+                });
+
+                $('.mainImg')
+                    .wrap('<span style="display:inline-block"></span>')
+                    .parent()
+                    .zoom({
+                        on: 'grab'
+                    });
+
+                $('input[type="radio"]').checkboxradio();
+
+                $('.btnSearch').button({
+                    icon: "ui-icon ui-icon-circle-arrow-e"
+                });
+            </script>
+        }
 </form>

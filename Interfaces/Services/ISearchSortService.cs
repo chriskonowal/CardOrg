@@ -12,5 +12,9 @@ namespace CardOrg.Interfaces.Services
         Task<IEnumerable<SearchSortViewModel>> GetSearchSortAsync(CancellationToken cancellationToken);
 
         Task<SearchSortViewModel> SaveSearchSortAsync(SearchSortViewModel entity, CancellationToken cancellationToken);
+
+        Task<int> DeleteSearchSortAsync(int searchSortId, CancellationToken cancellationToken);
+
+        Task<SearchSortViewModel> GetSearchSortByIdAsync(int searchSortId, CancellationToken cancellationToken);
     }
 }

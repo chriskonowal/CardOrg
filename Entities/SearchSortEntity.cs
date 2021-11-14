@@ -154,9 +154,9 @@ namespace CardOrg.Entities
 
         public bool HasImage { get; set; }
 
-        public DateTime TimeStampStart { get; set; }
+        public DateTime? TimeStampStart { get; set; }
 
-        public DateTime TimeStampEnd { get; set; }
+        public DateTime? TimeStampEnd { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the player.

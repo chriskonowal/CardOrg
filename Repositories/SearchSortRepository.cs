@@ -32,9 +32,23 @@ namespace CardOrg.Repositories
             }
         }
 
+        public async Task<SearchSortEntity> GetSearchSortByIdAsync(int searchSortId, CancellationToken cancellationToken)
+        {
+            var sql = @"SELECT * FROM dbo.SearchSort WHERE SearchSortId = @SearchSortId";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@SearchSortId", searchSortId);
+
+            CommandDefinition commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                return await connection.QueryFirstOrDefaultAsync<SearchSortEntity>(commandDefinition).ConfigureAwait(false);
+            }
+        }
+
         public async Task<SearchSortEntity> InsertSearchSortAsync(SearchSortEntity entity, CancellationToken cancellationToken)
         {
-            var sql = @"INSERT INTO dbo.Cards 
+            var sql = @"INSERT INTO dbo.SearchSort 
                             ([Name]
                             ,[Description]
                             ,[IsGraded]
@@ -156,7 +170,6 @@ namespace CardOrg.Repositories
                             ,@LocationSort
                             ,@TimeStampSort
                             ,@TimeStamp
-                            ,@TimeStamp
                         ) 
                         SELECT SCOPE_IDENTITY()";
 
@@ -194,8 +207,23 @@ namespace CardOrg.Repositories
             parameters.Add("@SerialNumberLow", entity.SerialNumberLow);
             parameters.Add("@SerialNumberHigh", entity.SerialNumberHigh);
             parameters.Add("@HasImage", entity.HasImage);
-            parameters.Add("@TimeStampStart", entity.TimeStampStart);
-            parameters.Add("@TimeStampEnd", entity.TimeStampEnd);
+            if (entity.TimeStampStart.GetValueOrDefault() == DateTime.MinValue)
+            {
+                parameters.Add("@TimeStampStart", null);
+            }
+            else
+            {
+                parameters.Add("@TimeStampEnd", entity.TimeStampEnd);
+            }
+
+            if (entity.TimeStampEnd.GetValueOrDefault() == DateTime.MinValue)
+            {
+                parameters.Add("@TimeStampEnd", null);
+            }
+            else
+            {
+                parameters.Add("@TimeStampEnd", entity.TimeStampEnd);
+            }
             parameters.Add("@PlayerNameSort", entity.PlayerNameSort);
             parameters.Add("@TeamSort", entity.TeamSort);
             parameters.Add("@CardDescriptionSort", entity.CardDescriptionSort);
@@ -227,6 +255,21 @@ namespace CardOrg.Repositories
             {
                 entity.SearchSortId = await connection.ExecuteScalarAsync<int>(commandDefinition).ConfigureAwait(false);
                 return entity;
+            }
+        }
+
+        public async Task<int> DeleteSearchSortAsync(int searchSortId, CancellationToken cancellationToken)
+        {
+            var sql = @"DELETE dbo.SearchSort
+                        WHERE SearchSortId = @SearchSortId";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@SearchSortId", searchSortId);
+
+            var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                return await connection.ExecuteAsync(commandDefinition).ConfigureAwait(false);
             }
         }
     }
