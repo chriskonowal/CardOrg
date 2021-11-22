@@ -206,7 +206,7 @@ namespace CardOrg.Services
                 fileContext.BackThumbnailFileName = AVATAR_IMAGE_NAME;
                 return fileContext;
             }
-            else if (model.FrontUpload == null &&
+            else if (model.BackUpload == null &&
                !String.IsNullOrWhiteSpace(model.BackCardMainImagePath) &&
                !String.IsNullOrWhiteSpace(model.BackCardThumbnailImagePath))
             {
@@ -221,7 +221,7 @@ namespace CardOrg.Services
                 if (!String.IsNullOrWhiteSpace(fileName))
                 {
                     var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
-                    using (var input = model.FrontUpload.OpenReadStream())
+                    using (var input = model.BackUpload.OpenReadStream())
                     {
                         using (var output = new MemoryStream())
                         {
@@ -234,7 +234,7 @@ namespace CardOrg.Services
                     }
 
                     file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}";
-                    using (var input = model.FrontUpload.OpenReadStream())
+                    using (var input = model.BackUpload.OpenReadStream())
                     {
                         using (var output = new MemoryStream())
                         {

@@ -888,18 +888,18 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-22-2021-619" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                                        <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-22-2021-630" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
                                         <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
                                             <div class="text-center center">
-                                                <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-22-2021-619" class="mainImg" style="width:80%" />
+                                                <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-22-2021-630" class="mainImg" style="width:80%" />
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.BackCardThumbnailImagePath?stamp=11-22-2021-619" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
-                                        <div class="dialog" title="Front" id="@string.Format("divBackMainImg" + item.CardId)">
+                                        <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.BackCardThumbnailImagePath?stamp=11-22-2021-630" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                                        <div class="dialog" title="Back" id="@string.Format("divBackMainImg" + item.CardId)">
                                             <div class="text-center center">
-                                                <img src="/uploads/@item.BackCardMainImagePath?stamp=11-22-2021-619" class="mainImg" style="width:80%" />
+                                                <img src="/uploads/@item.BackCardMainImagePath?stamp=11-22-2021-630" class="mainImg" style="width:80%" />
                                             </div>
                                         </div>
                                     </td>
@@ -1007,7 +1007,8 @@
                     .wrap('<span style="display:inline-block"></span>')
                     .parent()
                     .zoom({
-                        on: 'grab'
+                        on: 'grab',
+                        magnify: .35
                     });
 
                 $('input[type="radio"]').checkboxradio();
