@@ -5,6 +5,7 @@ using CardOrg.Extensions;
 using CardOrg.Interfaces.Repositories;
 using CardOrg.Interfaces.Services;
 using CardOrg.ViewModels;
+using ImageMagick;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -95,11 +96,11 @@ namespace CardOrg.Services
 
             if (entity.CardId > 0)
             {
-                await _cardRepository.UpdateCardAsync(entity, cancellationToken).ConfigureAwait(false);
+                entity = await _cardRepository.UpdateCardAsync(entity, cancellationToken).ConfigureAwait(false);
             }
             else
             {
-                await _cardRepository.InsertCardAsync(entity, cancellationToken).ConfigureAwait(false);
+                entity = await _cardRepository.InsertCardAsync(entity, cancellationToken).ConfigureAwait(false);
             }
 
             await _playerCardRepository.DeletePlayerCardAsync(entity.CardId, cancellationToken).ConfigureAwait(false);
@@ -161,15 +162,31 @@ namespace CardOrg.Services
                 if (!String.IsNullOrWhiteSpace(fileName))
                 {
                     var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
-
-                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    using (var input = model.FrontUpload.OpenReadStream())
                     {
-                        await model.FrontUpload.CopyToAsync(fileStream, cancellationToken);
+                        using (var output = new MemoryStream())
+                        {
+                            using (var image = new MagickImage(input))
+                            {
+                                input.Position = 0;
+                                await image.WriteAsync(file);
+                            }
+                        }
                     }
 
-                    Image image = Image.FromFile(file);
-                    Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
-                    thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
+                    file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}";
+                    using (var input = model.FrontUpload.OpenReadStream())
+                    {
+                        using (var output = new MemoryStream())
+                        {
+                            using (var image = new MagickImage(input))
+                            {
+                                image.Resize(120, 213);
+                                input.Position = 0;
+                                await image.WriteAsync(file);
+                            }
+                        }
+                    }
 
                     fileContext.FrontMainFileName = $"{fileName}{extension}";
                     fileContext.FrontThumbnailFileName = $"{fileName}_thumb{extension}";
@@ -204,15 +221,31 @@ namespace CardOrg.Services
                 if (!String.IsNullOrWhiteSpace(fileName))
                 {
                     var file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}{extension}";
-
-                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    using (var input = model.FrontUpload.OpenReadStream())
                     {
-                        model.FrontUpload.CopyTo(fileStream);
+                        using (var output = new MemoryStream())
+                        {
+                            using (var image = new MagickImage(input))
+                            {
+                                input.Position = 0;
+                                await image.WriteAsync(file);
+                            }
+                        }
                     }
 
-                    Image image = Image.FromFile(file);
-                    Image thumb = image.GetThumbnailImage(120, 213, () => false, IntPtr.Zero);
-                    thumb.Save($"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}");
+                    file = $"{_hostingEnvironment.WebRootPath}\\Uploads\\{fileName}_thumb{extension}";
+                    using (var input = model.FrontUpload.OpenReadStream())
+                    {
+                        using (var output = new MemoryStream())
+                        {
+                            using (var image = new MagickImage(input))
+                            {
+                                image.Resize(120, 213);
+                                input.Position = 0;
+                                await image.WriteAsync(file);
+                            }
+                        }
+                    }
 
                     fileContext.BackMainFileName = $"{fileName}{extension}";
                     fileContext.BackThumbnailFileName = $"{fileName}_thumb{extension}";
