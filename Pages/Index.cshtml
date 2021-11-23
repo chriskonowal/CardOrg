@@ -972,6 +972,11 @@
         </table>
         @section scripts {
             <script>
+                $('.dialog').dialog({
+                    autoOpen: false,
+                    modal: true
+                });
+
                 function showModal(id) {
                     if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
                         $('#' + id).dialog('open');
@@ -987,6 +992,12 @@
                 FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
 
                 $("#accordion").accordion({
+                    collapsible: true,
+                    active: false,
+                    heightStyle: "content"
+                });
+
+                $(".detailsAccordion").accordion({
                     collapsible: true,
                     active: false,
                     heightStyle: "content"
