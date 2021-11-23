@@ -15,6 +15,15 @@ $('.btnEdit').button({
 $('.btnClear').button({
     icon: "ui-icon-arrowreturnthick-1-w"
 });
+$('.dialog').dialog({
+    autoOpen: false,
+    modal: true
+});
+$(".detailsAccordion").accordion({
+    collapsible: true,
+    active: false,
+    heightStyle: "content"
+});
 $('#myTable').DataTable({
     responsive: true,
     "aaSorting": []
