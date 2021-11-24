@@ -3,7 +3,8 @@
 @{
 }
 
-<h3>Years</h3>
+<h2>Years Admin</h2>
+<h3>@ViewData["Success"]</h3>
 <table id="myTable" class="table" cellspacing="0">
     <thead>
         <tr>
@@ -24,28 +25,27 @@
     <tbody>
         @foreach (var item in Model.YearViewModels)
         {
-        <tr>
-            <td>
-                @item.BeginningYear
-            </td>
-            <td>
-                @item.EndingYear
-            </td>
-            <td>
-                <a class="btnEdit" asp-route-yearId="@item.YearId">Edit</a>
-            </td>
-            <td>
-                <form method="post">
-                    <button class="btnDelete" asp-page-handler="Delete" asp-route-yearId="@item.YearId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                </form>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @item.BeginningYear
+                </td>
+                <td>
+                    @item.EndingYear
+                </td>
+                <td>
+                    <a class="btnEdit" asp-route-yearId="@item.YearId">Edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button class="btnDelete" asp-page-handler="Delete" asp-route-yearId="@item.YearId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
 <form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
-    <h3>@ViewData["Success"]</h3>
     <div class="form-group">
         <label class="lblForm" asp-for="YearViewModel.BeginningYear"></label>
         <div>

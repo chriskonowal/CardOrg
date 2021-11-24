@@ -2,7 +2,8 @@
 @model CardOrg.Pages.Admin.ListModel
 @{
 }
-<h3>Cards</h3>
+<h2>Cards Admin</h2>
+<h3>@ViewData["Success"]</h3>
 <table id="myTable" class="table" cellspacing="0">
     <thead>
         <tr>
@@ -26,30 +27,29 @@
     <tbody>
         @foreach (var item in Model.CardViewModels)
         {
-        <tr>
-            <td>
-                <img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-22-2021-619" />
-            </td>
-            <td>
-                @string.Join(", ", item.Players.Select(x => x.FullName))
-            </td>
-            <td>
-                @item.CardDescription
-            </td>
-            <td>
-                <a class="btnEdit" asp-route-cardId="@item.CardId">Edit</a>
-            </td>
-            <td>
-                <form method="post">
-                    <button class="btnDelete" asp-page-handler="Delete" type="submit" name="delete" asp-route-cardId="@item.CardId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
-                </form>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-22-2021-619" />
+                </td>
+                <td>
+                    @string.Join(", ", item.Players.Select(x => x.FullName))
+                </td>
+                <td>
+                    @item.CardDescription
+                </td>
+                <td>
+                    <a class="btnEdit" asp-route-cardId="@item.CardId">Edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <button class="btnDelete" asp-page-handler="Delete" type="submit" name="delete" asp-route-cardId="@item.CardId" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 <form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
-    <h3>@ViewData["Success"]</h3>
     <div class="form-group">
         <label class="lblForm" asp-for="CardViewModel.PlayerIds"></label>
         <div>
@@ -73,17 +73,17 @@
                 <tbody>
                     @foreach (var item in Model.PlayerViewModels)
                     {
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
-                        </td>
-                        <td>
-                            @item.FirstName
-                        </td>
-                        <td>
-                            @item.LastName
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
+                            </td>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -95,7 +95,7 @@
         <label class="lblForm" asp-for="CardViewModel.TeamIds"></label>
         <div>
             <div class="divButtons" style="padding-bottom:5px;">
-                <a class="btnAdd" asp-page="/Admin/Players/List">Add Team</a>
+                <a class="btnAdd" asp-page="/Admin/Teams/List">Add Team</a>
             </div>
             <table id="teamTable" class="table" cellspacing="0">
                 <thead>
@@ -104,7 +104,7 @@
                             Selected
                         </th>
                         <th>
-                           City
+                            City
                         </th>
                         <th>
                             Name
@@ -114,17 +114,17 @@
                 <tbody>
                     @foreach (var item in Model.TeamViewModels)
                     {
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
-                        </td>
-                        <td>
-                            @item.City
-                        </td>
-                        <td>
-                            @item.Name
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
+                            </td>
+                            <td>
+                                @item.City
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -167,7 +167,7 @@
                 {
                     <option value="@item.YearId">@item.Year</option>
                 }
-            </select> <a class="btnAdd" asp-page="/Admin/Sports/List">Add Year</a>
+            </select> <a class="btnAdd" asp-page="/Admin/Years/List">Add Year</a>
             <span asp-validation-for="CardViewModel.YearId" class="text-danger"></span>
         </div>
     </div>

@@ -2,7 +2,8 @@
 @model CardOrg.Pages.Admin.Sets.ListModel
 @{
 }
-<h3>Sets</h3>
+<h2>Sets Admin</h2>
+<h3>@ViewData["Success"]</h3>
 <table id="myTable" class="table" cellspacing="0">
     <thead>
         <tr>
@@ -38,7 +39,6 @@
 </table>
 
 <form class="form-horizontal m-1 p-1" method="post" enctype="multipart/form-data">
-    <h3>@ViewData["Success"]</h3>
     <div class="form-group">
         <label class="lblForm" asp-for="SetViewModel.Name"></label>
         <div>
