@@ -99,3 +99,13 @@ body {
 .txtRange {
     width: 15% !important;
 }
+
+.rotate {
+    transform: rotate(90deg) !important;
+    transition: .3s;
+}
+
+.rotate-reset {
+    transform: rotate(0deg) !important;
+    transition: .3s;
+}
