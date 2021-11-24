@@ -175,7 +175,7 @@
         <label class="lblForm" asp-for="CardViewModel.GradeCompanyId"></label>
         <div>
             <select class="ddlForm" style="width: 50%" asp-for="CardViewModel.GradeCompanyId">
-                <option value="0">Select an option</option>
+                <option value="">Select an option</option>
                 @foreach (var item in Model.GradeCompanyViewModels)
                 {
                     <option value="@item.GradeCompanyId">@item.Name</option>
@@ -188,7 +188,7 @@
         <label class="lblForm" asp-for="CardViewModel.LocationId"></label>
         <div>
             <select class="ddlForm" style="width: 50%" asp-for="CardViewModel.LocationId">
-                <option value="0">Select an option</option>
+                <option value="">Select an option</option>
                 @foreach (var item in Model.LocationViewModels)
                 {
                     <option value="@item.LocationId">@item.Name</option>
