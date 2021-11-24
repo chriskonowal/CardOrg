@@ -287,31 +287,31 @@ namespace CardOrg.Pages.Landing
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.PlayerIds))
             {
-                CardViewModels = CardViewModels.Where(x => x.Players.Any(y => SearchSortViewModel.PlayerIds.Contains(y.PlayerId.ToString())));
+                CardViewModels = CardViewModels.Where(x => x.Players.Any(y => SearchSortViewModel.PlayerIds.Split(',').Select(x => int.Parse(x)).Contains(y.PlayerId)));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.TeamIds))
             {
-                CardViewModels = CardViewModels.Where(x => x.Teams.Any(y => SearchSortViewModel.TeamIds.Contains(y.TeamId.ToString())));
+                CardViewModels = CardViewModels.Where(x => x.Teams.Any(y => SearchSortViewModel.TeamIds.Split(',').Select(x => int.Parse(x)).Contains(y.TeamId)));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.SportIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SportIds.Contains(x.SportId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SportIds.Split(',').Select(x => int.Parse(x)).Contains(x.SportId));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.YearIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.YearIds.Contains(x.YearId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.YearIds.Split(',').Select(x => int.Parse(x)).Contains(x.YearId));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.SetIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SetIds.Contains(x.SetId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.SetIds.Split(',').Select(x => int.Parse(x)).Contains(x.SetId));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.GradeCompanyIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.GradeCompanyIds.Contains(x.GradeCompanyId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.GradeCompanyIds.Split(',').Select(x => int.Parse(x)).Contains(x.GradeCompanyId));
             }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.LocationIds))
             {
-                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.LocationIds.Contains(x.LocationId.ToString()));
+                CardViewModels = CardViewModels.Where(x => SearchSortViewModel.LocationIds.Split(',').Select(x => int.Parse(x)).Contains(x.LocationId));
             }
             if (SearchSortViewModel.LowestBecketPriceLow >= 0 && SearchSortViewModel.LowestBecketPriceHigh > 0)
             {
