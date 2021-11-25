@@ -109,6 +109,7 @@ namespace CardOrg.Repositories
                             ,[LocationSort]
                             ,[TimeStampSort]
                             ,[TimeStamp]
+                            ,[IsSerialNumbered] 
                         )
                         VALUES (@Name
                             ,@Description
@@ -170,6 +171,7 @@ namespace CardOrg.Repositories
                             ,@LocationSort
                             ,@TimeStampSort
                             ,@TimeStamp
+                            ,@IsSerialNumbered
                         ) 
                         SELECT SCOPE_IDENTITY()";
 
@@ -207,6 +209,7 @@ namespace CardOrg.Repositories
             parameters.Add("@SerialNumberLow", entity.SerialNumberLow);
             parameters.Add("@SerialNumberHigh", entity.SerialNumberHigh);
             parameters.Add("@HasImage", entity.HasImage);
+
             if (entity.TimeStampStart.GetValueOrDefault() == DateTime.MinValue)
             {
                 parameters.Add("@TimeStampStart", null);
@@ -249,6 +252,7 @@ namespace CardOrg.Repositories
             parameters.Add("@LocationSort", entity.LocationSort);
             parameters.Add("@TimeStampSort", entity.TimeStampSort);
             parameters.Add("@TimeStamp", DateTime.Now);
+            parameters.Add("@IsSerialNumbered", entity.IsSerialNumbered);
 
             var commandDefinition = new CommandDefinition(sql, parameters, commandType: System.Data.CommandType.Text, cancellationToken: cancellationToken);
             using (var connection = _connectionFactory.CreateConnection())

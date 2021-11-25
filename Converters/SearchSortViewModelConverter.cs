@@ -78,7 +78,8 @@ namespace CardOrg.Converters
                 TimeStamp = source.TimeStamp,
                 Name = source.Name,
                 Description = source.Description,
-                SearchSortId = source.SearchSortId
+                SearchSortId = source.SearchSortId,
+                IsSerialNumbered = source.IsSerialNumbered
             };
         }
 
@@ -151,7 +152,8 @@ namespace CardOrg.Converters
                 TimeStamp = source.TimeStamp,
                 Description = source.Description,
                 Name = source.Name,
-                SearchSortId = source.SearchSortId
+                SearchSortId = source.SearchSortId,
+                IsSerialNumbered = source.IsSerialNumbered
             };
         }
     }

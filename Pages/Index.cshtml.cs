@@ -349,6 +349,10 @@ namespace CardOrg.Pages.Landing
             {
                 CardViewModels = CardViewModels.Where(x => x.FrontCardMainImagePath != AVATAR_IMAGE_NAME && x.BackCardMainImagePath != AVATAR_IMAGE_NAME);
             }
+            if (SearchSortViewModel.IsSerialNumbered)
+            {
+                CardViewModels = CardViewModels.Where(x => x.SerialNumber > 0);
+            }
             if (!String.IsNullOrWhiteSpace(SearchSortViewModel.CardDescription))
             {
                 CardViewModels = CardViewModels.Where(x => x.CardDescription.ToLower().Contains(SearchSortViewModel.CardDescription.ToLower()));
@@ -616,12 +620,26 @@ namespace CardOrg.Pages.Landing
         {
             CardViewModels = await _cardService.GetCardsAsync(cancellationToken).ConfigureAwait(false);
             PlayerViewModels = await _playerService.GetPlayersAsync(cancellationToken).ConfigureAwait(false);
+            PlayerViewModels = PlayerViewModels.Where(x => CardViewModels.SelectMany(y => y.Players.Select(z => z.PlayerId)).Contains(x.PlayerId));
+            
             TeamViewModels = await _teamService.GetTeamsAsync(cancellationToken).ConfigureAwait(false);
+            TeamViewModels = TeamViewModels.Where(x => CardViewModels.SelectMany(y => y.Teams.Select(z => z.TeamId)).Contains(x.TeamId));
+            
             SportViewModels = await _sportService.GetSportsAsync(cancellationToken).ConfigureAwait(false);
+            SportViewModels = SportViewModels.Where(x => CardViewModels.Select(y => y.SportId).Contains(x.SportId));
+            
             YearViewModels = await _yearService.GetYearsAsync(cancellationToken).ConfigureAwait(false);
+            YearViewModels = YearViewModels.Where(x => CardViewModels.Select(y => y.YearId).Contains(x.YearId));
+
             SetViewModels = await _setService.GetSetsAsync(cancellationToken).ConfigureAwait(false);
+            SetViewModels = SetViewModels.Where(x => CardViewModels.Select(y => y.SetId).Contains(x.SetId));
+
             GradeCompanyViewModels = await _gradeCompanyService.GetGradeCompaniesAsync(cancellationToken).ConfigureAwait(false);
+            GradeCompanyViewModels = GradeCompanyViewModels.Where(x => CardViewModels.Select(y => y.GradeCompanyId).Contains(x.GradeCompanyId));
+
             LocationViewModels = await _locationService.GetLocationsAsync(cancellationToken).ConfigureAwait(false);
+            LocationViewModels = LocationViewModels.Where(x => CardViewModels.Select(y => y.LocationId).Contains(x.LocationId));
+
             SearchSortViewModels = await _searchSortService.GetSearchSortAsync(cancellationToken).ConfigureAwait(false);
         }
     }

@@ -225,5 +225,7 @@ namespace CardOrg.Entities
         public int TimeStampSort { get; set; }
 
         public DateTime TimeStamp { get; set; }
+
+        public bool IsSerialNumbered { get; set; }
     }
 }

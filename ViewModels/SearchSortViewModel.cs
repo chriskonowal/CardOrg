@@ -298,5 +298,8 @@ namespace CardOrg.ViewModels
         public int TimeStampSort { get; set; }
 
         public DateTime TimeStamp { get; set; }
+
+        [DisplayName("Is Serial Numbered")]
+        public bool IsSerialNumbered { get; set; }
     }
 }
