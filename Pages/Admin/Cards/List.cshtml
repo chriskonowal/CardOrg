@@ -279,13 +279,6 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="lblForm" asp-for="CardViewModel.SerialNumber"></label>
-        <div>
-            @Html.EditorFor(model => model.CardViewModel.SerialNumber)
-            <span asp-validation-for="CardViewModel.SerialNumber" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
         <label class="lblForm" asp-for="CardViewModel.Grade"></label>
         <div>
             @Html.EditorFor(model => model.CardViewModel.Grade)
@@ -307,13 +300,6 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="lblForm" asp-for="CardViewModel.IsPatch"></label>
-        <div>
-            @Html.EditorFor(model => model.CardViewModel.IsPatch)
-            <span asp-validation-for="CardViewModel.IsPatch" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
         <label class="lblForm" asp-for="CardViewModel.IsOnCardAutograph"></label>
         <div>
             @Html.EditorFor(model => model.CardViewModel.IsOnCardAutograph)
@@ -321,10 +307,25 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="lblForm" asp-for="CardViewModel.IsPatch"></label>
+        <div>
+            @Html.EditorFor(model => model.CardViewModel.IsPatch)
+            <span asp-validation-for="CardViewModel.IsPatch" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label class="lblForm" asp-for="CardViewModel.IsGameWornJersey"></label>
         <div>
             @Html.EditorFor(model => model.CardViewModel.IsGameWornJersey)
             <span asp-validation-for="CardViewModel.IsGameWornJersey" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="lblForm" asp-for="CardViewModel.SerialNumber"></label>
+        <div>
+            @Html.EditorFor(model => model.CardViewModel.SerialNumber)
+            <span asp-validation-for="CardViewModel.SerialNumber" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
