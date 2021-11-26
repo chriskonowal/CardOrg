@@ -144,6 +144,21 @@ namespace CardOrg.Pages.Landing
         [BindProperty]
         public IEnumerable<SearchSortViewModel> SearchSortViewModels { get; set; }
 
+        [BindProperty]
+        public decimal HighestBecketPriceTotal { get; set; }
+
+        [BindProperty]
+        public decimal LowestBecketPriceTotal { get; set; }
+
+        [BindProperty]
+        public decimal EbayPriceTotal { get; set; }
+
+        [BindProperty]
+        public decimal COMCPriceTotal { get; set; }
+
+        [BindProperty]
+        public decimal PricePaidTotal { get; set; }
+
         public IEnumerable<SortViewModel> SortViewModels { get; set; } = new List<SortViewModel>
         {   new SortViewModel(0, "None"),
             new SortViewModel(1, "Ascending"),
@@ -158,6 +173,7 @@ namespace CardOrg.Pages.Landing
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            GetTotals();
             SearchSortViewModel = new SearchSortViewModel();
             return Page();
         }
@@ -182,6 +198,7 @@ namespace CardOrg.Pages.Landing
             }
             
             FilterResults();
+            GetTotals();
             return Page();
         }
 
@@ -204,6 +221,7 @@ namespace CardOrg.Pages.Landing
                 ViewData["SearchSortError"] = false;
             }
             FilterResults();
+            GetTotals();
             return Page();
         }
 
@@ -217,6 +235,7 @@ namespace CardOrg.Pages.Landing
             ModelState.Clear();
             SearchSortViewModel = new SearchSortViewModel();
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
+            GetTotals();
             return Page();
         }
 
@@ -236,7 +255,7 @@ namespace CardOrg.Pages.Landing
 
             await _searchSortService.SaveSearchSortAsync(SearchSortViewModel, cancellationToken).ConfigureAwait(false);
             SearchSortViewModel = new SearchSortViewModel();
-
+            GetTotals();
             return Page();
         }
 
@@ -247,6 +266,7 @@ namespace CardOrg.Pages.Landing
             await _searchSortService.DeleteSearchSortAsync(SearchSortViewModel.SearchSortId, cancellationToken).ConfigureAwait(false);
             SearchSortViewModel = new SearchSortViewModel();
 
+            GetTotals();
             return Page();
         }
 
@@ -255,7 +275,7 @@ namespace CardOrg.Pages.Landing
             await FillModelsAsync(cancellationToken).ConfigureAwait(false);
             SearchSortViewModel = await _searchSortService.GetSearchSortByIdAsync(SearchSortViewModel.SearchSortId, cancellationToken).ConfigureAwait(false);
             FilterResults();
-
+            GetTotals();
             return Page();
         }
 
@@ -614,6 +634,15 @@ namespace CardOrg.Pages.Landing
                     CardViewModels = CardViewModels.OrderByDescending(x => x.TimeStamp);
                 }
             }
+        }
+
+        public void GetTotals()
+        {
+            HighestBecketPriceTotal = CardViewModels.Sum(x => x.HighestBeckettPrice);
+            LowestBecketPriceTotal = CardViewModels.Sum(x => x.LowestBeckettPrice);
+            EbayPriceTotal = CardViewModels.Sum(x => x.EbayPrice);
+            COMCPriceTotal = CardViewModels.Sum(x => x.LowestCOMCPrice);
+            PricePaidTotal = CardViewModels.Sum(x => x.PricePaid);
         }
 
         public async Task FillModelsAsync(CancellationToken cancellationToken)

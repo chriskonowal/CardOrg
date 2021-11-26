@@ -27,17 +27,17 @@
                         <tbody>
                             @foreach (var item in Model.PlayerViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
-                                    </td>
-                                    <td>
-                                        @item.FirstName
-                                    </td>
-                                    <td>
-                                        @item.LastName
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.PlayerId" class="chkPlayerId" />
+                                </td>
+                                <td>
+                                    @item.FirstName
+                                </td>
+                                <td>
+                                    @item.LastName
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -65,17 +65,17 @@
                         <tbody>
                             @foreach (var item in Model.TeamViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
-                                    </td>
-                                    <td>
-                                        @item.City
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.TeamId" class="chkTeamId" />
+                                </td>
+                                <td>
+                                    @item.City
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -100,14 +100,14 @@
                         <tbody>
                             @foreach (var item in Model.SportViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.SportId" class="chkSportId" />
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.SportId" class="chkSportId" />
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -132,14 +132,14 @@
                         <tbody>
                             @foreach (var item in Model.YearViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.YearId" class="chkYearId" />
-                                    </td>
-                                    <td>
-                                        @item.Year
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.YearId" class="chkYearId" />
+                                </td>
+                                <td>
+                                    @item.Year
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -164,14 +164,14 @@
                         <tbody>
                             @foreach (var item in Model.SetViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.SetId" class="chkSetId" />
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.SetId" class="chkSetId" />
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -196,14 +196,14 @@
                         <tbody>
                             @foreach (var item in Model.GradeCompanyViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.GradeCompanyId" class="chkGradeCompanyId" />
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.GradeCompanyId" class="chkGradeCompanyId" />
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -228,14 +228,14 @@
                         <tbody>
                             @foreach (var item in Model.LocationViewModels)
                             {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="@item.LocationId" class="chkLocationId" />
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="@item.LocationId" class="chkLocationId" />
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -369,8 +369,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <div style="padding-top:5px;">
-                    <button type="submit" class="btnSearch" asp-page-handler="Search">Search</button>
+                <div style="padding-top: 5px; text-align: right;">
+                    <button type="submit" class="btnSearch" style="background-color:blue;color:white;" asp-page-handler="Search">Search</button>
                 </div>
             </div>
         </div>
@@ -383,13 +383,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.PlayerNameSort)
                         {
-                            <input type="radio" id="@string.Format($"PlayerNameSort{sort.SortId}")" asp-for="SearchSortViewModel.PlayerNameSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"PlayerNameSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"PlayerNameSort{sort.SortId}")" asp-for="SearchSortViewModel.PlayerNameSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"PlayerNameSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"PlayerNameSort{sort.SortId}")" asp-for="SearchSortViewModel.PlayerNameSort" value="@sort.SortId" />
-                            <label for="@string.Format($"PlayerNameSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"PlayerNameSort{sort.SortId}")" asp-for="SearchSortViewModel.PlayerNameSort" value="@sort.SortId" />
+                    <label for="@string.Format($"PlayerNameSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -402,13 +402,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.TeamSort)
                         {
-                            <input type="radio" id="@string.Format($"TeamSort{sort.SortId}")" asp-for="SearchSortViewModel.TeamSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"TeamSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"TeamSort{sort.SortId}")" asp-for="SearchSortViewModel.TeamSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"TeamSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"TeamSort{sort.SortId}")" asp-for="SearchSortViewModel.TeamSort" value="@sort.SortId" />
-                            <label for="@string.Format($"TeamSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"TeamSort{sort.SortId}")" asp-for="SearchSortViewModel.TeamSort" value="@sort.SortId" />
+                    <label for="@string.Format($"TeamSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -421,13 +421,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.CardDescriptionSort)
                         {
-                            <input type="radio" id="@string.Format($"CardDescriptionSort{sort.SortId}")" asp-for="SearchSortViewModel.CardDescriptionSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"CardDescriptionSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"CardDescriptionSort{sort.SortId}")" asp-for="SearchSortViewModel.CardDescriptionSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"CardDescriptionSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"CardDescriptionSort{sort.SortId}")" asp-for="SearchSortViewModel.CardDescriptionSort" value="@sort.SortId" />
-                            <label for="@string.Format($"CardDescriptionSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"CardDescriptionSort{sort.SortId}")" asp-for="SearchSortViewModel.CardDescriptionSort" value="@sort.SortId" />
+                    <label for="@string.Format($"CardDescriptionSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -440,13 +440,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.LowestBeckettPriceSort)
                         {
-                            <input type="radio" id="@string.Format($"LowestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestBeckettPriceSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"LowestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LowestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestBeckettPriceSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"LowestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"LowestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestBeckettPriceSort" value="@sort.SortId" />
-                            <label for="@string.Format($"LowestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LowestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestBeckettPriceSort" value="@sort.SortId" />
+                    <label for="@string.Format($"LowestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -459,13 +459,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.HighestBeckettPriceSort)
                         {
-                            <input type="radio" id="@string.Format($"HighestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.HighestBeckettPriceSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"HighestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"HighestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.HighestBeckettPriceSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"HighestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"HighestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.HighestBeckettPriceSort" value="@sort.SortId" />
-                            <label for="@string.Format($"HighestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"HighestBeckettPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.HighestBeckettPriceSort" value="@sort.SortId" />
+                    <label for="@string.Format($"HighestBeckettPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -478,13 +478,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.LowestCOMCPriceSort)
                         {
-                            <input type="radio" id="@string.Format($"LowestCOMCPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestCOMCPriceSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"LowestCOMCPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LowestCOMCPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestCOMCPriceSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"LowestCOMCPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"LowestCOMCPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestCOMCPriceSort" value="@sort.SortId" />
-                            <label for="@string.Format($"LowestCOMCPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LowestCOMCPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.LowestCOMCPriceSort" value="@sort.SortId" />
+                    <label for="@string.Format($"LowestCOMCPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -497,13 +497,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.EbayPriceSort)
                         {
-                            <input type="radio" id="@string.Format($"EbayPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.EbayPriceSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"EbayPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"EbayPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.EbayPriceSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"EbayPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"EbayPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.EbayPriceSort" value="@sort.SortId" />
-                            <label for="@string.Format($"EbayPriceSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"EbayPriceSort{sort.SortId}")" asp-for="SearchSortViewModel.EbayPriceSort" value="@sort.SortId" />
+                    <label for="@string.Format($"EbayPriceSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -516,13 +516,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.HasImageSort)
                         {
-                            <input type="radio" id="@string.Format($"HasImageSort{sort.SortId}")" asp-for="SearchSortViewModel.HasImageSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"HasImageSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"HasImageSort{sort.SortId}")" asp-for="SearchSortViewModel.HasImageSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"HasImageSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"HasImageSort{sort.SortId}")" asp-for="SearchSortViewModel.HasImageSort" value="@sort.SortId" />
-                            <label for="@string.Format($"HasImageSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"HasImageSort{sort.SortId}")" asp-for="SearchSortViewModel.HasImageSort" value="@sort.SortId" />
+                    <label for="@string.Format($"HasImageSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -535,13 +535,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsGradedSort)
                         {
-                            <input type="radio" id="@string.Format($"IsGradedSort{sort.SortId}")" asp-for="SearchSortViewModel.IsGradedSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsGradedSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsGradedSort{sort.SortId}")" asp-for="SearchSortViewModel.IsGradedSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsGradedSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsGradedSort{sort.SortId}")" asp-for="SearchSortViewModel.IsGradedSort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsGradedSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsGradedSort{sort.SortId}")" asp-for="SearchSortViewModel.IsGradedSort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsGradedSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -554,13 +554,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsRookieSort)
                         {
-                            <input type="radio" id="@string.Format($"IsRookieSort{sort.SortId}")" asp-for="SearchSortViewModel.IsRookieSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsRookieSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsRookieSort{sort.SortId}")" asp-for="SearchSortViewModel.IsRookieSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsRookieSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsRookieSort{sort.SortId}")" asp-for="SearchSortViewModel.IsRookieSort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsRookieSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsRookieSort{sort.SortId}")" asp-for="SearchSortViewModel.IsRookieSort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsRookieSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -573,13 +573,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsAutographSort)
                         {
-                            <input type="radio" id="@string.Format($"IsAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsAutographSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsAutographSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsAutographSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsAutographSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsAutographSort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsAutographSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsAutographSort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsAutographSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -592,13 +592,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsOnCardAutographSort)
                         {
-                            <input type="radio" id="@string.Format($"IsOnCardAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsOnCardAutographSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsOnCardAutographSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsOnCardAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsOnCardAutographSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsOnCardAutographSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsOnCardAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsOnCardAutographSort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsOnCardAutographSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsOnCardAutographSort{sort.SortId}")" asp-for="SearchSortViewModel.IsOnCardAutographSort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsOnCardAutographSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -611,13 +611,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsPatchSort)
                         {
-                            <input type="radio" id="@string.Format($"IsPatchSort{sort.SortId}")" asp-for="SearchSortViewModel.IsPatchSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsPatchSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsPatchSort{sort.SortId}")" asp-for="SearchSortViewModel.IsPatchSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsPatchSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsPatchSort{sort.SortId}")" asp-for="SearchSortViewModel.IsPatchSort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsPatchSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsPatchSort{sort.SortId}")" asp-for="SearchSortViewModel.IsPatchSort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsPatchSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -630,13 +630,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.IsGameWornJerseySort)
                         {
-                            <input type="radio" id="@string.Format($"IsGameWornJerseySort{sort.SortId}")" asp-for="SearchSortViewModel.IsGameWornJerseySort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"IsGameWornJerseySort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsGameWornJerseySort{sort.SortId}")" asp-for="SearchSortViewModel.IsGameWornJerseySort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"IsGameWornJerseySort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"IsGameWornJerseySort{sort.SortId}")" asp-for="SearchSortViewModel.IsGameWornJerseySort" value="@sort.SortId" />
-                            <label for="@string.Format($"IsGameWornJerseySort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"IsGameWornJerseySort{sort.SortId}")" asp-for="SearchSortViewModel.IsGameWornJerseySort" value="@sort.SortId" />
+                    <label for="@string.Format($"IsGameWornJerseySort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -649,13 +649,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.CopiesSort)
                         {
-                            <input type="radio" id="@string.Format($"CopiesSort{sort.SortId}")" asp-for="SearchSortViewModel.CopiesSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"CopiesSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"CopiesSort{sort.SortId}")" asp-for="SearchSortViewModel.CopiesSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"CopiesSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"CopiesSort{sort.SortId}")" asp-for="SearchSortViewModel.CopiesSort" value="@sort.SortId" />
-                            <label for="@string.Format($"CopiesSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"CopiesSort{sort.SortId}")" asp-for="SearchSortViewModel.CopiesSort" value="@sort.SortId" />
+                    <label for="@string.Format($"CopiesSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -668,13 +668,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.SerialNumberSort)
                         {
-                            <input type="radio" id="@string.Format($"SerialNumberSort{sort.SortId}")" asp-for="SearchSortViewModel.SerialNumberSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"SerialNumberSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SerialNumberSort{sort.SortId}")" asp-for="SearchSortViewModel.SerialNumberSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"SerialNumberSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"SerialNumberSort{sort.SortId}")" asp-for="SearchSortViewModel.SerialNumberSort" value="@sort.SortId" />
-                            <label for="@string.Format($"SerialNumberSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SerialNumberSort{sort.SortId}")" asp-for="SearchSortViewModel.SerialNumberSort" value="@sort.SortId" />
+                    <label for="@string.Format($"SerialNumberSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -687,13 +687,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.GradeSort)
                         {
-                            <input type="radio" id="@string.Format($"GradeSort{sort.SortId}")" asp-for="SearchSortViewModel.GradeSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"GradeSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"GradeSort{sort.SortId}")" asp-for="SearchSortViewModel.GradeSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"GradeSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"GradeSort{sort.SortId}")" asp-for="SearchSortViewModel.GradeSort" value="@sort.SortId" />
-                            <label for="@string.Format($"GradeSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"GradeSort{sort.SortId}")" asp-for="SearchSortViewModel.GradeSort" value="@sort.SortId" />
+                    <label for="@string.Format($"GradeSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -706,13 +706,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.SportSort)
                         {
-                            <input type="radio" id="@string.Format($"SportSort{sort.SortId}")" asp-for="SearchSortViewModel.SportSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"SportSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SportSort{sort.SortId}")" asp-for="SearchSortViewModel.SportSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"SportSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"SportSort{sort.SortId}")" asp-for="SearchSortViewModel.SportSort" value="@sort.SortId" />
-                            <label for="@string.Format($"SportSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SportSort{sort.SortId}")" asp-for="SearchSortViewModel.SportSort" value="@sort.SortId" />
+                    <label for="@string.Format($"SportSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -725,13 +725,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.YearSort)
                         {
-                            <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" />
-                            <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"YearSort{sort.SortId}")" asp-for="SearchSortViewModel.YearSort" value="@sort.SortId" />
+                    <label for="@string.Format($"YearSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -744,13 +744,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.SetSort)
                         {
-                            <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" />
-                            <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"SetSort{sort.SortId}")" asp-for="SearchSortViewModel.SetSort" value="@sort.SortId" />
+                    <label for="@string.Format($"SetSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -763,13 +763,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.GradeCompanySort)
                         {
-                            <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" />
-                            <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"GradeCompanySort{sort.SortId}")" asp-for="SearchSortViewModel.GradeCompanySort" value="@sort.SortId" />
+                    <label for="@string.Format($"GradeCompanySort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -782,13 +782,13 @@
                     {
                         if (sort.SortId == Model.SearchSortViewModel.LocationSort)
                         {
-                            <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" checked="checked" />
-                            <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" checked="checked" />
+                    <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" />
-                            <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
+                    <input type="radio" id="@string.Format($"LocationSort{sort.SortId}")" asp-for="SearchSortViewModel.LocationSort" value="@sort.SortId" />
+                    <label for="@string.Format($"LocationSort{sort.SortId}")">@sort.Name</label>
                         }
                     }
                 </div>
@@ -801,20 +801,20 @@
                     {
                         if (timeStamp.SortId == Model.SearchSortViewModel.TimeStampSort)
                         {
-                            <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" checked="checked" />
-                            <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
+                    <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" checked="checked" />
+                    <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
                         }
                         else
                         {
-                            <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" />
-                            <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
+                    <input type="radio" id="@string.Format($"TimeStampSort{timeStamp.SortId}")" asp-for="SearchSortViewModel.TimeStampSort" value="@timeStamp.SortId" />
+                    <label for="@string.Format($"TimeStampSort{timeStamp.SortId}")">@timeStamp.Name</label>
                         }
                     }
                 </div>
             </div>
             <div class="form-group">
-                <div style="padding-top:5px;">
-                    <button type="submit" class="btnSearch" asp-page-handler="Sort">Sort</button>
+                <div style="padding-top: 5px; text-align: right;">
+                    <button type="submit" class="btnSearch" style="background-color: blue; color: white" asp-page-handler="Sort">Sort</button>
                 </div>
             </div>
         </div>
@@ -828,17 +828,20 @@
                         <option value="0">Select an option</option>
                         @foreach (var item in Model.SearchSortViewModels)
                         {
-                            <option value="@item.SearchSortId">@item.Name</option>
+                        <option value="@item.SearchSortId">@item.Name</option>
                         }
-                    </select> 
+                    </select>
                 </div>
             </div>
             <hr />
             <div class="form-group">
                 <div style="padding-top:5px;">
-                    <button type="submit" class="btnSearch" asp-page-handler="LoadSearchSort">Load Search/Sort</button>
+                    <button type="submit" class="btnSearch" style="background-color: blue; color: white" asp-page-handler="LoadSearchSort">Load Search/Sort</button>
                     <hr />
-                    <button type="submit" class="btnDelete" asp-page-handler="DeleteSearchSort">Delete Search/Sort</button>
+                    <div style="text-align:right;">
+                        <button type="submit" class="btnDelete" style="background-color: red; color: white" asp-page-handler="DeleteSearchSort">Delete Search/Sort</button>
+                    </div>
+                    
                 </div>
             </div>
             <hr />
@@ -852,178 +855,185 @@
             <hr />
             <div class="form-group">
                 <div style="padding-top:5px;">
-                    <button type="submit" class="btnSave" asp-page-handler="SaveSearchSort">Save</button>
+                    <button type="submit" class="btnSave" style="background-color: blue; color: white" asp-page-handler="SaveSearchSort">Save</button>
                 </div>
             </div>
         </div>
     </div>
-        <div class="form-group">
-            @if (Model.ViewData["SearchSortError"] != null && (bool)Model.ViewData["SearchSortError"])
+    <hr />
+    Highest Becket Price Total: <b>@string.Format("{0:C}", Model.HighestBecketPriceTotal)</b><br />
+    Lowest Becket Price Total: <b>@string.Format("{0:C}", Model.LowestBecketPriceTotal)</b><br />
+    Ebay Price Total: <b>@string.Format("{0:C}", Model.EbayPriceTotal)</b><br />
+    COMC Price Total: <b>@string.Format("{0:C}", Model.COMCPriceTotal)</b><br />
+    Price Paid Total: <b>@string.Format("{0:C}", Model.PricePaidTotal)</b><br />
+    <hr />
+    <div class="form-group">
+        @if (Model.ViewData["SearchSortError"] != null && (bool)Model.ViewData["SearchSortError"])
             {
-                <div class="ui-widget">
-                    <div class="ui-state-error ui-corner-all" style="padding-top: 5px;padding-left:5px;">
-                        <p>
-                            <span class="ui-icon ui-icon-alert"
-                                  style="float: left; margin-right: .3em;"></span>
-                            <strong>Alert:</strong>Something went wrong. Please try again.
-                        </p>
-                    </div>
-                </div>
-            }
-            <div style="padding-top:5px;text-align:right;">
-                <button type="submit" class="btnClear" asp-page-handler="Clear">Clear Search/Sort</button>
+        <div class="ui-widget">
+            <div class="ui-state-error ui-corner-all" style="padding-top: 5px;padding-left:5px;">
+                <p>
+                    <span class="ui-icon ui-icon-alert"
+                          style="float: left; margin-right: .3em;"></span>
+                    <strong>Alert:</strong>Something went wrong. Please try again.
+                </p>
             </div>
         </div>
-        <hr />
-        <table id="myTable" class="table" cellspacing="0">
-            <thead>
-                <tr>
-                    <th style="width:125px;">
-                        Images
-                    </th>
-                    <th>
-                        Details
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.CardViewModels)
+            }
+        <div style="padding-top:5px;text-align:right;">
+            <button type="submit" class="btnClear" style="background-color: blue; color: white" asp-page-handler="Clear">Clear Search/Sort</button>
+        </div>
+    </div>
+    <hr />
+    <table id="myTable" class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th style="width:125px;">
+                    Images
+                </th>
+                <th>
+                    Details
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CardViewModels)
                 {
-                    <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-24-2021-656" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
-                                        <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
-                                            <div class="text-center center">
-                                                <a href="javascript: void(0);" onclick="rotateImg(this);">Rotate</a><br />
-                                                <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-24-2021-656" class="mainImg" style="width:80%" />
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.BackCardThumbnailImagePath?stamp=11-24-2021-656" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
-                                        <div class="dialog" title="Back" id="@string.Format("divBackMainImg" + item.CardId)">
-                                            <div class="text-center center">
-                                                <a href="javascript: void(0);" onclick="rotateImg(this);">Rotate</a><br />
-                                                <img src="/uploads/@item.BackCardMainImagePath?stamp=11-24-2021-656" class="mainImg" style="width:80%" />
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div>
-                                @foreach (var player in item.Players)
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="javascript: void(0);" onclick="showModal('divFrontMainImg' + @item.CardId);"><img src="/uploads/@item.FrontCardThumbnailImagePath?stamp=11-24-2021-656" class="thumb" id="@string.Format("thumbFrontImg" + item.CardId)" /></a>
+                                <div class="dialog" title="Front" id="@string.Format("divFrontMainImg" + item.CardId)">
+                                    <div class="text-center center">
+                                        <a href="javascript: void(0);" onclick="rotateImg(this);">Rotate</a><br />
+                                        <img src="/uploads/@item.FrontCardMainImagePath?stamp=11-24-2021-656" class="mainImg" style="width:80%" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript: void(0);" onclick="showModal('divBackMainImg' + @item.CardId);"><img src="/uploads/@item.BackCardThumbnailImagePath?stamp=11-24-2021-656" class="thumb" id="@string.Format("thumbBackImg" + item.CardId)" /></a>
+                                <div class="dialog" title="Back" id="@string.Format("divBackMainImg" + item.CardId)">
+                                    <div class="text-center center">
+                                        <a href="javascript: void(0);" onclick="rotateImg(this);">Rotate</a><br />
+                                        <img src="/uploads/@item.BackCardMainImagePath?stamp=11-24-2021-656" class="mainImg" style="width:80%" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        @foreach (var player in item.Players)
                                 {
-                                    @player.FullName <br />
+                        @player.FullName  <br />
                                 }
-                                @foreach (var team in item.Teams)
+                        @foreach (var team in item.Teams)
                                 {
-                                    @team.Team <br />
+                        @team.Team  <br />
                                 }
 
-                            </div>
-                        </td>
-                        <td>
-                            <div id="divCardDetails">
-                                @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
+                    </div>
+                </td>
+                <td>
+                    <div id="divCardDetails">
+                        @item.Year.Year @item.CardDescription #@item.CardNumber @if (item.SerialNumber > 0)
                                 {
-                                    <b>#/@item.SerialNumber</b>
+                        <b>#/@item.SerialNumber</b>
                                 }<br />
 
-                                @if (item.IsGraded && @item.GradeCompany != null)
+                        @if (item.IsGraded && @item.GradeCompany != null)
                                 {
-                                    <span>@item.GradeCompany.Name - @item.Grade</span> <br />
+                        <span>@item.GradeCompany.Name - @item.Grade</span>  <br />
                                 }
-                                @if (item.IsRookie)
+                        @if (item.IsRookie)
                                 {
-                                    <b>Rookie</b><br />
+                        <b>Rookie</b><br />
                                 }
-                                @if (item.IsAutograph && !item.IsOnCardAutograph)
+                        @if (item.IsAutograph && !item.IsOnCardAutograph)
                                 {
-                                    <b>Autograph - not on card</b><br />
+                        <b>Autograph - not on card</b><br />
                                 }
                                 else if (item.IsAutograph && item.IsOnCardAutograph)
                                 {
-                                    <b>On card autograph</b><br />
+                        <b>On card autograph</b><br />
                                 }
-                                @if (item.IsPatch && !item.IsGameWornJersey)
+                        @if (item.IsPatch && !item.IsGameWornJersey)
                                 {
-                                    <b>Patch - not game worn</b><br />
+                        <b>Patch - not game worn</b><br />
                                 }
                                 else if (item.IsPatch && item.IsGameWornJersey)
                                 {
-                                    <b>Game worn patch</b><br />
+                        <b>Game worn patch</b><br />
                                 }
-                                <div class="detailsAccordion">
-                                    <h3>More Details...</h3>
-                                    <div>
-                                        @item.Location.Name Copies: @item.Copies
-                                        <br />
-                                        Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
-                                        <br />
-                                        High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
-                                        <br />
-                                        Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
-                                        <br />
-                                        Ebay: @string.Format("{0:C}", item.EbayPrice)
-                                        <br />
-                                        Price Paid: @string.Format("{0:C}", item.PricePaid)
-                                    </div>
-                                </div>
+                        <div class="detailsAccordion">
+                            <h3>More Details...</h3>
+                            <div>
+                                @item.Location.Name Copies: @item.Copies
+                                <br />
+                                Low Beckett: @string.Format("{0:C}", item.LowestBeckettPrice)
+                                <br />
+                                High Beckett: @string.Format("{0:C}", item.HighestBeckettPrice)
+                                <br />
+                                Lowest COMC: @string.Format("{0:C}", item.LowestCOMCPrice)
+                                <br />
+                                Ebay: @string.Format("{0:C}", item.EbayPrice)
+                                <br />
+                                Price Paid: @string.Format("{0:C}", item.PricePaid)
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </td>
+            </tr>
                 }
-            </tbody>
-        </table>
-        @section scripts {
-            <script>
-                function rotateImg(element) {
-                    var elems = $(element).parent().find('img');
-                    if ($(elems).first().hasClass('rotate')) {
-                        $(elems).addClass('rotate-reset');
-                        $(elems).removeClass('rotate');
-                    } else {
-                        $(elems).addClass('rotate');
-                        $(elems).removeClass('rotate-reset');
-                    }
-                   
-                }
-                function showModal(id) {
-                    if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
-                        $('#' + id).dialog('open');
-                    }
+        </tbody>
+    </table>
+    @section scripts {
+        <script>
+            function rotateImg(element) {
+                var elems = $(element).parent().find('img');
+                if ($(elems).first().hasClass('rotate')) {
+                    $(elems).addClass('rotate-reset');
+                    $(elems).removeClass('rotate');
+                } else {
+                    $(elems).addClass('rotate');
+                    $(elems).removeClass('rotate-reset');
                 }
 
-                FillDataTable('playerTable', 'player-checkbox', 'chkPlayerId', 'hdnPlayerIds');
-                FillDataTable('teamTable', 'team-checkbox', 'chkTeamId', 'hdnTeamIds');
-                FillDataTable('sportTable', 'sport-checkbox', 'chkSportId', 'hdnSportIds');
-                FillDataTable('yearTable', 'year-checkbox', 'chkYearId', 'hdnYearIds');
-                FillDataTable('setTable', 'set-checkbox', 'chkSetId', 'hdnSetIds');
-                FillDataTable('gradeCompanyTable', 'gradeCompany-checkbox', 'chkGradeCompanyId', 'hdnGradeCompanyIds');
-                FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
+            }
+            function showModal(id) {
+                if ($('#' + id).find('.mainImg').attr('src').indexOf('/uploads/card-avatar.jpg') == -1) {
+                    $('#' + id).dialog('open');
+                }
+            }
 
-                $("#accordion").accordion({
-                    collapsible: true,
-                    active: false,
-                    heightStyle: "content"
+            FillDataTable('playerTable', 'player-checkbox', 'chkPlayerId', 'hdnPlayerIds');
+            FillDataTable('teamTable', 'team-checkbox', 'chkTeamId', 'hdnTeamIds');
+            FillDataTable('sportTable', 'sport-checkbox', 'chkSportId', 'hdnSportIds');
+            FillDataTable('yearTable', 'year-checkbox', 'chkYearId', 'hdnYearIds');
+            FillDataTable('setTable', 'set-checkbox', 'chkSetId', 'hdnSetIds');
+            FillDataTable('gradeCompanyTable', 'gradeCompany-checkbox', 'chkGradeCompanyId', 'hdnGradeCompanyIds');
+            FillDataTable('locationTable', 'location-checkbox', 'chkLocationId', 'hdnLocationIds');
+
+            $("#accordion").accordion({
+                collapsible: true,
+                active: false,
+                heightStyle: "content"
+            });
+
+            $('.mainImg')
+                .wrap('<span style="display:inline-block"></span>')
+                .parent()
+                .zoom({
+                    on: 'grab',
+                    magnify: .35
                 });
 
-                $('.mainImg')
-                    .wrap('<span style="display:inline-block"></span>')
-                    .parent()
-                    .zoom({
-                        on: 'grab',
-                        magnify: .35
-                    });
+            $('input[type="radio"]').checkboxradio();
 
-                $('input[type="radio"]').checkboxradio();
-
-                $('.btnSearch').button({
-                    icon: "ui-icon ui-icon-circle-arrow-e"
-                });
-            </script>
-        }
+            $('.btnSearch').button({
+                icon: "ui-icon ui-icon-circle-arrow-e"
+            });
+        </script>
+    }
 </form>
